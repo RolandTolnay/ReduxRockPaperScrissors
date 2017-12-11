@@ -31,6 +31,10 @@ class ViewController: UIViewController, StoreSubscriber {
     
     // sun flower - rgba(241, 196, 15,1.0)
     backgroundView.backgroundColor = UIColor(displayP3Red: 241/255, green: 196/255, blue: 15/255, alpha: 1)
+  }
+  
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
     view.sendSubview(toBack: backgroundView)
   }
 

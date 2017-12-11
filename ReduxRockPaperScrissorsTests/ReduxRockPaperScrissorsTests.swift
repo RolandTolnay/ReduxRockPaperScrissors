@@ -13,29 +13,12 @@ import ReSwift
 class ReduxRockPaperScrissorsTests: XCTestCase {
   
   func testResultDraw() {
-    let store = Store<AppState>(reducer: weaponReducer, state: nil)
     
-    // Player 1 choosing weapon
-    store.dispatch(ChooseWeaponAction(weapon: .paper))
-    // Player 2 choosing weapon
-    store.dispatch(ChooseWeaponAction(weapon: .paper))
-    
-    // Check result
-    XCTAssertEqual(store.state.result, .draw)
+    // TODO
   }
   
   func testRematch() {
-    let store = Store<AppState>(reducer: weaponReducer, state: nil)
     
-    // Player 1 choosing weapon
-    store.dispatch(ChooseWeaponAction(weapon: .paper))
-    // Player 2 choosing weapon
-    store.dispatch(ChooseWeaponAction(weapon: .paper))
-    
-    // Rematch
-    store.dispatch(RematchAction())
-    
-    XCTAssertEqual(store.state.result, nil)
-    XCTAssertEqual(store.state.player1Play.chosen, false)
+    // TODO
   }
 }

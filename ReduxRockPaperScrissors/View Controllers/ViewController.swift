@@ -11,6 +11,8 @@ import ReSwift
 
 class ViewController: UIViewController, StoreSubscriber {
  
+  // MARK:- IBOutlets
+  
   @IBOutlet weak var statusLabel: UILabel!
   @IBOutlet weak var playerLabel: UILabel!
   
@@ -23,6 +25,8 @@ class ViewController: UIViewController, StoreSubscriber {
   
   @IBOutlet weak var rematchButton: UIButton!
   @IBOutlet weak var backgroundView: UIView!
+  
+  // MARK:- View Lifecycle
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -43,6 +47,8 @@ class ViewController: UIViewController, StoreSubscriber {
     
     mainStore.unsubscribe(self)
   }
+  
+  // MARK:- Tap handlers
   
   @IBAction func onRockTap(_ sender: UITapGestureRecognizer) {
     mainStore.dispatch(
@@ -66,21 +72,15 @@ class ViewController: UIViewController, StoreSubscriber {
     )
   }
   
-  private func toggleWeapons(enabled: Bool) {
-    rockImageView.isUserInteractionEnabled = enabled
-    paperImageView.isUserInteractionEnabled = enabled
-    scrissorsImageView.isUserInteractionEnabled = enabled
-  }
+  // MARK:- State handling
   
   func newState(state: AppState) {
-    
     // update messages
     statusLabel.text = state.statusMessage.rawValue
     playerLabel.text = state.playerMessage.rawValue
     
     // update weapons
     if state.player2Play.chosen {
-      
       // reveal weapons
       playerOneWeapon.image = imageFrom(weapon: state.player1Play.weapon)
       playerTwoWeapon.image = imageFrom(weapon: state.player2Play.weapon)
@@ -88,9 +88,7 @@ class ViewController: UIViewController, StoreSubscriber {
       // rotate image
       playerOneWeapon.transform = playerOneWeapon.transform.rotated(by: CGFloat(CGFloat.pi/2))
       playerTwoWeapon.transform = playerTwoWeapon.transform.rotated(by: -CGFloat(CGFloat.pi/2))
-      
     } else {
-      
       // mark player 1 ready if chosen weapon
       playerOneWeapon.image = state.player1Play.chosen ? UIImage(named: "ready") : UIImage(named: "none")
       playerTwoWeapon.image = UIImage(named: "none")
@@ -100,6 +98,14 @@ class ViewController: UIViewController, StoreSubscriber {
     toggleWeapons(enabled: state.result == nil)
     // toggle rematch button
     rematchButton.isHidden = state.result == nil
+  }
+  
+  // MARK:- Utility
+  
+  private func toggleWeapons(enabled: Bool) {
+    rockImageView.isUserInteractionEnabled = enabled
+    paperImageView.isUserInteractionEnabled = enabled
+    scrissorsImageView.isUserInteractionEnabled = enabled
   }
   
   private func imageFrom(weapon: Weapon?) -> UIImage? {

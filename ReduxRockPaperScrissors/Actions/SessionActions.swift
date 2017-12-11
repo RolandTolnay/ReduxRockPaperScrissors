@@ -9,4 +9,4 @@
 import Foundation
 import ReSwift
 
-// TODO
+struct RematchAction: Action { }

@@ -23,4 +23,19 @@ class ReduxRockPaperScrissorsTests: XCTestCase {
     // Check result
     XCTAssertEqual(store.state.result, .draw)
   }
+  
+  func testRematch() {
+    let store = Store<AppState>(reducer: weaponReducer, state: nil)
+    
+    // Player 1 choosing weapon
+    store.dispatch(ChooseWeaponAction(weapon: .paper))
+    // Player 2 choosing weapon
+    store.dispatch(ChooseWeaponAction(weapon: .paper))
+    
+    // Rematch
+    store.dispatch(RematchAction())
+    
+    XCTAssertEqual(store.state.result, nil)
+    XCTAssertEqual(store.state.player1Play.chosen, false)
+  }
 }

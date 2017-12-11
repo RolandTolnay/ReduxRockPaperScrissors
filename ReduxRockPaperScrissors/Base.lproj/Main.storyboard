@@ -94,6 +94,14 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UWA-p9-oIj">
+                                <rect key="frame" x="151" y="111.5" width="72" height="35"/>
+                                <fontDescription key="fontDescription" name="Thonburi" family="Thonburi" pointSize="17"/>
+                                <state key="normal" title="Rematch"/>
+                                <connections>
+                                    <action selector="onRematchTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="huj-vk-slN"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -105,6 +113,7 @@
                             <constraint firstItem="Vn2-ux-fbo" firstAttribute="top" secondItem="Bdb-E1-ezF" secondAttribute="bottom" constant="12" id="J2a-Ol-jFr"/>
                             <constraint firstItem="Bdb-E1-ezF" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="RsY-Vs-0ok"/>
                             <constraint firstItem="IeL-Vk-IXA" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Xki-wn-nHS"/>
+                            <constraint firstItem="UWA-p9-oIj" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="bBA-qt-OWy"/>
                             <constraint firstItem="Vn2-ux-fbo" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="csd-ym-L2O"/>
                             <constraint firstItem="JlB-uM-obt" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="d7e-XX-zWq"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="JlB-uM-obt" secondAttribute="bottom" constant="16" id="fAl-Oz-tPj"/>
@@ -113,6 +122,7 @@
                             <constraint firstItem="Z3F-jV-Djf" firstAttribute="centerX" secondItem="Ma2-We-3jF" secondAttribute="centerX" id="mt8-7z-Qa9"/>
                             <constraint firstItem="lTQ-1x-Pe9" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="txf-cG-csn"/>
                             <constraint firstItem="Ma2-We-3jF" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="un4-YL-g0E"/>
+                            <constraint firstItem="UWA-p9-oIj" firstAttribute="top" secondItem="IeL-Vk-IXA" secondAttribute="bottom" constant="12" id="v9G-z8-7WG"/>
                             <constraint firstItem="Ma2-We-3jF" firstAttribute="top" secondItem="Z3F-jV-Djf" secondAttribute="bottom" constant="12" id="vQX-xr-929"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Vn2-ux-fbo" secondAttribute="bottom" constant="16" id="wsX-kL-RDy"/>
                         </constraints>

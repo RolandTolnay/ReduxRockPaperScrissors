@@ -49,6 +49,10 @@ class ViewController: UIViewController, StoreSubscriber {
     )
   }
   
+  @IBAction func onRematchTapped(_ sender: UIButton) {
+    // TODO
+  }
+  
   private func toggleWeapons(enabled: Bool) {
     rockImageView.isUserInteractionEnabled = enabled
     paperImageView.isUserInteractionEnabled = enabled

@@ -18,6 +18,11 @@
 		AF0CA2101FDDBF0900BFE94F /* WeaponActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0CA20F1FDDBF0900BFE94F /* WeaponActions.swift */; };
 		AF0CA2121FDDBFED00BFE94F /* WeaponReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0CA2111FDDBFED00BFE94F /* WeaponReducer.swift */; };
 		AF0CA2201FDEC7E500BFE94F /* SessionActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0CA21F1FDEC7E500BFE94F /* SessionActions.swift */; };
+		AF0CA2211FDF33E700BFE94F /* SessionActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0CA21F1FDEC7E500BFE94F /* SessionActions.swift */; };
+		AF0CA2221FDF33EA00BFE94F /* WeaponActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0CA20F1FDDBF0900BFE94F /* WeaponActions.swift */; };
+		AF0CA2231FDF33ED00BFE94F /* WeaponReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0CA2111FDDBFED00BFE94F /* WeaponReducer.swift */; };
+		AF0CA2241FDF33F200BFE94F /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0CA2071FDDBC1E00BFE94F /* State.swift */; };
+		AF0CA2251FDF33F600BFE94F /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0CA2051FDDB9DE00BFE94F /* Model.swift */; };
 		E272B0E46D14B3BC6D969837 /* Pods_ReduxRockPaperScrissors.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A83D255EBB28A24D48BB5E05 /* Pods_ReduxRockPaperScrissors.framework */; };
 		F2EBE3DD1238A828A86EDDB0 /* Pods_ReduxRockPaperScrissorsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9AF7B73093B098DBAE4F9EA /* Pods_ReduxRockPaperScrissorsTests.framework */; };
 /* End PBXBuildFile section */
@@ -416,6 +421,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF0CA2211FDF33E700BFE94F /* SessionActions.swift in Sources */,
+				AF0CA2221FDF33EA00BFE94F /* WeaponActions.swift in Sources */,
+				AF0CA2231FDF33ED00BFE94F /* WeaponReducer.swift in Sources */,
+				AF0CA2251FDF33F600BFE94F /* Model.swift in Sources */,
+				AF0CA2241FDF33F200BFE94F /* State.swift in Sources */,
 				AF0CA1FB1FDDAB9500BFE94F /* ReduxRockPaperScrissorsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

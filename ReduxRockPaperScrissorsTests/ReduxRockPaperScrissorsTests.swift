@@ -35,7 +35,9 @@ class ReduxRockPaperScrissorsTests: XCTestCase {
     // Rematch
     store.dispatch(RematchAction())
     
+    // Check result
     XCTAssertEqual(store.state.result, nil)
+    // Check player has no weapon
     XCTAssertEqual(store.state.player1Play.chosen, false)
   }
 }

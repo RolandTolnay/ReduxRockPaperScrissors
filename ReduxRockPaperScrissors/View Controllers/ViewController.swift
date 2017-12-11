@@ -21,10 +21,17 @@ class ViewController: UIViewController, StoreSubscriber {
   @IBOutlet weak var paperImageView: UIImageView!
   @IBOutlet weak var scrissorsImageView: UIImageView!
   
+  @IBOutlet weak var rematchButton: UIButton!
+  @IBOutlet weak var backgroundView: UIView!
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     
     mainStore.subscribe(self)
+    
+    // sun flower - rgba(241, 196, 15,1.0)
+    backgroundView.backgroundColor = UIColor(displayP3Red: 241/255, green: 196/255, blue: 15/255, alpha: 1)
+    view.sendSubview(toBack: backgroundView)
   }
 
   override func viewWillDisappear(_ animated: Bool) {
@@ -50,7 +57,9 @@ class ViewController: UIViewController, StoreSubscriber {
   }
   
   @IBAction func onRematchTapped(_ sender: UIButton) {
-    // TODO
+    mainStore.dispatch(
+      RematchAction()
+    )
   }
   
   private func toggleWeapons(enabled: Bool) {
@@ -71,13 +80,14 @@ class ViewController: UIViewController, StoreSubscriber {
       // rotate image
       playerOneWeapon.transform = playerOneWeapon.transform.rotated(by: CGFloat(CGFloat.pi/2))
       playerTwoWeapon.transform = playerTwoWeapon.transform.rotated(by: -CGFloat(CGFloat.pi/2))
-      
-      // turn off interaction
-      toggleWeapons(enabled: false)
     } else {
       playerOneWeapon.image = state.player1Play.chosen ? UIImage(named: "ready") : UIImage(named: "none")
       playerTwoWeapon.image = UIImage(named: "none")
     }
+    // toggle weapon interaction
+    toggleWeapons(enabled: state.result == nil)
+    // toggle rematch button
+    rematchButton.isHidden = state.result == nil
   }
   
   private func imageFrom(weapon: Weapon?) -> UIImage? {

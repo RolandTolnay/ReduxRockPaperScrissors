@@ -23,6 +23,10 @@ func weaponReducer(action: Action, state: AppState?) -> AppState {
         case .two:
           state = playerTwoReducer(action: chooseWeaponAction, state: state)
       }
+    
+    case _ as RematchAction:
+        state = AppState()
+    
     // case for each action type handled by reducer
     
     default:

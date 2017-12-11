@@ -38,11 +38,14 @@ func weaponReducer(action: Action, state: AppState?) -> AppState {
 
 private func playerOneReducer(action: ChooseWeaponAction, state: AppState) -> AppState {
   var state = state
+  
   // create play
   let play = Play(chosen: true, weapon: action.weapon)
   state.player1Play = play
+  
   // pass the turn to the next player
   state.turn = Turn(player: .two)
+  
   // update message
   state.playerMessage = .player2Choose
   
@@ -51,11 +54,14 @@ private func playerOneReducer(action: ChooseWeaponAction, state: AppState) -> Ap
 
 private func playerTwoReducer(action: ChooseWeaponAction, state: AppState) -> AppState {
   var state = state
+  
   // create play
   let play = Play(chosen: true, weapon: action.weapon)
   state.player2Play = play
+  
   // update result
   state.result = resultFrom(player1: state.player1Play, player2: state.player2Play)
+  
   // update message
   switch state.result! {
     case .draw:
@@ -71,6 +77,7 @@ private func playerTwoReducer(action: ChooseWeaponAction, state: AppState) -> Ap
 }
 
 private func resultFrom(player1: Play, player2: Play) -> Result {
+  
   // defaults to rock as everyone else
   let p1Weapon = player1.weapon ?? .rock
   let p2Weapon = player2.weapon ?? .rock

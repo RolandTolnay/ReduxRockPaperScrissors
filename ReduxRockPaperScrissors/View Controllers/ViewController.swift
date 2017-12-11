@@ -73,21 +73,29 @@ class ViewController: UIViewController, StoreSubscriber {
   }
   
   func newState(state: AppState) {
+    
     // update messages
     statusLabel.text = state.statusMessage.rawValue
     playerLabel.text = state.playerMessage.rawValue
     
     // update weapons
     if state.player2Play.chosen {
+      
+      // reveal weapons
       playerOneWeapon.image = imageFrom(weapon: state.player1Play.weapon)
       playerTwoWeapon.image = imageFrom(weapon: state.player2Play.weapon)
+      
       // rotate image
       playerOneWeapon.transform = playerOneWeapon.transform.rotated(by: CGFloat(CGFloat.pi/2))
       playerTwoWeapon.transform = playerTwoWeapon.transform.rotated(by: -CGFloat(CGFloat.pi/2))
+      
     } else {
+      
+      // mark player 1 ready if chosen weapon
       playerOneWeapon.image = state.player1Play.chosen ? UIImage(named: "ready") : UIImage(named: "none")
       playerTwoWeapon.image = UIImage(named: "none")
     }
+    
     // toggle weapon interaction
     toggleWeapons(enabled: state.result == nil)
     // toggle rematch button

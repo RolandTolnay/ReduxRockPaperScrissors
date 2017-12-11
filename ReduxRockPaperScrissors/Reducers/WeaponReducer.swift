@@ -24,8 +24,7 @@ func weaponReducer(action: Action, state: AppState?) -> AppState {
           state = playerTwoReducer(action: chooseWeaponAction, state: state)
       }
     
-    case _ as RematchAction:
-        state = AppState()
+    // TODO
     
     // case for each action type handled by reducer
     

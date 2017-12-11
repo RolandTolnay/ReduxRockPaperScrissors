@@ -20,9 +20,9 @@ class ViewController: UIViewController, StoreSubscriber {
   @IBOutlet weak var rockImageView: UIImageView!
   @IBOutlet weak var paperImageView: UIImageView!
   @IBOutlet weak var scrissorsImageView: UIImageView!
+  @IBOutlet weak var backgroundView: UIView!
   
   @IBOutlet weak var rematchButton: UIButton!
-  @IBOutlet weak var backgroundView: UIView!
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -57,9 +57,7 @@ class ViewController: UIViewController, StoreSubscriber {
   }
   
   @IBAction func onRematchTapped(_ sender: UIButton) {
-    mainStore.dispatch(
-      RematchAction()
-    )
+    // TODO
   }
   
   private func toggleWeapons(enabled: Bool) {
@@ -86,8 +84,8 @@ class ViewController: UIViewController, StoreSubscriber {
     }
     // toggle weapon interaction
     toggleWeapons(enabled: state.result == nil)
-    // toggle rematch button
-    rematchButton.isHidden = state.result == nil
+    
+    // TODO
   }
   
   private func imageFrom(weapon: Weapon?) -> UIImage? {

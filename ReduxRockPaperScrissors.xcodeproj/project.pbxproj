@@ -13,6 +13,10 @@
 		AF0CA1ED1FDDAB9400BFE94F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF0CA1EC1FDDAB9400BFE94F /* Assets.xcassets */; };
 		AF0CA1F01FDDAB9500BFE94F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF0CA1EE1FDDAB9500BFE94F /* LaunchScreen.storyboard */; };
 		AF0CA1FB1FDDAB9500BFE94F /* ReduxRockPaperScrissorsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0CA1FA1FDDAB9500BFE94F /* ReduxRockPaperScrissorsTests.swift */; };
+		AF0CA2061FDDB9DE00BFE94F /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0CA2051FDDB9DE00BFE94F /* Model.swift */; };
+		AF0CA2081FDDBC1E00BFE94F /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0CA2071FDDBC1E00BFE94F /* State.swift */; };
+		AF0CA2101FDDBF0900BFE94F /* WeaponActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0CA20F1FDDBF0900BFE94F /* WeaponActions.swift */; };
+		AF0CA2121FDDBFED00BFE94F /* WeaponReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0CA2111FDDBFED00BFE94F /* WeaponReducer.swift */; };
 		E272B0E46D14B3BC6D969837 /* Pods_ReduxRockPaperScrissors.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A83D255EBB28A24D48BB5E05 /* Pods_ReduxRockPaperScrissors.framework */; };
 		F2EBE3DD1238A828A86EDDB0 /* Pods_ReduxRockPaperScrissorsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9AF7B73093B098DBAE4F9EA /* Pods_ReduxRockPaperScrissorsTests.framework */; };
 /* End PBXBuildFile section */
@@ -40,6 +44,10 @@
 		AF0CA1F61FDDAB9500BFE94F /* ReduxRockPaperScrissorsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReduxRockPaperScrissorsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF0CA1FA1FDDAB9500BFE94F /* ReduxRockPaperScrissorsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReduxRockPaperScrissorsTests.swift; sourceTree = "<group>"; };
 		AF0CA1FC1FDDAB9500BFE94F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AF0CA2051FDDB9DE00BFE94F /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		AF0CA2071FDDBC1E00BFE94F /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
+		AF0CA20F1FDDBF0900BFE94F /* WeaponActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeaponActions.swift; sourceTree = "<group>"; };
+		AF0CA2111FDDBFED00BFE94F /* WeaponReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeaponReducer.swift; sourceTree = "<group>"; };
 		B3BF20A0C7AC7EED38302B53 /* Pods-ReduxRockPaperScrissors.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReduxRockPaperScrissors.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReduxRockPaperScrissors/Pods-ReduxRockPaperScrissors.release.xcconfig"; sourceTree = "<group>"; };
 		B6DA87720DB9E092A940D9D0 /* Pods-ReduxRockPaperScrissors.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReduxRockPaperScrissors.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ReduxRockPaperScrissors/Pods-ReduxRockPaperScrissors.debug.xcconfig"; sourceTree = "<group>"; };
 		BD93B60D48EB1E8A1D825B71 /* Pods-ReduxRockPaperScrissorsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReduxRockPaperScrissorsTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReduxRockPaperScrissorsTests/Pods-ReduxRockPaperScrissorsTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -99,11 +107,13 @@
 			isa = PBXGroup;
 			children = (
 				AF0CA1E51FDDAB9400BFE94F /* AppDelegate.swift */,
-				AF0CA1E71FDDAB9400BFE94F /* ViewController.swift */,
+				AF0CA2091FDDBE4D00BFE94F /* Model */,
+				AF0CA20A1FDDBE5700BFE94F /* State */,
+				AF0CA20B1FDDBE6200BFE94F /* Reducers */,
+				AF0CA20E1FDDBEDC00BFE94F /* Actions */,
+				AF0CA20D1FDDBE9F00BFE94F /* View Controllers */,
 				AF0CA1E91FDDAB9400BFE94F /* Main.storyboard */,
-				AF0CA1EC1FDDAB9400BFE94F /* Assets.xcassets */,
-				AF0CA1EE1FDDAB9500BFE94F /* LaunchScreen.storyboard */,
-				AF0CA1F11FDDAB9500BFE94F /* Info.plist */,
+				AF0CA20C1FDDBE7B00BFE94F /* Supporting Files */,
 			);
 			path = ReduxRockPaperScrissors;
 			sourceTree = "<group>";
@@ -115,6 +125,56 @@
 				AF0CA1FC1FDDAB9500BFE94F /* Info.plist */,
 			);
 			path = ReduxRockPaperScrissorsTests;
+			sourceTree = "<group>";
+		};
+		AF0CA2091FDDBE4D00BFE94F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AF0CA2051FDDB9DE00BFE94F /* Model.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		AF0CA20A1FDDBE5700BFE94F /* State */ = {
+			isa = PBXGroup;
+			children = (
+				AF0CA2071FDDBC1E00BFE94F /* State.swift */,
+			);
+			path = State;
+			sourceTree = "<group>";
+		};
+		AF0CA20B1FDDBE6200BFE94F /* Reducers */ = {
+			isa = PBXGroup;
+			children = (
+				AF0CA2111FDDBFED00BFE94F /* WeaponReducer.swift */,
+			);
+			path = Reducers;
+			sourceTree = "<group>";
+		};
+		AF0CA20C1FDDBE7B00BFE94F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				AF0CA1F11FDDAB9500BFE94F /* Info.plist */,
+				AF0CA1EE1FDDAB9500BFE94F /* LaunchScreen.storyboard */,
+				AF0CA1EC1FDDAB9400BFE94F /* Assets.xcassets */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		AF0CA20D1FDDBE9F00BFE94F /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				AF0CA1E71FDDAB9400BFE94F /* ViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		AF0CA20E1FDDBEDC00BFE94F /* Actions */ = {
+			isa = PBXGroup;
+			children = (
+				AF0CA20F1FDDBF0900BFE94F /* WeaponActions.swift */,
+			);
+			path = Actions;
 			sourceTree = "<group>";
 		};
 		B2216352952A0E764A81B7F1 /* Pods */ = {
@@ -339,8 +399,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF0CA2121FDDBFED00BFE94F /* WeaponReducer.swift in Sources */,
+				AF0CA2101FDDBF0900BFE94F /* WeaponActions.swift in Sources */,
+				AF0CA2061FDDB9DE00BFE94F /* Model.swift in Sources */,
 				AF0CA1E81FDDAB9400BFE94F /* ViewController.swift in Sources */,
 				AF0CA1E61FDDAB9400BFE94F /* AppDelegate.swift in Sources */,
+				AF0CA2081FDDBC1E00BFE94F /* State.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -496,7 +560,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JYW3B323JJ;
-				INFOPLIST_FILE = ReduxRockPaperScrissors/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/ReduxRockPaperScrissors/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rolandtolnay.ReduxRockPaperScrissors;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -512,7 +576,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JYW3B323JJ;
-				INFOPLIST_FILE = ReduxRockPaperScrissors/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/ReduxRockPaperScrissors/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rolandtolnay.ReduxRockPaperScrissors;
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -24,7 +24,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status text" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IeL-Vk-IXA">
-                                <rect key="frame" x="89" y="20" width="197" height="47.5"/>
+                                <rect key="frame" x="89" y="52" width="197" height="47.5"/>
                                 <fontDescription key="fontDescription" name="Thonburi" family="Thonburi" pointSize="36"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -55,30 +55,42 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rock" translatesAutoresizingMaskIntoConstraints="NO" id="Vn2-ux-fbo">
+                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rock" translatesAutoresizingMaskIntoConstraints="NO" id="Vn2-ux-fbo">
                                 <rect key="frame" x="16" y="555" width="96" height="96"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="96" id="Ckm-Fb-ybl"/>
                                     <constraint firstAttribute="height" constant="96" id="Cnq-XW-nyf"/>
                                 </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="ius-gi-exP" appends="YES" id="cpA-Ae-JdJ"/>
+                                </connections>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="paper" translatesAutoresizingMaskIntoConstraints="NO" id="JlB-uM-obt">
+                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="paper" translatesAutoresizingMaskIntoConstraints="NO" id="JlB-uM-obt">
                                 <rect key="frame" x="139" y="555" width="96" height="96"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="96" id="3gq-96-fJX"/>
                                     <constraint firstAttribute="width" constant="96" id="EmO-YY-DNm"/>
                                 </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="KBz-Yb-vwF" appends="YES" id="Nnl-Rw-ZxP"/>
+                                </connections>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="scrissors" translatesAutoresizingMaskIntoConstraints="NO" id="kfF-LP-0e9">
+                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="scrissors" translatesAutoresizingMaskIntoConstraints="NO" id="kfF-LP-0e9">
                                 <rect key="frame" x="263" y="555" width="96" height="96"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="96" id="4DJ-hh-fLt"/>
                                     <constraint firstAttribute="width" constant="96" id="ofc-bo-xIW"/>
                                 </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="9HD-4n-COa" appends="YES" id="xLr-oE-yGy"/>
+                                </connections>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status text" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bdb-E1-ezF">
-                                <rect key="frame" x="89.5" y="495.5" width="197" height="47.5"/>
-                                <fontDescription key="fontDescription" name="Thonburi" family="Thonburi" pointSize="36"/>
+                                <rect key="frame" x="122.5" y="511.5" width="131.5" height="31.5"/>
+                                <fontDescription key="fontDescription" name="Thonburi" family="Thonburi" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -97,7 +109,7 @@
                             <constraint firstItem="JlB-uM-obt" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="d7e-XX-zWq"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="JlB-uM-obt" secondAttribute="bottom" constant="16" id="fAl-Oz-tPj"/>
                             <constraint firstItem="lTQ-1x-Pe9" firstAttribute="top" secondItem="kGe-1J-mcy" secondAttribute="bottom" constant="12" id="gJK-fk-8bL"/>
-                            <constraint firstItem="IeL-Vk-IXA" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="lcr-9c-EH0"/>
+                            <constraint firstItem="IeL-Vk-IXA" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="32" id="lcr-9c-EH0"/>
                             <constraint firstItem="Z3F-jV-Djf" firstAttribute="centerX" secondItem="Ma2-We-3jF" secondAttribute="centerX" id="mt8-7z-Qa9"/>
                             <constraint firstItem="lTQ-1x-Pe9" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="txf-cG-csn"/>
                             <constraint firstItem="Ma2-We-3jF" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="un4-YL-g0E"/>
@@ -106,8 +118,32 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="paperImageView" destination="JlB-uM-obt" id="gBL-DD-v4r"/>
+                        <outlet property="playerLabel" destination="Bdb-E1-ezF" id="2pE-eT-vp1"/>
+                        <outlet property="playerOneWeapon" destination="lTQ-1x-Pe9" id="Gaq-yk-SDg"/>
+                        <outlet property="playerTwoWeapon" destination="Ma2-We-3jF" id="fpN-lA-mVB"/>
+                        <outlet property="rockImageView" destination="Vn2-ux-fbo" id="S8i-RP-96H"/>
+                        <outlet property="scrissorsImageView" destination="kfF-LP-0e9" id="aQt-r9-Xb8"/>
+                        <outlet property="statusLabel" destination="IeL-Vk-IXA" id="EVL-yk-Etq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="ius-gi-exP">
+                    <connections>
+                        <action selector="onRockTap:" destination="BYZ-38-t0r" id="tJV-T4-Vy5"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="KBz-Yb-vwF">
+                    <connections>
+                        <action selector="onPaperTap:" destination="BYZ-38-t0r" id="aGK-gZ-ztj"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="9HD-4n-COa">
+                    <connections>
+                        <action selector="onScrissorsTap:" destination="BYZ-38-t0r" id="A9d-5k-4Pq"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="133.5832083958021"/>
         </scene>

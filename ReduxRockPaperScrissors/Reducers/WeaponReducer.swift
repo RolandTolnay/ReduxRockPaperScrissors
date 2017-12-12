@@ -9,6 +9,8 @@
 import Foundation
 import ReSwift
 
+// MARK:- Application reducer
+
 func weaponReducer(action: Action, state: AppState?) -> AppState {
   
   // create initial state if none provided
@@ -35,6 +37,8 @@ func weaponReducer(action: Action, state: AppState?) -> AppState {
   
   return state
 }
+
+// MARK:- Helpers
 
 private func playerOneReducer(action: ChooseWeaponAction, state: AppState) -> AppState {
   var state = state

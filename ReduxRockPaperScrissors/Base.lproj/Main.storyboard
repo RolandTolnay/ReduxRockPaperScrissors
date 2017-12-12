@@ -102,20 +102,22 @@
                                     <action selector="onRematchTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="huj-vk-slN"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fgn-ib-TRs">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fgn-ib-TRs">
                                 <rect key="frame" x="0.0" y="467" width="375" height="200"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="lTQ-1x-Pe9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="4Jr-Tn-Vg6"/>
+                            <constraint firstItem="fgn-ib-TRs" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="6pg-SW-Jnp"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="kfF-LP-0e9" secondAttribute="bottom" constant="32" id="8HD-EI-tDb"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Ma2-We-3jF" secondAttribute="trailing" constant="16" id="C9c-IW-GkU"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="kfF-LP-0e9" secondAttribute="trailing" constant="16" id="GcK-gK-VYu"/>
                             <constraint firstItem="kGe-1J-mcy" firstAttribute="centerX" secondItem="lTQ-1x-Pe9" secondAttribute="centerX" id="Gx9-gx-sNr"/>
                             <constraint firstItem="Vn2-ux-fbo" firstAttribute="top" secondItem="Bdb-E1-ezF" secondAttribute="bottom" constant="28" id="J2a-Ol-jFr"/>
+                            <constraint firstItem="fgn-ib-TRs" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="OFP-Ni-jKS"/>
                             <constraint firstItem="Bdb-E1-ezF" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="RsY-Vs-0ok"/>
+                            <constraint firstItem="fgn-ib-TRs" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Wys-pH-aNh"/>
                             <constraint firstItem="IeL-Vk-IXA" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Xki-wn-nHS"/>
                             <constraint firstItem="UWA-p9-oIj" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="bBA-qt-OWy"/>
                             <constraint firstItem="Vn2-ux-fbo" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="csd-ym-L2O"/>
@@ -129,6 +131,7 @@
                             <constraint firstItem="UWA-p9-oIj" firstAttribute="top" secondItem="IeL-Vk-IXA" secondAttribute="bottom" constant="12" id="v9G-z8-7WG"/>
                             <constraint firstItem="Ma2-We-3jF" firstAttribute="top" secondItem="Z3F-jV-Djf" secondAttribute="bottom" constant="12" id="vQX-xr-929"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Vn2-ux-fbo" secondAttribute="bottom" constant="32" id="wsX-kL-RDy"/>
+                            <constraint firstItem="fgn-ib-TRs" firstAttribute="top" secondItem="Bdb-E1-ezF" secondAttribute="bottom" constant="-44" id="yEH-af-jsR"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <variation key="default">

@@ -41,6 +41,7 @@ enum Message: String {
   case player1Choose = "Player 1 - Choose weapon"
   case player2Choose = "Player 2 - Choose weapon"
   case draw = "Wow it's a draw!"
+  case empty = ""
 }
 
 // MARK: - Structs

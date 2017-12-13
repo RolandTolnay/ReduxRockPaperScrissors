@@ -84,6 +84,7 @@ class ViewController: UIViewController, StoreSubscriber {
       // reveal weapons
       playerOneWeapon.image = imageFrom(weapon: state.player1Play.weapon, player: .one)
       playerTwoWeapon.image = imageFrom(weapon: state.player2Play.weapon, player: .two)
+      grayscaleImagesForResult(state.result, playerOne: &playerOneWeapon.image!, playerTwo: &playerTwoWeapon.image!)
     } else {
       // mark player 1 ready if chosen weapon
       playerOneWeapon.image = state.player1Play.chosen ? UIImage(named: "ready") : UIImage(named: "none")
@@ -117,6 +118,21 @@ class ViewController: UIViewController, StoreSubscriber {
         return UIImage(named: playerPrefix+"paper")
       case .scrissors:
         return UIImage(named: playerPrefix+"scrissors")
+    }
+  }
+  
+  private func grayscaleImagesForResult(_ result: Result?, playerOne: inout UIImage, playerTwo: inout UIImage) {
+    guard let result = result else { return }
+    
+    switch result {
+      case .player1Win:
+        playerTwo = convertToGrayScale(image: playerTwo)
+        break;
+      case .player2Win:
+        playerOne = convertToGrayScale(image: playerOne)
+        break;
+      default:
+        break;
     }
   }
 }

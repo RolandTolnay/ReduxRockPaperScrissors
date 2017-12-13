@@ -75,7 +75,7 @@ private func playerTwoReducer(action: ChooseWeaponAction, state: AppState) -> Ap
     case .player2Win:
       state.statusMessage = .player2Win
   }
-  state.playerMessage = .player1Choose
+  state.playerMessage = .empty
   
   return state
 }

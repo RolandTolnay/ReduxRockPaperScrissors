@@ -82,12 +82,8 @@ class ViewController: UIViewController, StoreSubscriber {
     // update weapons
     if state.player2Play.chosen {
       // reveal weapons
-      playerOneWeapon.image = imageFrom(weapon: state.player1Play.weapon)
-      playerTwoWeapon.image = imageFrom(weapon: state.player2Play.weapon)
-      
-      // rotate image
-      playerOneWeapon.transform = playerOneWeapon.transform.rotated(by: CGFloat(CGFloat.pi/2))
-      playerTwoWeapon.transform = playerTwoWeapon.transform.rotated(by: -CGFloat(CGFloat.pi/2))
+      playerOneWeapon.image = imageFrom(weapon: state.player1Play.weapon, player: .one)
+      playerTwoWeapon.image = imageFrom(weapon: state.player2Play.weapon, player: .two)
     } else {
       // mark player 1 ready if chosen weapon
       playerOneWeapon.image = state.player1Play.chosen ? UIImage(named: "ready") : UIImage(named: "none")
@@ -108,17 +104,19 @@ class ViewController: UIViewController, StoreSubscriber {
     scrissorsImageView.isUserInteractionEnabled = enabled
   }
   
-  private func imageFrom(weapon: Weapon?) -> UIImage? {
+  private func imageFrom(weapon: Weapon?, player: Player) -> UIImage? {
     guard let weapon = weapon else {
       return UIImage(named: "none")
     }
+    
+    let playerPrefix = player == .one ? "p1-" : "p2-"
     switch weapon {
       case .rock:
-        return UIImage(named: "rock")
+        return UIImage(named: playerPrefix+"rock")
       case .paper:
-        return UIImage(named: "paper")
+        return UIImage(named: playerPrefix+"paper")
       case .scrissors:
-        return UIImage(named: "scrissors")
+        return UIImage(named: playerPrefix+"scrissors")
     }
   }
 }

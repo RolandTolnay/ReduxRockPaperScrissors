@@ -10,7 +10,7 @@ import UIKit
 import ReSwift
 
 class ViewController: UIViewController, StoreSubscriber {
- 
+  
   // MARK:- IBOutlets
   
   @IBOutlet weak var statusLabel: UILabel!
@@ -18,6 +18,9 @@ class ViewController: UIViewController, StoreSubscriber {
   
   @IBOutlet weak var playerOneWeapon: UIImageView!
   @IBOutlet weak var playerTwoWeapon: UIImageView!
+  
+  @IBOutlet weak var playerOneScoreLabel: UILabel!
+  @IBOutlet weak var playerTwoScoreLabel: UILabel!
   
   @IBOutlet weak var rockImageView: UIImageView!
   @IBOutlet weak var paperImageView: UIImageView!
@@ -41,7 +44,7 @@ class ViewController: UIViewController, StoreSubscriber {
     super.viewDidAppear(animated)
     view.sendSubview(toBack: backgroundView)
   }
-
+  
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
     
@@ -75,26 +78,31 @@ class ViewController: UIViewController, StoreSubscriber {
   // MARK:- State handling
   
   func newState(state: AppState) {
+    let gameState = state.gameState
+    
     // update messages
-    statusLabel.text = state.statusMessage.rawValue
-    playerLabel.text = state.playerMessage.rawValue
+    statusLabel.text = gameState.statusMessage.rawValue
+    playerLabel.text = gameState.playerMessage.rawValue
+    
+    // update score
+    updateScore(from: state)
     
     // update weapons
-    if state.player2Play.chosen {
+    if gameState.player2Play.chosen {
       // reveal weapons
-      playerOneWeapon.image = imageFrom(weapon: state.player1Play.weapon, player: .one)
-      playerTwoWeapon.image = imageFrom(weapon: state.player2Play.weapon, player: .two)
-      grayscaleImagesForResult(state.result, playerOne: &playerOneWeapon.image!, playerTwo: &playerTwoWeapon.image!)
+      playerOneWeapon.image = imageFrom(weapon: gameState.player1Play.weapon, player: .one)
+      playerTwoWeapon.image = imageFrom(weapon: gameState.player2Play.weapon, player: .two)
+      grayscaleImagesForResult(gameState.result, playerOne: &playerOneWeapon.image!, playerTwo: &playerTwoWeapon.image!)
     } else {
       // mark player 1 ready if chosen weapon
-      playerOneWeapon.image = state.player1Play.chosen ? UIImage(named: "ready") : UIImage(named: "none")
+      playerOneWeapon.image = gameState.player1Play.chosen ? UIImage(named: "ready") : UIImage(named: "none")
       playerTwoWeapon.image = UIImage(named: "none")
     }
     
     // toggle weapon interaction
-    toggleWeapons(enabled: state.result == nil)
+    toggleWeapons(enabled: gameState.result == nil)
     // toggle rematch button
-    rematchButton.isHidden = state.result == nil
+    rematchButton.isHidden = gameState.result == nil
   }
   
   // MARK:- Utility
@@ -112,12 +120,12 @@ class ViewController: UIViewController, StoreSubscriber {
     
     let playerPrefix = player == .one ? "p1-" : "p2-"
     switch weapon {
-      case .rock:
-        return UIImage(named: playerPrefix+"rock")
-      case .paper:
-        return UIImage(named: playerPrefix+"paper")
-      case .scrissors:
-        return UIImage(named: playerPrefix+"scrissors")
+    case .rock:
+      return UIImage(named: playerPrefix+"rock")
+    case .paper:
+      return UIImage(named: playerPrefix+"paper")
+    case .scrissors:
+      return UIImage(named: playerPrefix+"scrissors")
     }
   }
   
@@ -125,15 +133,23 @@ class ViewController: UIViewController, StoreSubscriber {
     guard let result = result else { return }
     
     switch result {
-      case .player1Win:
-        playerTwo = convertToGrayScale(image: playerTwo)
-        break;
-      case .player2Win:
-        playerOne = convertToGrayScale(image: playerOne)
-        break;
-      default:
-        break;
+    case .player1Win:
+      playerTwo = convertToGrayScale(image: playerTwo)
+      break;
+    case .player2Win:
+      playerOne = convertToGrayScale(image: playerOne)
+      break;
+    default:
+      break;
     }
+  }
+  
+  private func updateScore(from state: AppState) {
+    guard let p1Score = state.score[Player.one],
+      let p2Score = state.score[Player.two] else { return }
+    
+    playerOneScoreLabel.text = String(p1Score)
+    playerTwoScoreLabel.text = String(p2Score)
   }
 }
 

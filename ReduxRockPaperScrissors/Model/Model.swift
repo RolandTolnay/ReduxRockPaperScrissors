@@ -31,6 +31,8 @@ enum Result {
   case player2Win
 }
 
+typealias Score = [Player:Int]
+
 // MARK: - Utility
 
 enum Message: String {

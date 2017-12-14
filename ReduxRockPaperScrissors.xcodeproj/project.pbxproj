@@ -24,6 +24,10 @@
 		AF0CA2241FDF33F200BFE94F /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0CA2071FDDBC1E00BFE94F /* State.swift */; };
 		AF0CA2251FDF33F600BFE94F /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0CA2051FDDB9DE00BFE94F /* Model.swift */; };
 		AFE7E51D1FE1A5800080A465 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE7E51C1FE1A5800080A465 /* Utility.swift */; };
+		AFE7E51F1FE1F90F0080A465 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE7E51E1FE1F90F0080A465 /* GameState.swift */; };
+		AFE7E5201FE1FA400080A465 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE7E51E1FE1F90F0080A465 /* GameState.swift */; };
+		AFE7E5221FE1FAF30080A465 /* AppReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE7E5211FE1FAF30080A465 /* AppReducer.swift */; };
+		AFE7E5231FE1FAF30080A465 /* AppReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE7E5211FE1FAF30080A465 /* AppReducer.swift */; };
 		E272B0E46D14B3BC6D969837 /* Pods_ReduxRockPaperScrissors.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A83D255EBB28A24D48BB5E05 /* Pods_ReduxRockPaperScrissors.framework */; };
 		F2EBE3DD1238A828A86EDDB0 /* Pods_ReduxRockPaperScrissorsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9AF7B73093B098DBAE4F9EA /* Pods_ReduxRockPaperScrissorsTests.framework */; };
 /* End PBXBuildFile section */
@@ -57,6 +61,8 @@
 		AF0CA2111FDDBFED00BFE94F /* WeaponReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeaponReducer.swift; sourceTree = "<group>"; };
 		AF0CA21F1FDEC7E500BFE94F /* SessionActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionActions.swift; sourceTree = "<group>"; };
 		AFE7E51C1FE1A5800080A465 /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
+		AFE7E51E1FE1F90F0080A465 /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
+		AFE7E5211FE1FAF30080A465 /* AppReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppReducer.swift; sourceTree = "<group>"; };
 		B3BF20A0C7AC7EED38302B53 /* Pods-ReduxRockPaperScrissors.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReduxRockPaperScrissors.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReduxRockPaperScrissors/Pods-ReduxRockPaperScrissors.release.xcconfig"; sourceTree = "<group>"; };
 		B6DA87720DB9E092A940D9D0 /* Pods-ReduxRockPaperScrissors.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReduxRockPaperScrissors.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ReduxRockPaperScrissors/Pods-ReduxRockPaperScrissors.debug.xcconfig"; sourceTree = "<group>"; };
 		BD93B60D48EB1E8A1D825B71 /* Pods-ReduxRockPaperScrissorsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReduxRockPaperScrissorsTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReduxRockPaperScrissorsTests/Pods-ReduxRockPaperScrissorsTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -149,6 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				AF0CA2071FDDBC1E00BFE94F /* State.swift */,
+				AFE7E51E1FE1F90F0080A465 /* GameState.swift */,
 			);
 			path = State;
 			sourceTree = "<group>";
@@ -157,6 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				AF0CA2111FDDBFED00BFE94F /* WeaponReducer.swift */,
+				AFE7E5211FE1FAF30080A465 /* AppReducer.swift */,
 			);
 			path = Reducers;
 			sourceTree = "<group>";
@@ -414,8 +422,10 @@
 				AF0CA2101FDDBF0900BFE94F /* WeaponActions.swift in Sources */,
 				AF0CA2061FDDB9DE00BFE94F /* Model.swift in Sources */,
 				AF0CA2201FDEC7E500BFE94F /* SessionActions.swift in Sources */,
+				AFE7E5221FE1FAF30080A465 /* AppReducer.swift in Sources */,
 				AFE7E51D1FE1A5800080A465 /* Utility.swift in Sources */,
 				AF0CA1E81FDDAB9400BFE94F /* ViewController.swift in Sources */,
+				AFE7E51F1FE1F90F0080A465 /* GameState.swift in Sources */,
 				AF0CA1E61FDDAB9400BFE94F /* AppDelegate.swift in Sources */,
 				AF0CA2081FDDBC1E00BFE94F /* State.swift in Sources */,
 			);
@@ -425,11 +435,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AFE7E5201FE1FA400080A465 /* GameState.swift in Sources */,
 				AF0CA2211FDF33E700BFE94F /* SessionActions.swift in Sources */,
 				AF0CA2221FDF33EA00BFE94F /* WeaponActions.swift in Sources */,
 				AF0CA2231FDF33ED00BFE94F /* WeaponReducer.swift in Sources */,
 				AF0CA2251FDF33F600BFE94F /* Model.swift in Sources */,
 				AF0CA2241FDF33F200BFE94F /* State.swift in Sources */,
+				AFE7E5231FE1FAF30080A465 /* AppReducer.swift in Sources */,
 				AF0CA1FB1FDDAB9500BFE94F /* ReduxRockPaperScrissorsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -11,10 +11,10 @@ import ReSwift
 
 // MARK:- Application reducer
 
-func weaponReducer(action: Action, state: AppState?) -> AppState {
+func weaponReducer(action: Action, state: GameState?) -> GameState {
   
   // create initial state if none provided
-  var state = state ?? AppState()
+  var state = state ?? GameState()
   
   switch action {
     case let chooseWeaponAction as ChooseWeaponAction:
@@ -27,7 +27,7 @@ func weaponReducer(action: Action, state: AppState?) -> AppState {
       }
     
     case _ as RematchAction:
-        state = AppState()
+        state = GameState()
     
     // case for each action type handled by reducer
     
@@ -40,7 +40,7 @@ func weaponReducer(action: Action, state: AppState?) -> AppState {
 
 // MARK:- Helpers
 
-private func playerOneReducer(action: ChooseWeaponAction, state: AppState) -> AppState {
+private func playerOneReducer(action: ChooseWeaponAction, state: GameState) -> GameState {
   var state = state
   
   // create play
@@ -56,7 +56,7 @@ private func playerOneReducer(action: ChooseWeaponAction, state: AppState) -> Ap
   return state
 }
 
-private func playerTwoReducer(action: ChooseWeaponAction, state: AppState) -> AppState {
+private func playerTwoReducer(action: ChooseWeaponAction, state: GameState) -> GameState {
   var state = state
   
   // create play

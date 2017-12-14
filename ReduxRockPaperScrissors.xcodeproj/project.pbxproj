@@ -16,11 +16,11 @@
 		AF0CA2061FDDB9DE00BFE94F /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0CA2051FDDB9DE00BFE94F /* Model.swift */; };
 		AF0CA2081FDDBC1E00BFE94F /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0CA2071FDDBC1E00BFE94F /* State.swift */; };
 		AF0CA2101FDDBF0900BFE94F /* WeaponActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0CA20F1FDDBF0900BFE94F /* WeaponActions.swift */; };
-		AF0CA2121FDDBFED00BFE94F /* WeaponReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0CA2111FDDBFED00BFE94F /* WeaponReducer.swift */; };
+		AF0CA2121FDDBFED00BFE94F /* GameReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0CA2111FDDBFED00BFE94F /* GameReducer.swift */; };
 		AF0CA2201FDEC7E500BFE94F /* SessionActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0CA21F1FDEC7E500BFE94F /* SessionActions.swift */; };
 		AF0CA2211FDF33E700BFE94F /* SessionActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0CA21F1FDEC7E500BFE94F /* SessionActions.swift */; };
 		AF0CA2221FDF33EA00BFE94F /* WeaponActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0CA20F1FDDBF0900BFE94F /* WeaponActions.swift */; };
-		AF0CA2231FDF33ED00BFE94F /* WeaponReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0CA2111FDDBFED00BFE94F /* WeaponReducer.swift */; };
+		AF0CA2231FDF33ED00BFE94F /* GameReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0CA2111FDDBFED00BFE94F /* GameReducer.swift */; };
 		AF0CA2241FDF33F200BFE94F /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0CA2071FDDBC1E00BFE94F /* State.swift */; };
 		AF0CA2251FDF33F600BFE94F /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0CA2051FDDB9DE00BFE94F /* Model.swift */; };
 		AFE7E51D1FE1A5800080A465 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE7E51C1FE1A5800080A465 /* Utility.swift */; };
@@ -58,7 +58,7 @@
 		AF0CA2051FDDB9DE00BFE94F /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		AF0CA2071FDDBC1E00BFE94F /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		AF0CA20F1FDDBF0900BFE94F /* WeaponActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeaponActions.swift; sourceTree = "<group>"; };
-		AF0CA2111FDDBFED00BFE94F /* WeaponReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeaponReducer.swift; sourceTree = "<group>"; };
+		AF0CA2111FDDBFED00BFE94F /* GameReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameReducer.swift; sourceTree = "<group>"; };
 		AF0CA21F1FDEC7E500BFE94F /* SessionActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionActions.swift; sourceTree = "<group>"; };
 		AFE7E51C1FE1A5800080A465 /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		AFE7E51E1FE1F90F0080A465 /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
@@ -163,7 +163,7 @@
 		AF0CA20B1FDDBE6200BFE94F /* Reducers */ = {
 			isa = PBXGroup;
 			children = (
-				AF0CA2111FDDBFED00BFE94F /* WeaponReducer.swift */,
+				AF0CA2111FDDBFED00BFE94F /* GameReducer.swift */,
 				AFE7E5211FE1FAF30080A465 /* AppReducer.swift */,
 			);
 			path = Reducers;
@@ -418,7 +418,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AF0CA2121FDDBFED00BFE94F /* WeaponReducer.swift in Sources */,
+				AF0CA2121FDDBFED00BFE94F /* GameReducer.swift in Sources */,
 				AF0CA2101FDDBF0900BFE94F /* WeaponActions.swift in Sources */,
 				AF0CA2061FDDB9DE00BFE94F /* Model.swift in Sources */,
 				AF0CA2201FDEC7E500BFE94F /* SessionActions.swift in Sources */,
@@ -438,7 +438,7 @@
 				AFE7E5201FE1FA400080A465 /* GameState.swift in Sources */,
 				AF0CA2211FDF33E700BFE94F /* SessionActions.swift in Sources */,
 				AF0CA2221FDF33EA00BFE94F /* WeaponActions.swift in Sources */,
-				AF0CA2231FDF33ED00BFE94F /* WeaponReducer.swift in Sources */,
+				AF0CA2231FDF33ED00BFE94F /* GameReducer.swift in Sources */,
 				AF0CA2251FDF33F600BFE94F /* Model.swift in Sources */,
 				AF0CA2241FDF33F200BFE94F /* State.swift in Sources */,
 				AFE7E5231FE1FAF30080A465 /* AppReducer.swift in Sources */,

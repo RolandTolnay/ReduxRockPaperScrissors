@@ -11,7 +11,7 @@ import ReSwift
 
 // MARK:- Application reducer
 
-func weaponReducer(action: Action, state: GameState?) -> GameState {
+func gameReducer(action: Action, state: GameState?) -> GameState {
   
   // create initial state if none provided
   var state = state ?? GameState()

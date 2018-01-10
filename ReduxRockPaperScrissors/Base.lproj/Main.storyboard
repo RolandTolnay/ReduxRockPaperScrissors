@@ -201,8 +201,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RockPaperScrissors" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Be-5D-q2Q">
-                                <rect key="frame" x="57.5" y="20" width="260.5" height="37"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rock-Paper-Scrissors" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Be-5D-q2Q">
+                                <rect key="frame" x="47" y="56" width="281.5" height="37"/>
                                 <fontDescription key="fontDescription" name="Thonburi" family="Thonburi" pointSize="28"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -215,10 +215,19 @@
                                     <action selector="onLookForDevicesTapped:" destination="EF2-oz-fNY" eventType="touchUpInside" id="kwm-C7-krh"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OnL-EB-bqL">
+                                <rect key="frame" x="142" y="617" width="90" height="30"/>
+                                <state key="normal" title="Skip to game"/>
+                                <connections>
+                                    <action selector="onSkipToGameTapped:" destination="EF2-oz-fNY" eventType="touchUpInside" id="rsR-aq-T5a"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="3Be-5D-q2Q" firstAttribute="top" secondItem="1FG-v6-q0r" secondAttribute="top" id="Lwb-To-wST"/>
+                            <constraint firstItem="1FG-v6-q0r" firstAttribute="bottom" secondItem="OnL-EB-bqL" secondAttribute="bottom" constant="20" id="9F8-AL-hgd"/>
+                            <constraint firstItem="3Be-5D-q2Q" firstAttribute="top" secondItem="1FG-v6-q0r" secondAttribute="top" constant="36" id="Lwb-To-wST"/>
+                            <constraint firstItem="OnL-EB-bqL" firstAttribute="centerX" secondItem="jhs-ce-bYf" secondAttribute="centerX" id="n3h-PM-DPc"/>
                             <constraint firstItem="ttj-PS-4oP" firstAttribute="centerX" secondItem="jhs-ce-bYf" secondAttribute="centerX" id="obo-eD-N5x"/>
                             <constraint firstItem="3Be-5D-q2Q" firstAttribute="centerX" secondItem="jhs-ce-bYf" secondAttribute="centerX" id="uMS-h7-Ho6"/>
                             <constraint firstItem="ttj-PS-4oP" firstAttribute="centerY" secondItem="jhs-ce-bYf" secondAttribute="centerY" id="x6Q-sf-vaC"/>

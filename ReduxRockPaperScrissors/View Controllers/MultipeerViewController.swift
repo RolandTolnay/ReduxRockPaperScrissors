@@ -39,6 +39,11 @@ class MultipeerViewController: UIViewController, StoreSubscriber {
     )
   }
   
+  @IBAction func onSkipToGameTapped(_ sender: Any) {
+    
+    navigateToGameScreen()
+  }
+  
   func newState(state: MultipeerState) {
     if state.connectedPlayer != nil {
       navigateToGameScreen()

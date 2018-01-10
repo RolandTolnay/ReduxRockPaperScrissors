@@ -27,7 +27,7 @@ struct GameState: StateType {
   
   init() {
     self.statusMessage = .prepare
-    self.playerMessage = .player1Choose
+    self.playerMessage = .playerChoose
     
     self.turn = Turn(player: .one)
     self.player1Play = Play(chosen: false, weapon: nil)

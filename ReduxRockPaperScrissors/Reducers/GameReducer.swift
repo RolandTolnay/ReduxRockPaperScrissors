@@ -50,9 +50,6 @@ private func playerOneReducer(action: ChooseWeaponAction, state: GameState) -> G
   // pass the turn to the next player
   state.turn = Turn(player: .two)
   
-  // update message
-  state.playerMessage = .player2Choose
-  
   return state
 }
 

@@ -40,8 +40,7 @@ enum Message: String {
   case prepare = "Prepare to battle!"
   case player1Win = "Player 1 WINS"
   case player2Win = "Player 2 WINS"
-  case player1Choose = "Player 1 - Choose weapon"
-  case player2Choose = "Player 2 - Choose weapon"
+  case playerChoose = "Choose weapon"
   case draw = "Wow it's a draw!"
   case empty = ""
 }

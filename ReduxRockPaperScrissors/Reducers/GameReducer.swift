@@ -32,7 +32,7 @@ func gameReducer(action: Action, state: GameState?) -> GameState {
     // case for each action type handled by reducer
     
     default:
-      break;
+      break
   }
   
   return state

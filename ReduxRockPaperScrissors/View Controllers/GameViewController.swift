@@ -9,7 +9,7 @@
 import UIKit
 import ReSwift
 
-class ViewController: UIViewController, StoreSubscriber {
+class GameViewController: UIViewController, StoreSubscriber {
   
   // MARK:- IBOutlets
   
@@ -34,10 +34,14 @@ class ViewController: UIViewController, StoreSubscriber {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    mainStore.subscribe(self)
-    
     // sun flower - rgba(241, 196, 15,1.0)
     backgroundView.backgroundColor = UIColor(displayP3Red: 241/255, green: 196/255, blue: 15/255, alpha: 1)
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    
+    mainStore.subscribe(self)
   }
   
   override func viewDidAppear(_ animated: Bool) {

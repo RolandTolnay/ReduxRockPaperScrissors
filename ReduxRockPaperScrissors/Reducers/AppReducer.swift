@@ -13,6 +13,8 @@ func appReducer(action: Action, state: AppState?) -> AppState {
   var state = state ?? AppState()
   
   state.gameState = gameReducer(action: action, state: state.gameState)
+  state.multipeerState = multipeerReducer(action: action, state: state.multipeerState)
+  
   switch action {
     case _ as ChooseWeaponAction:
       if let result = state.gameState.result {

@@ -15,10 +15,12 @@ struct AppState: StateType {
   // ex. authenticationState, navigationState, error object
   
   var gameState: GameState
+  var multipeerState: MultipeerState
   var score: Score
   
   init() {
     self.gameState = GameState()
+    self.multipeerState = MultipeerState()
     self.score = [.one:0,
                   .two:0]
   }

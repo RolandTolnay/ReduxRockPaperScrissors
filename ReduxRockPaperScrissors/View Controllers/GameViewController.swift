@@ -13,6 +13,9 @@ class GameViewController: UIViewController, StoreSubscriber {
   
   // MARK:- IBOutlets
   
+  @IBOutlet weak var otherPlayerNameLabel: UILabel!
+  @IBOutlet weak var myPlayerNameLabel: UILabel!
+  
   @IBOutlet weak var statusLabel: UILabel!
   @IBOutlet weak var playerLabel: UILabel!
   
@@ -89,6 +92,8 @@ class GameViewController: UIViewController, StoreSubscriber {
   func newState(state: AppState) {
     let gameState = state.gameState
     
+    renderPlayerNames(from: state.multipeerState)
+    
     statusLabel.text = gameState.statusMessage.rawValue
     playerLabel.text = gameState.playerMessage.rawValue
     
@@ -112,6 +117,11 @@ class GameViewController: UIViewController, StoreSubscriber {
   
   // MARK:- Utility
   
+  private func renderPlayerNames(from multipeerState: MultipeerState) {
+    myPlayerNameLabel.text = UIDevice.current.name
+    otherPlayerNameLabel.text = multipeerState.connectedPlayer
+  }
+  
   private func renderGameStatus(_ gameStatus: GameStatus) {
     switch gameStatus {
       case .pendingStartReceived:
@@ -119,7 +129,6 @@ class GameViewController: UIViewController, StoreSubscriber {
           print("Can start game: \(didAccept)")
           // TODO: dispatch game start if accepted
         }
-      
       
       default:
         break
@@ -133,10 +142,10 @@ class GameViewController: UIViewController, StoreSubscriber {
     let alert = UIAlertController(title: "Start game",
                                   message: "\(opponent) would like to start the game. Are you ready?",
                                   preferredStyle: .alert)
-    let acceptAction = UIAlertAction(title: "Accept", style: .default) { action in
+    let acceptAction = UIAlertAction(title: "Accept", style: .cancel) { action in
       completion(true)
     }
-    let declineAction = UIAlertAction(title: "Decline", style: .cancel) { action in
+    let declineAction = UIAlertAction(title: "Decline", style: .default) { action in
       completion(false)
     }
     

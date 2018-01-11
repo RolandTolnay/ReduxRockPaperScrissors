@@ -41,19 +41,6 @@ enum GameStatus {
 
 typealias Score = [Player:Int]
 
-// MARK: -
-// MARK: Multipeer
-// --------------------
-
-enum MultipeerAction: String {
-  
-  case gameStartRequest
-  case gameStartApproved
-  case chosenRock
-  case chosenPaper
-  case chosenScrissors
-}
-
 // MARK: - Utility
 
 enum Message: String {

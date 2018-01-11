@@ -21,8 +21,8 @@ struct AppState: StateType {
   init() {
     self.gameState = GameState()
     self.multipeerState = MultipeerState()
-    self.score = [.one:0,
-                  .two:0]
+    self.score = [.me:0,
+                  .other:0]
   }
 }
 

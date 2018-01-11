@@ -20,9 +20,9 @@ func appReducer(action: Action, state: AppState?) -> AppState {
       if let result = state.gameState.result {
         switch result {
           case .player1Win:
-            state.score[.one]! += 1
+            state.score[.me]! += 1
           case .player2Win:
-            state.score[.two]! += 1
+            state.score[.other]! += 1
           default:
             break
         }

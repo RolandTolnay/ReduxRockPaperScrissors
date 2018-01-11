@@ -27,7 +27,6 @@
 		AF655E74200613D000A26960 /* MultipeerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF655E73200613D000A26960 /* MultipeerState.swift */; };
 		AF655E75200613D000A26960 /* MultipeerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF655E73200613D000A26960 /* MultipeerState.swift */; };
 		AF655E7720063EC500A26960 /* MultipeerReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF655E7620063EC500A26960 /* MultipeerReducer.swift */; };
-		AF655E7820063EC500A26960 /* MultipeerReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF655E7620063EC500A26960 /* MultipeerReducer.swift */; };
 		AF655E7A20063F5C00A26960 /* MultipeerActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF655E7920063F5C00A26960 /* MultipeerActions.swift */; };
 		AF655E7B20063F5C00A26960 /* MultipeerActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF655E7920063F5C00A26960 /* MultipeerActions.swift */; };
 		AF655E8620066B3D00A26960 /* MultipeerSessionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF655E8520066B3D00A26960 /* MultipeerSessionService.swift */; };
@@ -473,7 +472,6 @@
 			files = (
 				AFE7E5201FE1FA400080A465 /* GameState.swift in Sources */,
 				AF0CA2211FDF33E700BFE94F /* SessionActions.swift in Sources */,
-				AF655E7820063EC500A26960 /* MultipeerReducer.swift in Sources */,
 				AF0CA2221FDF33EA00BFE94F /* WeaponActions.swift in Sources */,
 				AF0CA2231FDF33ED00BFE94F /* GameReducer.swift in Sources */,
 				AF0CA2251FDF33F600BFE94F /* Model.swift in Sources */,

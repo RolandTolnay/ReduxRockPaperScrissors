@@ -18,16 +18,15 @@ func gameReducer(action: Action, state: GameState?) -> GameState {
   
   switch action {
     case let chooseWeaponAction as ChooseWeaponAction:
-      let turn = state.turn
-      switch turn.player {
-        case .one:
-          state = playerOneReducer(action: chooseWeaponAction, state: state)
-        case .two:
-          state = playerTwoReducer(action: chooseWeaponAction, state: state)
+      switch chooseWeaponAction.player {
+        case .me:
+          state.myPlay = Play(chosen: true, weapon: chooseWeaponAction.weapon)
+        case .other:
+          state.otherPlay = Play(chosen: true, weapon: chooseWeaponAction.weapon)
       }
     
     case _ as RematchAction:
-        state = GameState()
+      state = GameState()
     case _ as StartGameAction:
       state.gameStatus = .countdown
     
@@ -45,42 +44,39 @@ func gameReducer(action: Action, state: GameState?) -> GameState {
 
 // MARK:- Helpers
 
-private func playerOneReducer(action: ChooseWeaponAction, state: GameState) -> GameState {
-  var state = state
-  
-  // create play
-  let play = Play(chosen: true, weapon: action.weapon)
-  state.player1Play = play
-  
-  // pass the turn to the next player
-  state.turn = Turn(player: .two)
-  
-  return state
-}
-
-private func playerTwoReducer(action: ChooseWeaponAction, state: GameState) -> GameState {
-  var state = state
-  
-  // create play
-  let play = Play(chosen: true, weapon: action.weapon)
-  state.player2Play = play
-  
-  // update result
-  state.result = resultFrom(player1: state.player1Play, player2: state.player2Play)
-  
-  // update message
-  switch state.result! {
-    case .draw:
-      state.statusMessage = .draw
-    case .player1Win:
-      state.statusMessage = .player1Win
-    case .player2Win:
-      state.statusMessage = .player2Win
-  }
-  state.playerMessage = .empty
-  
-  return state
-}
+//private func playerOneReducer(action: ChooseWeaponAction, state: GameState) -> GameState {
+//  var state = state
+//
+//  // create play
+//  let play = Play(chosen: true, weapon: action.weapon)
+//  state.player1Play = play
+//
+//  return state
+//}
+//
+//private func playerTwoReducer(action: ChooseWeaponAction, state: GameState) -> GameState {
+//  var state = state
+//
+//  // create play
+//  let play = Play(chosen: true, weapon: action.weapon)
+//  state.player2Play = play
+//
+//  // update result
+//  state.result = resultFrom(player1: state.player1Play, player2: state.player2Play)
+//
+//  // update message
+//  switch state.result! {
+//    case .draw:
+//      state.statusMessage = .draw
+//    case .player1Win:
+//      state.statusMessage = .player1Win
+//    case .player2Win:
+//      state.statusMessage = .player2Win
+//  }
+//  state.playerMessage = .empty
+//
+//  return state
+//}
 
 private func resultFrom(player1: Play, player2: Play) -> Result {
   

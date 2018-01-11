@@ -20,11 +20,11 @@ class GameViewController: UIViewController, StoreSubscriber {
   @IBOutlet weak var playerLabel: UILabel!
   @IBOutlet weak var pendingStartLabel: UILabel!
   
-  @IBOutlet weak var playerOneWeapon: UIImageView!
-  @IBOutlet weak var playerTwoWeapon: UIImageView!
+  @IBOutlet weak var myPlayerWeapon: UIImageView!
+  @IBOutlet weak var otherPlayerWeapon: UIImageView!
   
-  @IBOutlet weak var playerOneScoreLabel: UILabel!
-  @IBOutlet weak var playerTwoScoreLabel: UILabel!
+  @IBOutlet weak var myPlayerScoreLabel: UILabel!
+  @IBOutlet weak var otherPlayerScoreLabel: UILabel!
   
   @IBOutlet weak var rockImageView: UIImageView!
   @IBOutlet weak var paperImageView: UIImageView!
@@ -67,17 +67,17 @@ class GameViewController: UIViewController, StoreSubscriber {
   
   @IBAction func onRockTap(_ sender: UITapGestureRecognizer) {
     mainStore.dispatch(
-      ChooseWeaponAction(weapon: .rock)
+      ChooseWeaponAction(player: .me, weapon: .rock)
     )
   }
   @IBAction func onPaperTap(_ sender: UITapGestureRecognizer) {
     mainStore.dispatch(
-      ChooseWeaponAction(weapon: .paper)
+      ChooseWeaponAction(player: .me, weapon: .paper)
     )
   }
   @IBAction func onScrissorsTap(_ sender: Any) {
     mainStore.dispatch(
-      ChooseWeaponAction(weapon: .scrissors)
+      ChooseWeaponAction(player: .me, weapon: .scrissors)
     )
   }
   
@@ -107,14 +107,21 @@ class GameViewController: UIViewController, StoreSubscriber {
     
     updateScore(from: state)
     
-    if gameState.player2Play.chosen {
-      playerOneWeapon.image = imageFrom(weapon: gameState.player1Play.weapon, player: .one)
-      playerTwoWeapon.image = imageFrom(weapon: gameState.player2Play.weapon, player: .two)
-      grayscaleImagesForResult(gameState.result, playerOne: &playerOneWeapon.image!, playerTwo: &playerTwoWeapon.image!)
-    } else {
-      playerOneWeapon.image = gameState.player1Play.chosen ? UIImage(named: "ready") : UIImage(named: "none")
-      playerTwoWeapon.image = UIImage(named: "none")
+    if gameState.myPlay.chosen {
+      myPlayerWeapon.image = imageFrom(weapon: gameState.myPlay.weapon, player: .me)
     }
+    if gameState.otherPlay.chosen {
+      otherPlayerWeapon.image = imageFrom(weapon: gameState.otherPlay.weapon, player: .other)
+    }
+    
+//    if gameState.player2Play.chosen {
+//      myPlayerWeapon.image = imageFrom(weapon: gameState.player1Play.weapon, player: .one)
+//      otherPlayerWeapon.image = imageFrom(weapon: gameState.player2Play.weapon, player: .two)
+//      grayscaleImagesForResult(gameState.result, playerOne: &myPlayerWeapon.image!, playerTwo: &otherPlayerWeapon.image!)
+//    } else {
+//      myPlayerWeapon.image = gameState.player1Play.chosen ? UIImage(named: "ready") : UIImage(named: "none")
+//      otherPlayerWeapon.image = UIImage(named: "none")
+//    }
     
     toggleWeaponInteraction(enabled: gameState.result == nil)
     toggleWeaponVisibility(isHidden: gameState.gameStatus != .countdown)
@@ -194,7 +201,7 @@ class GameViewController: UIViewController, StoreSubscriber {
       return UIImage(named: "none")
     }
     
-    let playerPrefix = player == .one ? "p1-" : "p2-"
+    let playerPrefix = player == .me ? "p1-" : "p2-"
     switch weapon {
     case .rock:
       return UIImage(named: playerPrefix+"rock")
@@ -221,11 +228,11 @@ class GameViewController: UIViewController, StoreSubscriber {
   }
   
   private func updateScore(from state: AppState) {
-    guard let p1Score = state.score[Player.one],
-      let p2Score = state.score[Player.two] else { return }
+    guard let p1Score = state.score[Player.me],
+      let p2Score = state.score[Player.other] else { return }
     
-    playerOneScoreLabel.text = String(p1Score)
-    playerTwoScoreLabel.text = String(p2Score)
+    myPlayerScoreLabel.text = String(p1Score)
+    otherPlayerScoreLabel.text = String(p2Score)
   }
 }
 

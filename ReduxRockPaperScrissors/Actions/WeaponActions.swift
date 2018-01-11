@@ -11,5 +11,6 @@ import ReSwift
 
 struct ChooseWeaponAction: Action {
   
+  var player: Player
   var weapon: Weapon
 }

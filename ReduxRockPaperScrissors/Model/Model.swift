@@ -13,8 +13,8 @@ import Foundation
 
 enum Player {
   
-  case one
-  case two
+  case me
+  case other
 }
 
 enum Weapon {
@@ -54,13 +54,6 @@ enum Message: String {
 }
 
 // MARK: - Structs
-
-// TODO Remove Turn
-// The player who has to make the next move
-struct Turn {
-  
-  var player: Player
-}
 
 // The move a player has made
 struct Play {

@@ -15,14 +15,11 @@ struct GameState: StateType {
   var statusMessage: Message
   var playerMessage: Message
   
-  // Player who moves next
-  var turn: Turn
-  
   var gameStatus: GameStatus
   
   // Weapon choice of players
-  var player1Play: Play
-  var player2Play: Play
+  var myPlay: Play
+  var otherPlay: Play
   
   // Result of the match
   var result: Result?
@@ -32,9 +29,7 @@ struct GameState: StateType {
     self.playerMessage = .playerChoose
     
     self.gameStatus = .finished
-    
-    self.turn = Turn(player: .one)
-    self.player1Play = Play(chosen: false, weapon: nil)
-    self.player2Play = Play(chosen: false, weapon: nil)
+    self.myPlay = Play(chosen: false, weapon: nil)
+    self.otherPlay = Play(chosen: false, weapon: nil)
   }
 }

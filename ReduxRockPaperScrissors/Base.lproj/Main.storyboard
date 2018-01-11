@@ -183,14 +183,14 @@
                     <connections>
                         <outlet property="backgroundView" destination="fgn-ib-TRs" id="Oj5-2I-4hY"/>
                         <outlet property="myPlayerNameLabel" destination="kGe-1J-mcy" id="7av-dA-hh3"/>
+                        <outlet property="myPlayerScoreLabel" destination="CbQ-WR-rZQ" id="PoJ-Vy-aOD"/>
+                        <outlet property="myPlayerWeapon" destination="lTQ-1x-Pe9" id="Gaq-yk-SDg"/>
                         <outlet property="otherPlayerNameLabel" destination="Z3F-jV-Djf" id="7aB-ra-Oap"/>
+                        <outlet property="otherPlayerScoreLabel" destination="GUN-3f-SW0" id="AOc-0L-jkO"/>
+                        <outlet property="otherPlayerWeapon" destination="Ma2-We-3jF" id="fpN-lA-mVB"/>
                         <outlet property="paperImageView" destination="JlB-uM-obt" id="gBL-DD-v4r"/>
                         <outlet property="pendingStartLabel" destination="MLz-4m-X4j" id="BRY-4w-Rd3"/>
                         <outlet property="playerLabel" destination="Bdb-E1-ezF" id="2pE-eT-vp1"/>
-                        <outlet property="playerOneScoreLabel" destination="CbQ-WR-rZQ" id="PoJ-Vy-aOD"/>
-                        <outlet property="playerOneWeapon" destination="lTQ-1x-Pe9" id="Gaq-yk-SDg"/>
-                        <outlet property="playerTwoScoreLabel" destination="GUN-3f-SW0" id="AOc-0L-jkO"/>
-                        <outlet property="playerTwoWeapon" destination="Ma2-We-3jF" id="fpN-lA-mVB"/>
                         <outlet property="rematchButton" destination="UWA-p9-oIj" id="CRa-Sg-5ZW"/>
                         <outlet property="rockImageView" destination="Vn2-ux-fbo" id="S8i-RP-96H"/>
                         <outlet property="scrissorsImageView" destination="kfF-LP-0e9" id="aQt-r9-Xb8"/>

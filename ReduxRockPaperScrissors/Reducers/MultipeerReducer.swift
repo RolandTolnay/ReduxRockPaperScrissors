@@ -35,8 +35,20 @@ func multipeerReducer(action: Action, state: MultipeerState?) -> MultipeerState 
         state.sessionService.sendMultipeerAction(.gameStartApproved)
       }
     
-    default:
-      break
+    case let chooseWeaponAction as ChooseWeaponAction:
+      if chooseWeaponAction.player == .me {
+        switch chooseWeaponAction.weapon {
+          case .paper:
+            state.sessionService.sendMultipeerAction(.chosenPaper)
+          case .rock:
+            state.sessionService.sendMultipeerAction(.chosenRock)
+          case .scrissors:
+            state.sessionService.sendMultipeerAction(.chosenScrissors)
+        }
+      }
+    
+      default:
+        break
   }
   
   return state

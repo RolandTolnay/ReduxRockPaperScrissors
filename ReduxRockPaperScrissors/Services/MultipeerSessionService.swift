@@ -41,24 +41,34 @@ extension MultipeerSessionService: MCSessionDelegate {
     if let receivedString = String(data: data, encoding: .utf8),
       let receivedAction = MultipeerAction(rawValue: receivedString) {
       
-      switch receivedAction {
-        case .gameStartRequest:
-          DispatchQueue.main.async {
+      DispatchQueue.main.async {
+        switch receivedAction {
+          case .gameStartRequest:
+              mainStore.dispatch(
+                ReceivedStartGameAction()
+              )
+          case .gameStartApproved:
+              mainStore.dispatch(
+                StartGameAction()
+              )
+          
+          case .chosenPaper:
             mainStore.dispatch(
-              ReceivedStartGameAction()
+              ChooseWeaponAction(player: .other, weapon: .paper)
             )
-          }
-        case .gameStartApproved:
-          DispatchQueue.main.async {
+          case .chosenRock:
             mainStore.dispatch(
-              StartGameAction()
+              ChooseWeaponAction(player: .other, weapon: .rock)
             )
-          }
-        
-        default:
-          break;
+          case .chosenScrissors:
+            mainStore.dispatch(
+              ChooseWeaponAction(player: .other, weapon: .scrissors)
+            )
+          
+          default:
+            break;
+        }
       }
-      
     } else {
       print("[ERROR] Received unrecognized data from \(peerID.displayName)")
     }

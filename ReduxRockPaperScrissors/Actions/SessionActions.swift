@@ -10,3 +10,9 @@ import Foundation
 import ReSwift
 
 struct RematchAction: Action { }
+
+struct StartGameAction: Action { }
+
+struct RequestStartGameAction: Action { }
+
+struct ReceivedStartGameAction: Action { }

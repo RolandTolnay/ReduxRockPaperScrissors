@@ -18,6 +18,8 @@ struct GameState: StateType {
   // Player who moves next
   var turn: Turn
   
+  var gameStatus: GameStatus
+  
   // Weapon choice of players
   var player1Play: Play
   var player2Play: Play
@@ -28,6 +30,8 @@ struct GameState: StateType {
   init() {
     self.statusMessage = .prepare
     self.playerMessage = .playerChoose
+    
+    self.gameStatus = .finished
     
     self.turn = Turn(player: .one)
     self.player1Play = Play(chosen: false, weapon: nil)

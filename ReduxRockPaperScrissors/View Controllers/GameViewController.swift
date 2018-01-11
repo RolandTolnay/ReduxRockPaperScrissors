@@ -34,7 +34,6 @@ class GameViewController: UIViewController, StoreSubscriber {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    // sun flower - rgba(241, 196, 15,1.0)
     backgroundView.backgroundColor = UIColor(displayP3Red: 241/255, green: 196/255, blue: 15/255, alpha: 1)
   }
   
@@ -79,42 +78,85 @@ class GameViewController: UIViewController, StoreSubscriber {
     )
   }
   
+  @IBAction func onStartGameTapped(_ sender: UIButton) {
+    mainStore.dispatch(
+      RequestStartGameAction()
+    )
+  }
+  
   // MARK:- State handling
   
   func newState(state: AppState) {
     let gameState = state.gameState
     
-    // update messages
     statusLabel.text = gameState.statusMessage.rawValue
     playerLabel.text = gameState.playerMessage.rawValue
     
-    // update score
     updateScore(from: state)
     
-    // update weapons
     if gameState.player2Play.chosen {
-      // reveal weapons
       playerOneWeapon.image = imageFrom(weapon: gameState.player1Play.weapon, player: .one)
       playerTwoWeapon.image = imageFrom(weapon: gameState.player2Play.weapon, player: .two)
       grayscaleImagesForResult(gameState.result, playerOne: &playerOneWeapon.image!, playerTwo: &playerTwoWeapon.image!)
     } else {
-      // mark player 1 ready if chosen weapon
       playerOneWeapon.image = gameState.player1Play.chosen ? UIImage(named: "ready") : UIImage(named: "none")
       playerTwoWeapon.image = UIImage(named: "none")
     }
     
-    // toggle weapon interaction
-    toggleWeapons(enabled: gameState.result == nil)
-    // toggle rematch button
+    toggleWeaponInteraction(enabled: gameState.result == nil)
+    toggleWeaponVisibility(isHidden: gameState.gameStatus != .countdown)
     rematchButton.isHidden = gameState.result == nil
+    
+    renderGameStatus(gameState.gameStatus)
   }
   
   // MARK:- Utility
   
-  private func toggleWeapons(enabled: Bool) {
+  private func renderGameStatus(_ gameStatus: GameStatus) {
+    switch gameStatus {
+      case .pendingStartReceived:
+        showRequestGameStartAlert() { didAccept in
+          print("Can start game: \(didAccept)")
+          // TODO: dispatch game start if accepted
+        }
+      
+      
+      default:
+        break
+    }
+  }
+  
+  typealias AlertResult = (_ didAccept: Bool) -> Void
+  
+  private func showRequestGameStartAlert(completion: @escaping AlertResult) {
+    let opponent = mainStore.state.multipeerState.connectedPlayer!
+    let alert = UIAlertController(title: "Start game",
+                                  message: "\(opponent) would like to start the game. Are you ready?",
+                                  preferredStyle: .alert)
+    let acceptAction = UIAlertAction(title: "Accept", style: .default) { action in
+      completion(true)
+    }
+    let declineAction = UIAlertAction(title: "Decline", style: .cancel) { action in
+      completion(false)
+    }
+    
+    alert.addAction(acceptAction)
+    alert.addAction(declineAction)
+    
+    present(alert, animated: true, completion: nil)
+  }
+  
+  private func toggleWeaponInteraction(enabled: Bool) {
     rockImageView.isUserInteractionEnabled = enabled
     paperImageView.isUserInteractionEnabled = enabled
     scrissorsImageView.isUserInteractionEnabled = enabled
+  }
+  
+  private func toggleWeaponVisibility(isHidden: Bool) {
+    rockImageView.isHidden = isHidden
+    paperImageView.isHidden = isHidden
+    scrissorsImageView.isHidden = isHidden
+    playerLabel.isHidden = isHidden
   }
   
   private func imageFrom(weapon: Weapon?, player: Player) -> UIImage? {

@@ -124,12 +124,22 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s9K-dd-bn8">
+                                <rect key="frame" x="121.5" y="545" width="132" height="44"/>
+                                <fontDescription key="fontDescription" name="Thonburi-Bold" family="Thonburi" pointSize="24"/>
+                                <state key="normal" title="Start Game"/>
+                                <connections>
+                                    <action selector="onStartGameTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mz6-Q2-SCV"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="gbo-p0-npJ" firstAttribute="top" secondItem="Ma2-We-3jF" secondAttribute="bottom" constant="12" id="1OV-fj-iv0"/>
                             <constraint firstItem="lTQ-1x-Pe9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="4Jr-Tn-Vg6"/>
                             <constraint firstItem="GUN-3f-SW0" firstAttribute="centerX" secondItem="Z3F-jV-Djf" secondAttribute="centerX" id="5Dc-eM-QZq"/>
+                            <constraint firstItem="s9K-dd-bn8" firstAttribute="centerY" secondItem="fgn-ib-TRs" secondAttribute="centerY" id="5Qq-Oz-6NA"/>
+                            <constraint firstItem="s9K-dd-bn8" firstAttribute="centerX" secondItem="fgn-ib-TRs" secondAttribute="centerX" id="6N9-61-NMN"/>
                             <constraint firstItem="fgn-ib-TRs" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="6pg-SW-Jnp"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="kfF-LP-0e9" secondAttribute="bottom" constant="32" id="8HD-EI-tDb"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Ma2-We-3jF" secondAttribute="trailing" constant="16" id="C9c-IW-GkU"/>

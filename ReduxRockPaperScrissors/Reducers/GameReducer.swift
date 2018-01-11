@@ -29,7 +29,10 @@ func gameReducer(action: Action, state: GameState?) -> GameState {
     case _ as RematchAction:
         state = GameState()
     
-    // case for each action type handled by reducer
+    case _ as RequestStartGameAction:
+      state.gameStatus = .pendingStartSent
+    case _ as ReceivedStartGameAction:
+      state.gameStatus = .pendingStartReceived
     
     default:
       break

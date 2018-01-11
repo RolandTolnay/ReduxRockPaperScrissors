@@ -16,12 +16,18 @@ func multipeerReducer(action: Action, state: MultipeerState?) -> MultipeerState 
   switch action {
     case _ as BrowsePeersAction:
       state.session = MCSession(peer: state.peerId, securityIdentity: nil, encryptionPreference: .required)
+      state.session?.delegate = state.sessionService
+    case _ as StopBrowsingPeers:
+      state.session = nil
     case _ as FoundPeerAction:
       if let session = state.session,
         let peerId = session.connectedPeers.first {
         
         state.connectedPlayer = peerId.displayName
       }
+    
+    case _ as RequestStartGameAction:
+      state.sessionService.sendMultipeerAction(.gameStartRequest)
     
     default:
       break

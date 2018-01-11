@@ -14,11 +14,6 @@ class MultipeerViewController: UIViewController, StoreSubscriber {
   
   var advertiserAssistant: MCAdvertiserAssistant?
   
-  override func viewDidLoad() {
-    super.viewDidLoad()
-
-  }
-  
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     
@@ -40,7 +35,6 @@ class MultipeerViewController: UIViewController, StoreSubscriber {
   }
   
   @IBAction func onSkipToGameTapped(_ sender: Any) {
-    
     navigateToGameScreen()
   }
   
@@ -75,6 +69,10 @@ class MultipeerViewController: UIViewController, StoreSubscriber {
     advertiserAssistant?.stop()
     advertiserAssistant = nil
   }
+  
+  deinit {
+    stopAdvertising()
+  }
 }
 
 extension MultipeerViewController: MCBrowserViewControllerDelegate {
@@ -92,7 +90,10 @@ extension MultipeerViewController: MCBrowserViewControllerDelegate {
   }
   
   func browserViewControllerWasCancelled(_ browserViewController: MCBrowserViewController) {
-
+    
+    mainStore.dispatch(
+      StopBrowsingPeers()
+    )
     DispatchQueue.main.async {
       browserViewController.dismiss(animated: true) {
         self.stopAdvertising()

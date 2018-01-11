@@ -14,6 +14,10 @@ class MultipeerViewController: UIViewController, StoreSubscriber {
   
   var advertiserAssistant: MCAdvertiserAssistant?
   
+  // MARK: -
+  // MARK: Lifecycle
+  // --------------------
+  
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     
@@ -28,6 +32,10 @@ class MultipeerViewController: UIViewController, StoreSubscriber {
     mainStore.unsubscribe(self)
   }
   
+  // MARK: -
+  // MARK: Tap handlers
+  // --------------------
+  
   @IBAction func onLookForDevicesTapped(_ sender: UIButton) {
     mainStore.dispatch(
       BrowsePeersAction()
@@ -37,6 +45,10 @@ class MultipeerViewController: UIViewController, StoreSubscriber {
   @IBAction func onSkipToGameTapped(_ sender: Any) {
     navigateToGameScreen()
   }
+  
+  // MARK: -
+  // MARK: Redux
+  // --------------------
   
   func newState(state: MultipeerState) {
     if state.connectedPlayer != nil {
@@ -59,6 +71,10 @@ class MultipeerViewController: UIViewController, StoreSubscriber {
     }
   }
   
+  // MARK: -
+  // MARK: Utility
+  // --------------------
+  
   private func navigateToGameScreen() {
     let storyboard = UIStoryboard(name: "Main", bundle: nil)
     let gameViewController = storyboard.instantiateViewController(withIdentifier: String(describing: GameViewController.self))
@@ -66,6 +82,9 @@ class MultipeerViewController: UIViewController, StoreSubscriber {
   }
   
   fileprivate func stopAdvertising() {
+    if advertiserAssistant == nil {
+      print("[WARNING] advertiserAssistant was nil at stopAdvertising()")
+    }
     advertiserAssistant?.stop()
     advertiserAssistant = nil
   }
@@ -78,13 +97,13 @@ class MultipeerViewController: UIViewController, StoreSubscriber {
 extension MultipeerViewController: MCBrowserViewControllerDelegate {
   
   func browserViewControllerDidFinish(_ browserViewController: MCBrowserViewController) {
-
+    
+    mainStore.dispatch(
+      FoundPeerAction()
+    )
     DispatchQueue.main.async {
       browserViewController.dismiss(animated: true) {
         self.stopAdvertising()
-        mainStore.dispatch(
-          FoundPeerAction()
-        )
       }
     }
   }

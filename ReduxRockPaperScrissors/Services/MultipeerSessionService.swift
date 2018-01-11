@@ -43,10 +43,15 @@ extension MultipeerSessionService: MCSessionDelegate {
       
       switch receivedAction {
         case .gameStartRequest:
-          print("Received game start request from \(peerID.displayName)")
           DispatchQueue.main.async {
             mainStore.dispatch(
               ReceivedStartGameAction()
+            )
+          }
+        case .gameStartApproved:
+          DispatchQueue.main.async {
+            mainStore.dispatch(
+              StartGameAction()
             )
           }
         

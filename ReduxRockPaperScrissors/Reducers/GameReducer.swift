@@ -28,6 +28,8 @@ func gameReducer(action: Action, state: GameState?) -> GameState {
     
     case _ as RematchAction:
         state = GameState()
+    case _ as StartGameAction:
+      state.gameStatus = .countdown
     
     case _ as RequestStartGameAction:
       state.gameStatus = .pendingStartSent

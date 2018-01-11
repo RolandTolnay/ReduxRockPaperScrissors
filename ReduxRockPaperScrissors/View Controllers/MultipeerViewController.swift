@@ -47,7 +47,7 @@ class MultipeerViewController: UIViewController, StoreSubscriber {
   }
   
   // MARK: -
-  // MARK: Redux
+  // MARK: Render state
   // --------------------
   
   func newState(state: MultipeerState) {
@@ -82,9 +82,6 @@ class MultipeerViewController: UIViewController, StoreSubscriber {
   }
   
   fileprivate func stopAdvertising() {
-    if advertiserAssistant == nil {
-      print("[WARNING] advertiserAssistant was nil at stopAdvertising()")
-    }
     advertiserAssistant?.stop()
     advertiserAssistant = nil
   }

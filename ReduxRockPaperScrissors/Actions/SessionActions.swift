@@ -11,8 +11,13 @@ import ReSwift
 
 struct RematchAction: Action { }
 
-struct StartGameAction: Action { }
+struct StartGameAction: Action {
+  
+  var gameStatus: GameStatus?
+}
 
 struct RequestStartGameAction: Action { }
 
 struct ReceivedStartGameAction: Action { }
+
+

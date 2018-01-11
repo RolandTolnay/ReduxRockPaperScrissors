@@ -18,6 +18,7 @@ class GameViewController: UIViewController, StoreSubscriber {
   
   @IBOutlet weak var statusLabel: UILabel!
   @IBOutlet weak var playerLabel: UILabel!
+  @IBOutlet weak var pendingStartLabel: UILabel!
   
   @IBOutlet weak var playerOneWeapon: UIImageView!
   @IBOutlet weak var playerTwoWeapon: UIImageView!
@@ -29,10 +30,13 @@ class GameViewController: UIViewController, StoreSubscriber {
   @IBOutlet weak var paperImageView: UIImageView!
   @IBOutlet weak var scrissorsImageView: UIImageView!
   
+  @IBOutlet weak var startGameButton: UIButton!
   @IBOutlet weak var rematchButton: UIButton!
   @IBOutlet weak var backgroundView: UIView!
   
-  // MARK:- View Lifecycle
+  // MARK: -
+  // MARK: Lifecycle
+  // --------------------
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -57,7 +61,9 @@ class GameViewController: UIViewController, StoreSubscriber {
     mainStore.unsubscribe(self)
   }
   
-  // MARK:- Tap handlers
+  // MARK: -
+  // MARK: Tap handlers
+  // --------------------
   
   @IBAction func onRockTap(_ sender: UITapGestureRecognizer) {
     mainStore.dispatch(
@@ -87,7 +93,9 @@ class GameViewController: UIViewController, StoreSubscriber {
     )
   }
   
-  // MARK:- State handling
+  // MARK: -
+  // MARK: Render state
+  // --------------------
   
   func newState(state: AppState) {
     let gameState = state.gameState
@@ -115,7 +123,9 @@ class GameViewController: UIViewController, StoreSubscriber {
     renderGameStatus(gameState.gameStatus)
   }
   
-  // MARK:- Utility
+  // MARK: -
+  // MARK: Utility
+  // --------------------
   
   private func renderPlayerNames(from multipeerState: MultipeerState) {
     myPlayerNameLabel.text = UIDevice.current.name
@@ -126,12 +136,23 @@ class GameViewController: UIViewController, StoreSubscriber {
     switch gameStatus {
       case .pendingStartReceived:
         showRequestGameStartAlert() { didAccept in
-          print("Can start game: \(didAccept)")
-          // TODO: dispatch game start if accepted
+          if didAccept {
+            mainStore.dispatch(
+              StartGameAction(gameStatus: gameStatus)
+            )
+          }
         }
-      
-      default:
-        break
+      case .pendingStartSent:
+        startGameButton.isHidden = true
+        pendingStartLabel.isHidden = false
+      case .finished:
+        startGameButton.isHidden = false
+        pendingStartLabel.isHidden = true
+      case .countdown:
+        // TODO - Implement actual countdown
+        
+        startGameButton.isHidden = true
+        pendingStartLabel.isHidden = true
     }
   }
   

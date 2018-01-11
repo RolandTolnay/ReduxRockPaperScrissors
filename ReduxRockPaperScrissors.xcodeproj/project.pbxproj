@@ -31,7 +31,6 @@
 		AF655E7A20063F5C00A26960 /* MultipeerActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF655E7920063F5C00A26960 /* MultipeerActions.swift */; };
 		AF655E7B20063F5C00A26960 /* MultipeerActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF655E7920063F5C00A26960 /* MultipeerActions.swift */; };
 		AF655E8620066B3D00A26960 /* MultipeerSessionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF655E8520066B3D00A26960 /* MultipeerSessionService.swift */; };
-		AF655E8720066B3D00A26960 /* MultipeerSessionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF655E8520066B3D00A26960 /* MultipeerSessionService.swift */; };
 		AF655E892007993900A26960 /* MultipeerAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF655E882007993900A26960 /* MultipeerAction.swift */; };
 		AF655E8A2007993900A26960 /* MultipeerAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF655E882007993900A26960 /* MultipeerAction.swift */; };
 		AFE7E51D1FE1A5800080A465 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE7E51C1FE1A5800080A465 /* Utility.swift */; };
@@ -480,7 +479,6 @@
 				AF0CA2251FDF33F600BFE94F /* Model.swift in Sources */,
 				AF655E75200613D000A26960 /* MultipeerState.swift in Sources */,
 				AF655E7B20063F5C00A26960 /* MultipeerActions.swift in Sources */,
-				AF655E8720066B3D00A26960 /* MultipeerSessionService.swift in Sources */,
 				AF0CA2241FDF33F200BFE94F /* State.swift in Sources */,
 				AFE7E5231FE1FAF30080A465 /* AppReducer.swift in Sources */,
 				AF0CA1FB1FDDAB9500BFE94F /* ReduxRockPaperScrissorsTests.swift in Sources */,

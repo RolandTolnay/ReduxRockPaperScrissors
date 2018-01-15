@@ -110,11 +110,6 @@ class GameViewController: UIViewController, StoreSubscriber {
     
     if let countdown = gameState.currentCountdown {
       statusLabel.text = String(countdown)
-//      if countdown == 0 {
-//        mainStore.dispatch(
-//          CountdownFinishAction()
-//        )
-//      }
     }
     
     updateScore(from: state)
@@ -122,18 +117,10 @@ class GameViewController: UIViewController, StoreSubscriber {
     if gameState.myPlay.chosen {
       myPlayerWeapon.image = imageFrom(weapon: gameState.myPlay.weapon, player: .me)
     }
-    if gameState.otherPlay.chosen {
-      otherPlayerWeapon.image = imageFrom(weapon: gameState.otherPlay.weapon, player: .other)
+    if gameState.result != nil {
+      // TODO: Set rock default in single place, rather than both here and GameReducer
+      otherPlayerWeapon.image = imageFrom(weapon: gameState.otherPlay.weapon ?? .rock, player: .other)
     }
-    
-//    if gameState.player2Play.chosen {
-//      myPlayerWeapon.image = imageFrom(weapon: gameState.player1Play.weapon, player: .one)
-//      otherPlayerWeapon.image = imageFrom(weapon: gameState.player2Play.weapon, player: .two)
-//      grayscaleImagesForResult(gameState.result, playerOne: &myPlayerWeapon.image!, playerTwo: &otherPlayerWeapon.image!)
-//    } else {
-//      myPlayerWeapon.image = gameState.player1Play.chosen ? UIImage(named: "ready") : UIImage(named: "none")
-//      otherPlayerWeapon.image = UIImage(named: "none")
-//    }
     
     toggleWeaponInteraction(enabled: gameState.result == nil)
     toggleWeaponVisibility(isHidden: gameState.gameStatus != .countdown)

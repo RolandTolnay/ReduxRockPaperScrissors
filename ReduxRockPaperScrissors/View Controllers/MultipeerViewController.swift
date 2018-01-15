@@ -42,10 +42,6 @@ class MultipeerViewController: UIViewController, StoreSubscriber {
     )
   }
   
-  @IBAction func onSkipToGameTapped(_ sender: Any) {
-    navigateToGameScreen()
-  }
-  
   // MARK: -
   // MARK: Render state
   // --------------------

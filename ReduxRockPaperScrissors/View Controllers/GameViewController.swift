@@ -31,8 +31,8 @@ class GameViewController: UIViewController, StoreSubscriber {
   @IBOutlet weak var scrissorsImageView: UIImageView!
   
   @IBOutlet weak var startGameButton: UIButton!
-  @IBOutlet weak var rematchButton: UIButton!
-  @IBOutlet weak var backgroundView: UIView!
+  @IBOutlet weak var lowerBackgroundView: UIView!
+  @IBOutlet weak var upperBackgroundView: UIView!
   
   var isCountdownRunning = false
   var countdownTimer = Timer()
@@ -44,7 +44,8 @@ class GameViewController: UIViewController, StoreSubscriber {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    backgroundView.backgroundColor = UIColor(displayP3Red: 241/255, green: 196/255, blue: 15/255, alpha: 1)
+    lowerBackgroundView.backgroundColor = UIColor(displayP3Red: 241/255, green: 196/255, blue: 15/255, alpha: 1)
+    upperBackgroundView.backgroundColor = UIColor(displayP3Red: 241/255, green: 196/255, blue: 15/255, alpha: 1)
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -55,7 +56,7 @@ class GameViewController: UIViewController, StoreSubscriber {
   
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
-    view.sendSubview(toBack: backgroundView)
+    view.sendSubview(toBack: lowerBackgroundView)
   }
   
   override func viewWillDisappear(_ animated: Bool) {
@@ -84,12 +85,6 @@ class GameViewController: UIViewController, StoreSubscriber {
     )
   }
   
-  @IBAction func onRematchTapped(_ sender: UIButton) {
-    mainStore.dispatch(
-      RematchAction()
-    )
-  }
-  
   @IBAction func onStartGameTapped(_ sender: UIButton) {
     mainStore.dispatch(
       RequestStartGameAction()
@@ -114,17 +109,17 @@ class GameViewController: UIViewController, StoreSubscriber {
     
     updateScore(from: state)
     
-    myPlayerWeapon.image = imageFrom(weapon: gameState.myPlay.weapon, player: .me)
     if gameState.result != nil {
       // TODO: Set rock default in single place, rather than both here and GameReducer
       otherPlayerWeapon.image = imageFrom(weapon: gameState.otherPlay.weapon ?? .rock, player: .other)
+      myPlayerWeapon.image = imageFrom(weapon: gameState.myPlay.weapon ?? .rock, player: .me)
     } else {
       otherPlayerWeapon.image = imageFrom(weapon: nil, player: .other)
+      myPlayerWeapon.image = imageFrom(weapon: gameState.myPlay.weapon, player: .me)
     }
     
     toggleWeaponInteraction(enabled: gameState.result == nil)
     toggleWeaponVisibility(isHidden: gameState.gameStatus != .countdown)
-    rematchButton.isHidden = gameState.result == nil
     
     renderGameStatus(gameState.gameStatus, for: gameState.result)
   }

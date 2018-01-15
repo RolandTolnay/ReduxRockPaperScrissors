@@ -30,8 +30,6 @@ func gameReducer(action: Action, state: GameState?) -> GameState {
       let otherName = multipeerState.connectedPlayer!
       state = countdownReducer(state: state, playerNames: (myName, otherName))
 
-    case _ as RematchAction:
-      state = GameState()
     case _ as StartGameAction:
       state.myPlay = Play(chosen: false, weapon: nil)
       state.otherPlay = Play(chosen: false, weapon: nil)

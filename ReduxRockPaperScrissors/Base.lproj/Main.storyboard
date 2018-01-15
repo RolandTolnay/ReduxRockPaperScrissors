@@ -24,6 +24,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L6a-7e-wti">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="131.5"/>
+                                <color key="backgroundColor" red="0.66422420739999999" green="0.66424006219999998" blue="0.66423153879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status text" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="IeL-Vk-IXA">
                                 <rect key="frame" x="16" y="52" width="343" height="47.5"/>
                                 <fontDescription key="fontDescription" name="Thonburi" family="Thonburi" pointSize="36"/>
@@ -95,14 +99,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UWA-p9-oIj">
-                                <rect key="frame" x="151" y="111.5" width="72" height="35"/>
-                                <fontDescription key="fontDescription" name="Thonburi" family="Thonburi" pointSize="17"/>
-                                <state key="normal" title="Rematch"/>
-                                <connections>
-                                    <action selector="onRematchTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="huj-vk-slN"/>
-                                </connections>
-                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fgn-ib-TRs">
                                 <rect key="frame" x="0.0" y="467" width="375" height="200"/>
                             </view>
@@ -147,20 +143,23 @@
                             <constraint firstItem="lTQ-1x-Pe9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="4Jr-Tn-Vg6"/>
                             <constraint firstItem="s9K-dd-bn8" firstAttribute="centerY" secondItem="fgn-ib-TRs" secondAttribute="centerY" id="5Qq-Oz-6NA"/>
                             <constraint firstItem="s9K-dd-bn8" firstAttribute="centerX" secondItem="fgn-ib-TRs" secondAttribute="centerX" id="6N9-61-NMN"/>
+                            <constraint firstItem="L6a-7e-wti" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="6mg-Wt-NgB"/>
                             <constraint firstItem="fgn-ib-TRs" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="6pg-SW-Jnp"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="IeL-Vk-IXA" secondAttribute="trailing" constant="16" id="7S9-gZ-qL5"/>
+                            <constraint firstItem="L6a-7e-wti" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="7m7-kt-MqE"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="kfF-LP-0e9" secondAttribute="bottom" constant="32" id="8HD-EI-tDb"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Ma2-We-3jF" secondAttribute="trailing" constant="16" id="C9c-IW-GkU"/>
                             <constraint firstItem="MLz-4m-X4j" firstAttribute="centerY" secondItem="fgn-ib-TRs" secondAttribute="centerY" id="F1g-oo-JZ9"/>
                             <constraint firstItem="GUN-3f-SW0" firstAttribute="top" secondItem="Ma2-We-3jF" secondAttribute="bottom" constant="12" id="G3w-0w-EAl"/>
                             <constraint firstItem="GUN-3f-SW0" firstAttribute="centerX" secondItem="Ma2-We-3jF" secondAttribute="centerX" id="GNZ-Yb-rtc"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="kfF-LP-0e9" secondAttribute="trailing" constant="16" id="GcK-gK-VYu"/>
+                            <constraint firstItem="L6a-7e-wti" firstAttribute="bottom" secondItem="IeL-Vk-IXA" secondAttribute="bottom" constant="32" id="Iga-Jr-FhT"/>
                             <constraint firstItem="Vn2-ux-fbo" firstAttribute="top" secondItem="Bdb-E1-ezF" secondAttribute="bottom" constant="28" id="J2a-Ol-jFr"/>
                             <constraint firstItem="Z3F-jV-Djf" firstAttribute="leading" secondItem="Ma2-We-3jF" secondAttribute="leading" id="Jt1-gR-GaE"/>
                             <constraint firstItem="fgn-ib-TRs" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="OFP-Ni-jKS"/>
                             <constraint firstItem="Bdb-E1-ezF" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="RsY-Vs-0ok"/>
+                            <constraint firstItem="L6a-7e-wti" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="UDB-eq-DL5"/>
                             <constraint firstItem="fgn-ib-TRs" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Wys-pH-aNh"/>
-                            <constraint firstItem="UWA-p9-oIj" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="bBA-qt-OWy"/>
                             <constraint firstItem="Vn2-ux-fbo" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="csd-ym-L2O"/>
                             <constraint firstItem="JlB-uM-obt" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="d7e-XX-zWq"/>
                             <constraint firstItem="CbQ-WR-rZQ" firstAttribute="centerX" secondItem="lTQ-1x-Pe9" secondAttribute="centerX" id="egw-mu-3QK"/>
@@ -173,7 +172,6 @@
                             <constraint firstItem="CbQ-WR-rZQ" firstAttribute="top" secondItem="lTQ-1x-Pe9" secondAttribute="bottom" constant="12" id="sIa-tV-ziN"/>
                             <constraint firstItem="lTQ-1x-Pe9" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-24" id="txf-cG-csn"/>
                             <constraint firstItem="Ma2-We-3jF" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-24" id="un4-YL-g0E"/>
-                            <constraint firstItem="UWA-p9-oIj" firstAttribute="top" secondItem="IeL-Vk-IXA" secondAttribute="bottom" constant="12" id="v9G-z8-7WG"/>
                             <constraint firstItem="Ma2-We-3jF" firstAttribute="top" secondItem="Z3F-jV-Djf" secondAttribute="bottom" constant="12" id="vQX-xr-929"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Vn2-ux-fbo" secondAttribute="bottom" constant="32" id="wsX-kL-RDy"/>
                             <constraint firstItem="fgn-ib-TRs" firstAttribute="top" secondItem="Bdb-E1-ezF" secondAttribute="bottom" constant="-44" id="yEH-af-jsR"/>
@@ -182,7 +180,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="backgroundView" destination="fgn-ib-TRs" id="Oj5-2I-4hY"/>
+                        <outlet property="lowerBackgroundView" destination="fgn-ib-TRs" id="Oj5-2I-4hY"/>
                         <outlet property="myPlayerNameLabel" destination="kGe-1J-mcy" id="7av-dA-hh3"/>
                         <outlet property="myPlayerScoreLabel" destination="CbQ-WR-rZQ" id="PoJ-Vy-aOD"/>
                         <outlet property="myPlayerWeapon" destination="lTQ-1x-Pe9" id="Gaq-yk-SDg"/>
@@ -192,11 +190,11 @@
                         <outlet property="paperImageView" destination="JlB-uM-obt" id="gBL-DD-v4r"/>
                         <outlet property="pendingStartLabel" destination="MLz-4m-X4j" id="BRY-4w-Rd3"/>
                         <outlet property="playerLabel" destination="Bdb-E1-ezF" id="2pE-eT-vp1"/>
-                        <outlet property="rematchButton" destination="UWA-p9-oIj" id="CRa-Sg-5ZW"/>
                         <outlet property="rockImageView" destination="Vn2-ux-fbo" id="S8i-RP-96H"/>
                         <outlet property="scrissorsImageView" destination="kfF-LP-0e9" id="aQt-r9-Xb8"/>
                         <outlet property="startGameButton" destination="s9K-dd-bn8" id="Nz9-2N-6EV"/>
                         <outlet property="statusLabel" destination="IeL-Vk-IXA" id="EVL-yk-Etq"/>
+                        <outlet property="upperBackgroundView" destination="L6a-7e-wti" id="d06-0h-JRL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -240,19 +238,10 @@
                                     <action selector="onLookForDevicesTapped:" destination="EF2-oz-fNY" eventType="touchUpInside" id="kwm-C7-krh"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OnL-EB-bqL">
-                                <rect key="frame" x="142" y="617" width="90" height="30"/>
-                                <state key="normal" title="Skip to game"/>
-                                <connections>
-                                    <action selector="onSkipToGameTapped:" destination="EF2-oz-fNY" eventType="touchUpInside" id="rsR-aq-T5a"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="1FG-v6-q0r" firstAttribute="bottom" secondItem="OnL-EB-bqL" secondAttribute="bottom" constant="20" id="9F8-AL-hgd"/>
                             <constraint firstItem="3Be-5D-q2Q" firstAttribute="top" secondItem="1FG-v6-q0r" secondAttribute="top" constant="36" id="Lwb-To-wST"/>
-                            <constraint firstItem="OnL-EB-bqL" firstAttribute="centerX" secondItem="jhs-ce-bYf" secondAttribute="centerX" id="n3h-PM-DPc"/>
                             <constraint firstItem="ttj-PS-4oP" firstAttribute="centerX" secondItem="jhs-ce-bYf" secondAttribute="centerX" id="obo-eD-N5x"/>
                             <constraint firstItem="3Be-5D-q2Q" firstAttribute="centerX" secondItem="jhs-ce-bYf" secondAttribute="centerX" id="uMS-h7-Ho6"/>
                             <constraint firstItem="ttj-PS-4oP" firstAttribute="centerY" secondItem="jhs-ce-bYf" secondAttribute="centerY" id="x6Q-sf-vaC"/>

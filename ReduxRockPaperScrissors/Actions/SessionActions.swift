@@ -9,8 +9,6 @@
 import Foundation
 import ReSwift
 
-struct RematchAction: Action { }
-
 struct StartGameAction: Action {
   
   var gameStatus: GameStatus?

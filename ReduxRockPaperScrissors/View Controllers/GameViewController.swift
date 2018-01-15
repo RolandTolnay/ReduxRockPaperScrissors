@@ -99,13 +99,14 @@ class GameViewController: UIViewController, StoreSubscriber {
     let gameState = state.gameState
     
     playerLabel.text = gameState.playerMessage.rawValue
-    if let countdown = gameState.currentCountdown {
+    if let countdown = gameState.currentCountdown, statusLabel.text != String(countdown) {
       statusLabel.text = String(countdown)
       statusLabel.transform = CGAffineTransform(scaleX: 1, y: 1)
       UIView.animate(withDuration: 1, animations: {
         self.statusLabel.transform = CGAffineTransform(scaleX: 2, y: 2)
       })
-    } else {
+    }
+    if gameState.gameStatus != .countdown {
       statusLabel.transform = CGAffineTransform(scaleX: 1, y: 1)
       statusLabel.text = gameState.statusMessage
     }
@@ -145,7 +146,6 @@ class GameViewController: UIViewController, StoreSubscriber {
     switch gameStatus {
       case .pendingStartReceived:
         showRequestGameStartAlert() { didAccept in
-        
           mainStore.dispatch(
             RespondStartGameAction(canStart: didAccept, gameStatus: gameStatus)
           )
@@ -229,12 +229,12 @@ class GameViewController: UIViewController, StoreSubscriber {
     
     let playerPrefix = player == .me ? "p1-" : "p2-"
     switch weapon {
-    case .rock:
-      return UIImage(named: playerPrefix+"rock")
-    case .paper:
-      return UIImage(named: playerPrefix+"paper")
-    case .scrissors:
-      return UIImage(named: playerPrefix+"scrissors")
+      case .rock:
+        return UIImage(named: playerPrefix+"rock")
+      case .paper:
+        return UIImage(named: playerPrefix+"paper")
+      case .scrissors:
+        return UIImage(named: playerPrefix+"scrissors")
     }
   }
   
@@ -242,14 +242,12 @@ class GameViewController: UIViewController, StoreSubscriber {
     guard let result = result else { return }
     
     switch result {
-    case .myWin:
-      playerTwo = convertToGrayScale(image: playerTwo)
-      break;
-    case .otherWin:
-      playerOne = convertToGrayScale(image: playerOne)
-      break;
-    default:
-      break;
+      case .myWin:
+        playerTwo = convertToGrayScale(image: playerTwo)
+      case .otherWin:
+        playerOne = convertToGrayScale(image: playerOne)
+      default: // draw
+        break
     }
   }
   

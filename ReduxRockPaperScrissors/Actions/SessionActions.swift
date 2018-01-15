@@ -24,16 +24,6 @@ struct RespondStartGameAction: Action {
   }
 }
 
-//struct StartGameAction: Action {
-//  
-//  var gameStatus: GameStatus?
-//}
-//
-//struct DeclineStartGameAction: Action {
-//  
-//  var gameStatus: GameStatus?
-//}
-
 // -
 
 struct CountdownTickAction: Action { }

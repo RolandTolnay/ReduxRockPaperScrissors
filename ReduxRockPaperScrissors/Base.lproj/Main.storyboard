@@ -134,6 +134,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Lm-lO-xli">
+                                <rect key="frame" x="167" y="619" width="40" height="30"/>
+                                <state key="normal" title="Leave"/>
+                                <connections>
+                                    <action selector="onLeaveTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7V6-Hg-uq4"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -148,6 +155,7 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="IeL-Vk-IXA" secondAttribute="trailing" constant="16" id="7S9-gZ-qL5"/>
                             <constraint firstItem="L6a-7e-wti" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="7m7-kt-MqE"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="kfF-LP-0e9" secondAttribute="bottom" constant="32" id="8HD-EI-tDb"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="1Lm-lO-xli" secondAttribute="bottom" constant="18" id="BUn-mL-Vq7"/>
                             <constraint firstItem="GUN-3f-SW0" firstAttribute="centerX" secondItem="Z3F-jV-Djf" secondAttribute="centerX" id="BbR-bE-978"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Ma2-We-3jF" secondAttribute="trailing" constant="16" id="C9c-IW-GkU"/>
                             <constraint firstItem="MLz-4m-X4j" firstAttribute="centerY" secondItem="fgn-ib-TRs" secondAttribute="centerY" id="F1g-oo-JZ9"/>
@@ -162,6 +170,7 @@
                             <constraint firstItem="Bdb-E1-ezF" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="RsY-Vs-0ok"/>
                             <constraint firstItem="L6a-7e-wti" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="UDB-eq-DL5"/>
                             <constraint firstItem="fgn-ib-TRs" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Wys-pH-aNh"/>
+                            <constraint firstItem="1Lm-lO-xli" firstAttribute="centerX" secondItem="fgn-ib-TRs" secondAttribute="centerX" id="YmT-rR-HT5"/>
                             <constraint firstItem="Vn2-ux-fbo" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="csd-ym-L2O"/>
                             <constraint firstItem="JlB-uM-obt" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="d7e-XX-zWq"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="JlB-uM-obt" secondAttribute="bottom" constant="32" id="fAl-Oz-tPj"/>
@@ -184,6 +193,7 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="leaveButton" destination="1Lm-lO-xli" id="onZ-tz-p2e"/>
                         <outlet property="lowerBackgroundView" destination="fgn-ib-TRs" id="Oj5-2I-4hY"/>
                         <outlet property="myPlayerNameLabel" destination="kGe-1J-mcy" id="7av-dA-hh3"/>
                         <outlet property="myPlayerScoreLabel" destination="CbQ-WR-rZQ" id="PoJ-Vy-aOD"/>

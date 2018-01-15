@@ -16,4 +16,6 @@ enum MultipeerAction: String {
   case chosenRock
   case chosenPaper
   case chosenScrissors
+  
+  case leftGame
 }

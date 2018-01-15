@@ -31,6 +31,7 @@ class GameViewController: UIViewController, StoreSubscriber {
   @IBOutlet weak var scrissorsImageView: UIImageView!
   
   @IBOutlet weak var startGameButton: UIButton!
+  @IBOutlet weak var leaveButton: UIButton!
   @IBOutlet weak var lowerBackgroundView: UIView!
   @IBOutlet weak var upperBackgroundView: UIView!
   
@@ -91,11 +92,23 @@ class GameViewController: UIViewController, StoreSubscriber {
     )
   }
   
+  @IBAction func onLeaveTapped(_ sender: UIButton) {
+    self.dismiss(animated: true)
+    mainStore.dispatch(
+      StopBrowsingPeers()
+    )
+  }
   // MARK: -
   // MARK: Render state
   // --------------------
   
   func newState(state: AppState) {
+    guard state.multipeerState.session != nil else {
+      self.dismiss(animated: true) {
+        self.showOpponentLeftAlert()
+      }
+      return
+    }
     let gameState = state.gameState
     
     playerLabel.text = gameState.playerMessage.rawValue
@@ -152,9 +165,11 @@ class GameViewController: UIViewController, StoreSubscriber {
         }
       case .pendingStartSent:
         startGameButton.isHidden = true
+        leaveButton.isHidden = true
         pendingStartLabel.isHidden = false
       case .finished:
         startGameButton.isHidden = false
+        leaveButton.isHidden = false
         pendingStartLabel.isHidden = true
         if let result = result {
           grayscaleImagesForResult(result, playerOne: &myPlayerWeapon.image!, playerTwo: &otherPlayerWeapon.image!)
@@ -162,6 +177,7 @@ class GameViewController: UIViewController, StoreSubscriber {
       case .countdown:
         toggleTimer(enabled: true)
         startGameButton.isHidden = true
+        leaveButton.isHidden = true
         pendingStartLabel.isHidden = true
     }
   }
@@ -184,6 +200,18 @@ class GameViewController: UIViewController, StoreSubscriber {
     alert.addAction(declineAction)
     
     present(alert, animated: true, completion: nil)
+  }
+  
+  private func showOpponentLeftAlert() {
+    let alert = UIAlertController(title: nil,
+                                  message: "Your opponent has left the game.",
+                                  preferredStyle: .alert)
+    let okAction = UIAlertAction(title: "Done", style: .default)
+    alert.addAction(okAction)
+    
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    let rootVC = appDelegate.window!.rootViewController!
+    rootVC.present(alert, animated: true, completion: nil)
   }
   
   private func toggleWeaponInteraction(enabled: Bool) {

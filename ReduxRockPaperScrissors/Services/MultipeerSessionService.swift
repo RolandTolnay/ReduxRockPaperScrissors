@@ -55,6 +55,10 @@ extension MultipeerSessionService: MCSessionDelegate {
             mainStore.dispatch(
               RespondStartGameAction(canStart: false)
             )
+          case .leftGame:
+            mainStore.dispatch(
+              StopBrowsingPeers()
+            )
           
           case .chosenPaper:
             mainStore.dispatch(

@@ -19,6 +19,10 @@ func multipeerReducer(action: Action, state: MultipeerState?) -> MultipeerState 
       state.session?.delegate = state.sessionService
     case _ as StopBrowsingPeers:
       state.session = nil
+      if state.connectedPlayer != nil {
+        state.connectedPlayer = nil
+        state.sessionService.sendMultipeerAction(.leftGame)
+      }
     case _ as FoundPeerAction:
       if let session = state.session,
         let peerId = session.connectedPeers.first {

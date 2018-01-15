@@ -105,7 +105,7 @@ class GameViewController: UIViewController, StoreSubscriber {
     
     renderPlayerNames(from: state.multipeerState)
     
-    statusLabel.text = gameState.statusMessage.rawValue
+    statusLabel.text = gameState.statusMessage
     playerLabel.text = gameState.playerMessage.rawValue
     
     if let countdown = gameState.currentCountdown {
@@ -114,12 +114,12 @@ class GameViewController: UIViewController, StoreSubscriber {
     
     updateScore(from: state)
     
-    if gameState.myPlay.chosen {
-      myPlayerWeapon.image = imageFrom(weapon: gameState.myPlay.weapon, player: .me)
-    }
+    myPlayerWeapon.image = imageFrom(weapon: gameState.myPlay.weapon, player: .me)
     if gameState.result != nil {
       // TODO: Set rock default in single place, rather than both here and GameReducer
       otherPlayerWeapon.image = imageFrom(weapon: gameState.otherPlay.weapon ?? .rock, player: .other)
+    } else {
+      otherPlayerWeapon.image = imageFrom(weapon: nil, player: .other)
     }
     
     toggleWeaponInteraction(enabled: gameState.result == nil)
@@ -240,10 +240,10 @@ class GameViewController: UIViewController, StoreSubscriber {
     guard let result = result else { return }
     
     switch result {
-    case .player1Win:
+    case .myWin:
       playerTwo = convertToGrayScale(image: playerTwo)
       break;
-    case .player2Win:
+    case .otherWin:
       playerOne = convertToGrayScale(image: playerOne)
       break;
     default:

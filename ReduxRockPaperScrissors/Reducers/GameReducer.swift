@@ -25,7 +25,10 @@ func gameReducer(action: Action, state: GameState?) -> GameState {
           state.otherPlay = Play(chosen: true, weapon: chooseWeaponAction.weapon)
       }
     case _ as CountdownTickAction:
-      state = countdownReducer(state: state)
+      let multipeerState = mainStore.state.multipeerState
+      let myName = multipeerState.peerId.displayName
+      let otherName = multipeerState.connectedPlayer!
+      state = countdownReducer(state: state, playerNames: (myName, otherName))
 
     case _ as RematchAction:
       state = GameState()
@@ -49,7 +52,7 @@ func gameReducer(action: Action, state: GameState?) -> GameState {
 
 // MARK:- Helpers
 
-private func countdownReducer(state: GameState) -> GameState {
+private func countdownReducer(state: GameState, playerNames: (myName: String, otherName: String)) -> GameState {
   var state = state
   
   if state.currentCountdown == nil {
@@ -60,11 +63,11 @@ private func countdownReducer(state: GameState) -> GameState {
       state.result = resultFrom(player1: state.myPlay, player2: state.otherPlay)
       switch state.result! {
         case .draw:
-          state.statusMessage = .draw
-        case .player1Win:
-          state.statusMessage = .player1Win
-        case .player2Win:
-          state.statusMessage = .player2Win
+          state.statusMessage = Message.draw.rawValue
+        case .myWin:
+          state.statusMessage = playerNames.myName + Message.playerWin.rawValue
+        case .otherWin:
+          state.statusMessage = playerNames.otherName + Message.playerWin.rawValue
         }
       state.currentCountdown = nil
       state.gameStatus = .finished
@@ -83,20 +86,20 @@ private func resultFrom(player1: Play, player2: Play) -> Result {
   switch p1Weapon {
     case .rock:
       switch p2Weapon {
-        case .paper: return .player2Win
-        case .scrissors: return .player1Win
+        case .paper: return .otherWin
+        case .scrissors: return .myWin
         default: return .draw
       }
     case .paper:
       switch p2Weapon {
-        case .rock: return .player1Win
-        case .scrissors: return .player2Win
+        case .rock: return .myWin
+        case .scrissors: return .otherWin
         default: return .draw
       }
     case .scrissors:
       switch p2Weapon {
-        case .paper: return .player1Win
-        case .rock: return .player2Win
+        case .paper: return .myWin
+        case .rock: return .otherWin
         default: return .draw
       }
   }

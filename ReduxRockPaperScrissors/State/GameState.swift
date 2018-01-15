@@ -12,7 +12,7 @@ import ReSwift
 struct GameState: StateType {
   
   // Messages on main screen
-  var statusMessage: Message
+  var statusMessage: String
   var playerMessage: Message
   
   var gameStatus: GameStatus
@@ -27,7 +27,7 @@ struct GameState: StateType {
   var result: Result?
   
   init() {
-    self.statusMessage = .prepare
+    self.statusMessage = Message.prepare.rawValue
     self.playerMessage = .playerChoose
     
     self.gameStatus = .finished

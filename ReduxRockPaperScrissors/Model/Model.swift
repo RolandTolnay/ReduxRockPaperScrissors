@@ -27,8 +27,8 @@ enum Weapon {
 enum Result {
   
   case draw
-  case player1Win
-  case player2Win
+  case myWin
+  case otherWin
 }
 
 enum GameStatus {
@@ -46,11 +46,11 @@ typealias Score = [Player:Int]
 enum Message: String {
   
   case prepare = "Prepare to battle!"
-  case player1Win = "Player 1 WINS"
-  case player2Win = "Player 2 WINS"
   case playerChoose = "Choose weapon"
-  case draw = "Wow it's a draw!"
   case empty = ""
+  
+  case draw = "Wow it's a draw!"
+  case playerWin = " WINS"
 }
 
 // MARK: - Structs

@@ -19,9 +19,9 @@ func appReducer(action: Action, state: AppState?) -> AppState {
     case _ as ChooseWeaponAction:
       if let result = state.gameState.result {
         switch result {
-          case .player1Win:
+          case .myWin:
             state.score[.me]! += 1
-          case .player2Win:
+          case .otherWin:
             state.score[.other]! += 1
           default:
             break

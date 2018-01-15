@@ -98,16 +98,18 @@ class GameViewController: UIViewController, StoreSubscriber {
   func newState(state: AppState) {
     let gameState = state.gameState
     
-    renderPlayerNames(from: state.multipeerState)
-    
-    statusLabel.text = gameState.statusMessage
     playerLabel.text = gameState.playerMessage.rawValue
-    
     if let countdown = gameState.currentCountdown {
       statusLabel.text = String(countdown)
+    } else {
+      statusLabel.text = gameState.statusMessage
     }
     
+    renderPlayerNames(from: state.multipeerState)
     updateScore(from: state)
+    
+    toggleWeaponInteraction(enabled: gameState.result == nil)
+    toggleWeaponVisibility(isHidden: gameState.gameStatus != .countdown)
     
     if gameState.result != nil {
       // TODO: Set rock default in single place, rather than both here and GameReducer
@@ -117,9 +119,6 @@ class GameViewController: UIViewController, StoreSubscriber {
       otherPlayerWeapon.image = imageFrom(weapon: nil, player: .other)
       myPlayerWeapon.image = imageFrom(weapon: gameState.myPlay.weapon, player: .me)
     }
-    
-    toggleWeaponInteraction(enabled: gameState.result == nil)
-    toggleWeaponVisibility(isHidden: gameState.gameStatus != .countdown)
     
     renderGameStatus(gameState.gameStatus, for: gameState.result)
   }
@@ -134,8 +133,6 @@ class GameViewController: UIViewController, StoreSubscriber {
   }
   
   private func renderGameStatus(_ gameStatus: GameStatus, for result: Result? = nil) {
-    print("renderGameStatus called: \(gameStatus), result: \(result)")
-    
     if gameStatus != .countdown && isCountdownRunning {
       toggleTimer(enabled: false)
     }
@@ -202,6 +199,10 @@ class GameViewController: UIViewController, StoreSubscriber {
     guard enabled else {
       countdownTimer.invalidate()
       isCountdownRunning = false
+      // TODO: Refactor score handling
+      mainStore.dispatch(
+        UpdateScoreAction()
+      )
       return
     }
     

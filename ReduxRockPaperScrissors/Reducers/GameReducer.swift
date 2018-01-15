@@ -25,6 +25,7 @@ func gameReducer(action: Action, state: GameState?) -> GameState {
           state.otherPlay = Play(chosen: true, weapon: chooseWeaponAction.weapon)
       }
     case _ as CountdownTickAction:
+      // TODO: Refactor player name handling
       let multipeerState = mainStore.state.multipeerState
       let myName = multipeerState.peerId.displayName
       let otherName = multipeerState.connectedPlayer!
@@ -57,6 +58,7 @@ private func countdownReducer(state: GameState, playerNames: (myName: String, ot
     state.currentCountdown = 3
   } else {
     state.currentCountdown! -= 1
+    
     if state.currentCountdown == 0 {
       state.result = resultFrom(player1: state.myPlay, player2: state.otherPlay)
       switch state.result! {

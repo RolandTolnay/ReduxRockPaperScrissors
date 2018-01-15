@@ -21,3 +21,5 @@ struct ReceivedStartGameAction: Action { }
 // -
 
 struct CountdownTickAction: Action { }
+
+struct UpdateScoreAction: Action { }

@@ -41,6 +41,7 @@ func gameReducer(action: Action, state: GameState?) -> GameState {
         state.otherPlay = Play(chosen: false, weapon: nil)
         state.result = nil
         state.gameStatus = .countdown
+        state.statusMessage = Message.gameStart.rawValue
       } else {
         state.gameStatus = .finished
       }

@@ -47,6 +47,7 @@ enum Message: String {
   
   case prepare = "Prepare to battle!"
   case playerChoose = "Choose weapon"
+  case gameStart = "Rock Paper Scrissors GO!"
   case empty = ""
   
   case draw = "Wow it's a draw!"

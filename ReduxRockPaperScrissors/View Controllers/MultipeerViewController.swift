@@ -12,11 +12,17 @@ import ReSwift
 
 class MultipeerViewController: UIViewController, StoreSubscriber {
   
+  @IBOutlet weak var backgroundView: UIView!
+  
   var advertiserAssistant: MCAdvertiserAssistant?
   
   // MARK: -
   // MARK: Lifecycle
   // --------------------
+  
+  override func viewDidLoad() {
+    backgroundView.backgroundColor = UIColor(displayP3Red: 241/255, green: 196/255, blue: 15/255, alpha: 1)
+  }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)

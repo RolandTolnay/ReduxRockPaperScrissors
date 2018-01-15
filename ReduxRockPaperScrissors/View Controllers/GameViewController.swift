@@ -202,6 +202,7 @@ class GameViewController: UIViewController, StoreSubscriber {
       mainStore.dispatch(
         UpdateScoreAction()
       )
+      vibratePhone()
       return
     }
     
@@ -212,6 +213,7 @@ class GameViewController: UIViewController, StoreSubscriber {
         )
       }
       isCountdownRunning = true
+      vibratePhone()
     }
   }
   

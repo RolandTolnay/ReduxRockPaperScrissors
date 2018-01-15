@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import AudioToolbox
 
 func convertToGrayScale(image: UIImage) -> UIImage {
   let imageRect:CGRect = CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height)
@@ -28,4 +29,8 @@ func convertToGrayScale(image: UIImage) -> UIImage {
     print("[ERROR] Context was nil at convertToGrayScale(image:) in Utility.swift");
     return image
   }
+}
+
+func vibratePhone() {
+  AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
 }

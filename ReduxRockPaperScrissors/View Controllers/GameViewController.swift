@@ -34,6 +34,9 @@ class GameViewController: UIViewController, StoreSubscriber {
   @IBOutlet weak var rematchButton: UIButton!
   @IBOutlet weak var backgroundView: UIView!
   
+  var isCountdownRunning = false
+  var countdownTimer = Timer()
+  
   // MARK: -
   // MARK: Lifecycle
   // --------------------
@@ -105,6 +108,15 @@ class GameViewController: UIViewController, StoreSubscriber {
     statusLabel.text = gameState.statusMessage.rawValue
     playerLabel.text = gameState.playerMessage.rawValue
     
+    if let countdown = gameState.currentCountdown {
+      statusLabel.text = String(countdown)
+//      if countdown == 0 {
+//        mainStore.dispatch(
+//          CountdownFinishAction()
+//        )
+//      }
+    }
+    
     updateScore(from: state)
     
     if gameState.myPlay.chosen {
@@ -127,7 +139,7 @@ class GameViewController: UIViewController, StoreSubscriber {
     toggleWeaponVisibility(isHidden: gameState.gameStatus != .countdown)
     rematchButton.isHidden = gameState.result == nil
     
-    renderGameStatus(gameState.gameStatus)
+    renderGameStatus(gameState.gameStatus, for: gameState.result)
   }
   
   // MARK: -
@@ -139,7 +151,13 @@ class GameViewController: UIViewController, StoreSubscriber {
     otherPlayerNameLabel.text = multipeerState.connectedPlayer
   }
   
-  private func renderGameStatus(_ gameStatus: GameStatus) {
+  private func renderGameStatus(_ gameStatus: GameStatus, for result: Result? = nil) {
+    print("renderGameStatus called: \(gameStatus), result: \(result)")
+    
+    if gameStatus != .countdown && isCountdownRunning {
+      toggleTimer(enabled: false)
+    }
+    
     switch gameStatus {
       case .pendingStartReceived:
         showRequestGameStartAlert() { didAccept in
@@ -155,9 +173,11 @@ class GameViewController: UIViewController, StoreSubscriber {
       case .finished:
         startGameButton.isHidden = false
         pendingStartLabel.isHidden = true
+        if let result = result {
+          grayscaleImagesForResult(result, playerOne: &myPlayerWeapon.image!, playerTwo: &otherPlayerWeapon.image!)
+        }
       case .countdown:
-        // TODO - Implement actual countdown
-        
+        toggleTimer(enabled: true)
         startGameButton.isHidden = true
         pendingStartLabel.isHidden = true
     }
@@ -194,6 +214,23 @@ class GameViewController: UIViewController, StoreSubscriber {
     paperImageView.isHidden = isHidden
     scrissorsImageView.isHidden = isHidden
     playerLabel.isHidden = isHidden
+  }
+  
+  private func toggleTimer(enabled: Bool) {
+    guard enabled else {
+      countdownTimer.invalidate()
+      isCountdownRunning = false
+      return
+    }
+    
+    if !isCountdownRunning {
+      countdownTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
+        mainStore.dispatch(
+          CountdownTickAction()
+        )
+      }
+      isCountdownRunning = true
+    }
   }
   
   private func imageFrom(weapon: Weapon?, player: Player) -> UIImage? {

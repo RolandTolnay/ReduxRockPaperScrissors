@@ -20,9 +20,9 @@
 		AF0CA2201FDEC7E500BFE94F /* SessionActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0CA21F1FDEC7E500BFE94F /* SessionActions.swift */; };
 		AF0CA2211FDF33E700BFE94F /* SessionActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0CA21F1FDEC7E500BFE94F /* SessionActions.swift */; };
 		AF0CA2221FDF33EA00BFE94F /* WeaponActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0CA20F1FDDBF0900BFE94F /* WeaponActions.swift */; };
-		AF0CA2231FDF33ED00BFE94F /* GameReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0CA2111FDDBFED00BFE94F /* GameReducer.swift */; };
 		AF0CA2241FDF33F200BFE94F /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0CA2071FDDBC1E00BFE94F /* State.swift */; };
 		AF0CA2251FDF33F600BFE94F /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0CA2051FDDB9DE00BFE94F /* Model.swift */; };
+		AF2CBD9A200CB4790018A10F /* LoggingMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF2CBD99200CB4790018A10F /* LoggingMiddleware.swift */; };
 		AF655E7220060FA400A26960 /* MultipeerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF655E7120060FA400A26960 /* MultipeerViewController.swift */; };
 		AF655E74200613D000A26960 /* MultipeerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF655E73200613D000A26960 /* MultipeerState.swift */; };
 		AF655E75200613D000A26960 /* MultipeerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF655E73200613D000A26960 /* MultipeerState.swift */; };
@@ -36,7 +36,6 @@
 		AFE7E51F1FE1F90F0080A465 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE7E51E1FE1F90F0080A465 /* GameState.swift */; };
 		AFE7E5201FE1FA400080A465 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE7E51E1FE1F90F0080A465 /* GameState.swift */; };
 		AFE7E5221FE1FAF30080A465 /* AppReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE7E5211FE1FAF30080A465 /* AppReducer.swift */; };
-		AFE7E5231FE1FAF30080A465 /* AppReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE7E5211FE1FAF30080A465 /* AppReducer.swift */; };
 		E272B0E46D14B3BC6D969837 /* Pods_ReduxRockPaperScrissors.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A83D255EBB28A24D48BB5E05 /* Pods_ReduxRockPaperScrissors.framework */; };
 		F2EBE3DD1238A828A86EDDB0 /* Pods_ReduxRockPaperScrissorsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9AF7B73093B098DBAE4F9EA /* Pods_ReduxRockPaperScrissorsTests.framework */; };
 /* End PBXBuildFile section */
@@ -69,6 +68,7 @@
 		AF0CA20F1FDDBF0900BFE94F /* WeaponActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeaponActions.swift; sourceTree = "<group>"; };
 		AF0CA2111FDDBFED00BFE94F /* GameReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameReducer.swift; sourceTree = "<group>"; };
 		AF0CA21F1FDEC7E500BFE94F /* SessionActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionActions.swift; sourceTree = "<group>"; };
+		AF2CBD99200CB4790018A10F /* LoggingMiddleware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggingMiddleware.swift; sourceTree = "<group>"; };
 		AF655E7120060FA400A26960 /* MultipeerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipeerViewController.swift; sourceTree = "<group>"; };
 		AF655E73200613D000A26960 /* MultipeerState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipeerState.swift; sourceTree = "<group>"; };
 		AF655E7620063EC500A26960 /* MultipeerReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipeerReducer.swift; sourceTree = "<group>"; };
@@ -138,6 +138,7 @@
 			children = (
 				AF0CA1E51FDDAB9400BFE94F /* AppDelegate.swift */,
 				AF0CA2091FDDBE4D00BFE94F /* Model */,
+				AF2CBD98200CB45E0018A10F /* Middleware */,
 				AF0CA20A1FDDBE5700BFE94F /* State */,
 				AF655E8420064DE300A26960 /* Services */,
 				AF0CA20E1FDDBEDC00BFE94F /* Actions */,
@@ -215,6 +216,14 @@
 				AF655E7920063F5C00A26960 /* MultipeerActions.swift */,
 			);
 			path = Actions;
+			sourceTree = "<group>";
+		};
+		AF2CBD98200CB45E0018A10F /* Middleware */ = {
+			isa = PBXGroup;
+			children = (
+				AF2CBD99200CB4790018A10F /* LoggingMiddleware.swift */,
+			);
+			path = Middleware;
 			sourceTree = "<group>";
 		};
 		AF655E8420064DE300A26960 /* Services */ = {
@@ -450,6 +459,7 @@
 				AF0CA2121FDDBFED00BFE94F /* GameReducer.swift in Sources */,
 				AF0CA2101FDDBF0900BFE94F /* WeaponActions.swift in Sources */,
 				AF0CA2061FDDB9DE00BFE94F /* Model.swift in Sources */,
+				AF2CBD9A200CB4790018A10F /* LoggingMiddleware.swift in Sources */,
 				AF0CA2201FDEC7E500BFE94F /* SessionActions.swift in Sources */,
 				AFE7E5221FE1FAF30080A465 /* AppReducer.swift in Sources */,
 				AF655E892007993900A26960 /* MultipeerAction.swift in Sources */,
@@ -473,12 +483,10 @@
 				AFE7E5201FE1FA400080A465 /* GameState.swift in Sources */,
 				AF0CA2211FDF33E700BFE94F /* SessionActions.swift in Sources */,
 				AF0CA2221FDF33EA00BFE94F /* WeaponActions.swift in Sources */,
-				AF0CA2231FDF33ED00BFE94F /* GameReducer.swift in Sources */,
 				AF0CA2251FDF33F600BFE94F /* Model.swift in Sources */,
 				AF655E75200613D000A26960 /* MultipeerState.swift in Sources */,
 				AF655E7B20063F5C00A26960 /* MultipeerActions.swift in Sources */,
 				AF0CA2241FDF33F200BFE94F /* State.swift in Sources */,
-				AFE7E5231FE1FAF30080A465 /* AppReducer.swift in Sources */,
 				AF0CA1FB1FDDAB9500BFE94F /* ReduxRockPaperScrissorsTests.swift in Sources */,
 				AF655E8A2007993900A26960 /* MultipeerAction.swift in Sources */,
 			);

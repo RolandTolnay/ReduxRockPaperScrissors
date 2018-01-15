@@ -12,7 +12,8 @@ import ReSwift
 // We can define initial state here if we want to
 let mainStore = Store<AppState>(
   reducer: appReducer,
-  state: nil
+  state: nil,
+  middleware: [loggingMiddleware]
 )
 
 @UIApplicationMain

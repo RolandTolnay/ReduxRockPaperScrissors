@@ -21,6 +21,8 @@ struct GameState: StateType {
   var myPlay: Play
   var otherPlay: Play
   
+  var currentCountdown: Int?
+  
   // Result of the match
   var result: Result?
   

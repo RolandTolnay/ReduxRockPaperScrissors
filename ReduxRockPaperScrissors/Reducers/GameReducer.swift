@@ -24,10 +24,15 @@ func gameReducer(action: Action, state: GameState?) -> GameState {
         case .other:
           state.otherPlay = Play(chosen: true, weapon: chooseWeaponAction.weapon)
       }
-    
+    case _ as CountdownTickAction:
+      state = countdownReducer(state: state)
+
     case _ as RematchAction:
       state = GameState()
     case _ as StartGameAction:
+      state.myPlay = Play(chosen: false, weapon: nil)
+      state.otherPlay = Play(chosen: false, weapon: nil)
+      state.result = nil
       state.gameStatus = .countdown
     
     case _ as RequestStartGameAction:
@@ -44,39 +49,30 @@ func gameReducer(action: Action, state: GameState?) -> GameState {
 
 // MARK:- Helpers
 
-//private func playerOneReducer(action: ChooseWeaponAction, state: GameState) -> GameState {
-//  var state = state
-//
-//  // create play
-//  let play = Play(chosen: true, weapon: action.weapon)
-//  state.player1Play = play
-//
-//  return state
-//}
-//
-//private func playerTwoReducer(action: ChooseWeaponAction, state: GameState) -> GameState {
-//  var state = state
-//
-//  // create play
-//  let play = Play(chosen: true, weapon: action.weapon)
-//  state.player2Play = play
-//
-//  // update result
-//  state.result = resultFrom(player1: state.player1Play, player2: state.player2Play)
-//
-//  // update message
-//  switch state.result! {
-//    case .draw:
-//      state.statusMessage = .draw
-//    case .player1Win:
-//      state.statusMessage = .player1Win
-//    case .player2Win:
-//      state.statusMessage = .player2Win
-//  }
-//  state.playerMessage = .empty
-//
-//  return state
-//}
+private func countdownReducer(state: GameState) -> GameState {
+  var state = state
+  
+  if state.currentCountdown == nil {
+    state.currentCountdown = 3
+  } else {
+    state.currentCountdown! -= 1
+    if state.currentCountdown == 0 {
+      state.result = resultFrom(player1: state.myPlay, player2: state.otherPlay)
+      switch state.result! {
+        case .draw:
+          state.statusMessage = .draw
+        case .player1Win:
+          state.statusMessage = .player1Win
+        case .player2Win:
+          state.statusMessage = .player2Win
+        }
+      state.currentCountdown = nil
+      state.gameStatus = .finished
+    }
+  }
+  
+  return state
+}
 
 private func resultFrom(player1: Play, player2: Play) -> Result {
   

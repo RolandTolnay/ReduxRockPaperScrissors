@@ -28,11 +28,13 @@ func multipeerReducer(action: Action, state: MultipeerState?) -> MultipeerState 
     
     case _ as RequestStartGameAction:
       state.sessionService.sendMultipeerAction(.gameStartRequest)
-    case let startGameAction as StartGameAction:
-      if let gameStatus = startGameAction.gameStatus,
+    case let respondStartAction as RespondStartGameAction:
+      if let gameStatus = respondStartAction.gameStatus,
         gameStatus == .pendingStartReceived {
         
-        state.sessionService.sendMultipeerAction(.gameStartApproved)
+        let multipeerAction: MultipeerAction =
+          respondStartAction.canStart ? .gameStartApproved : .gameStartDeclined
+        state.sessionService.sendMultipeerAction(multipeerAction)
       }
     
     case let chooseWeaponAction as ChooseWeaponAction:

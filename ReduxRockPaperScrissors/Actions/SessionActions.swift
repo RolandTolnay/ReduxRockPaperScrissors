@@ -9,14 +9,30 @@
 import Foundation
 import ReSwift
 
-struct StartGameAction: Action {
-  
-  var gameStatus: GameStatus?
-}
-
 struct RequestStartGameAction: Action { }
 
 struct ReceivedStartGameAction: Action { }
+
+struct RespondStartGameAction: Action {
+  
+  var canStart: Bool
+  var gameStatus: GameStatus?
+  
+  init(canStart: Bool, gameStatus: GameStatus? = nil) {
+    self.canStart = canStart
+    self.gameStatus = gameStatus
+  }
+}
+
+//struct StartGameAction: Action {
+//  
+//  var gameStatus: GameStatus?
+//}
+//
+//struct DeclineStartGameAction: Action {
+//  
+//  var gameStatus: GameStatus?
+//}
 
 // -
 

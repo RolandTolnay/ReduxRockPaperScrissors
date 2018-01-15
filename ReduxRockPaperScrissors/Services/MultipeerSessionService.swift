@@ -48,9 +48,13 @@ extension MultipeerSessionService: MCSessionDelegate {
                 ReceivedStartGameAction()
               )
           case .gameStartApproved:
-              mainStore.dispatch(
-                StartGameAction()
-              )
+            mainStore.dispatch(
+              RespondStartGameAction(canStart: true)
+            )
+          case .gameStartDeclined:
+            mainStore.dispatch(
+              RespondStartGameAction(canStart: false)
+            )
           
           case .chosenPaper:
             mainStore.dispatch(

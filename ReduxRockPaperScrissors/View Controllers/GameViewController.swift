@@ -140,11 +140,10 @@ class GameViewController: UIViewController, StoreSubscriber {
     switch gameStatus {
       case .pendingStartReceived:
         showRequestGameStartAlert() { didAccept in
-          if didAccept {
-            mainStore.dispatch(
-              StartGameAction(gameStatus: gameStatus)
-            )
-          }
+        
+          mainStore.dispatch(
+            RespondStartGameAction(canStart: didAccept, gameStatus: gameStatus)
+          )
         }
       case .pendingStartSent:
         startGameButton.isHidden = true

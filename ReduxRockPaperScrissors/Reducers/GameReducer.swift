@@ -31,16 +31,19 @@ func gameReducer(action: Action, state: GameState?) -> GameState {
       let otherName = multipeerState.connectedPlayer!
       state = countdownReducer(state: state, playerNames: (myName, otherName))
 
-    case _ as StartGameAction:
-      state.myPlay = Play(chosen: false, weapon: nil)
-      state.otherPlay = Play(chosen: false, weapon: nil)
-      state.result = nil
-      state.gameStatus = .countdown
-    
     case _ as RequestStartGameAction:
       state.gameStatus = .pendingStartSent
     case _ as ReceivedStartGameAction:
       state.gameStatus = .pendingStartReceived
+    case let respondStartAction as RespondStartGameAction:
+      if respondStartAction.canStart {
+        state.myPlay = Play(chosen: false, weapon: nil)
+        state.otherPlay = Play(chosen: false, weapon: nil)
+        state.result = nil
+        state.gameStatus = .countdown
+      } else {
+        state.gameStatus = .finished
+      }
     
     default:
       break

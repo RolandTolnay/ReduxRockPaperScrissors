@@ -273,12 +273,12 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="knC-CA-HfB" firstAttribute="centerX" secondItem="jhs-ce-bYf" secondAttribute="centerX" id="BrT-Zk-3jj"/>
+                            <constraint firstItem="knC-CA-HfB" firstAttribute="centerX" secondItem="1FG-v6-q0r" secondAttribute="centerX" id="BrT-Zk-3jj"/>
                             <constraint firstItem="ZnN-6g-8in" firstAttribute="bottom" secondItem="1FG-v6-q0r" secondAttribute="bottom" id="Kxr-nF-bsr"/>
                             <constraint firstItem="knC-CA-HfB" firstAttribute="top" secondItem="3Be-5D-q2Q" secondAttribute="bottom" constant="12" id="RlM-h0-TN3"/>
                             <constraint firstItem="ZnN-6g-8in" firstAttribute="leading" secondItem="1FG-v6-q0r" secondAttribute="leading" id="aDe-2K-Y23"/>
                             <constraint firstItem="3Be-5D-q2Q" firstAttribute="top" secondItem="1FG-v6-q0r" secondAttribute="top" constant="48" id="m9R-Me-oLY"/>
-                            <constraint firstItem="3Be-5D-q2Q" firstAttribute="centerX" secondItem="jhs-ce-bYf" secondAttribute="centerX" id="uMS-h7-Ho6"/>
+                            <constraint firstItem="3Be-5D-q2Q" firstAttribute="centerX" secondItem="1FG-v6-q0r" secondAttribute="centerX" id="uMS-h7-Ho6"/>
                             <constraint firstItem="ZnN-6g-8in" firstAttribute="trailing" secondItem="1FG-v6-q0r" secondAttribute="trailing" id="yEb-i2-etl"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="1FG-v6-q0r"/>

@@ -27,6 +27,10 @@ func appReducer(action: Action, state: AppState?) -> AppState {
             break
         }
       }
+    case _ as StopBrowsingPeers:
+      state.score = [.me:0,
+                    .other:0]
+      state.gameState = GameState()
     default:
       break;
   }

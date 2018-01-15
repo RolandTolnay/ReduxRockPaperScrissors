@@ -101,7 +101,12 @@ class GameViewController: UIViewController, StoreSubscriber {
     playerLabel.text = gameState.playerMessage.rawValue
     if let countdown = gameState.currentCountdown {
       statusLabel.text = String(countdown)
+      statusLabel.transform = CGAffineTransform(scaleX: 1, y: 1)
+      UIView.animate(withDuration: 1, animations: {
+        self.statusLabel.transform = CGAffineTransform(scaleX: 2, y: 2)
+      })
     } else {
+      statusLabel.transform = CGAffineTransform(scaleX: 1, y: 1)
       statusLabel.text = gameState.statusMessage
     }
     

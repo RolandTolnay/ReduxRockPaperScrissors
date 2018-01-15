@@ -12,7 +12,7 @@ import MultipeerConnectivity
 class MultipeerSessionService: NSObject {
   
   func sendMultipeerAction(_ multipeerAction: MultipeerAction) {
-    print("sendMultipeerAction \(multipeerAction.rawValue)")
+    print("sendMultipeerAction - \(multipeerAction.rawValue)")
     
     if let session = mainStore.state.multipeerState.session,
       session.connectedPeers.count > 0 {
@@ -68,9 +68,6 @@ extension MultipeerSessionService: MCSessionDelegate {
             mainStore.dispatch(
               ChooseWeaponAction(player: .other, weapon: .scrissors)
             )
-          
-          default:
-            break;
         }
       }
     } else {

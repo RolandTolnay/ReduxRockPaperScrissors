@@ -19,6 +19,7 @@
 		AF0CA2121FDDBFED00BFE94F /* GameReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0CA2111FDDBFED00BFE94F /* GameReducer.swift */; };
 		AF0CA2201FDEC7E500BFE94F /* SessionActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0CA21F1FDEC7E500BFE94F /* SessionActions.swift */; };
 		AF0CA2221FDF33EA00BFE94F /* WeaponActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0CA20F1FDDBF0900BFE94F /* WeaponActions.swift */; };
+		AF2C2623200E0B33005685FA /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = AF2C2622200E0B33005685FA /* .swiftlint.yml */; };
 		AF2CBD9A200CB4790018A10F /* LoggingMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF2CBD99200CB4790018A10F /* LoggingMiddleware.swift */; };
 		AF655E7220060FA400A26960 /* MultipeerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF655E7120060FA400A26960 /* MultipeerViewController.swift */; };
 		AF655E74200613D000A26960 /* MultipeerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF655E73200613D000A26960 /* MultipeerState.swift */; };
@@ -62,6 +63,7 @@
 		AF0CA20F1FDDBF0900BFE94F /* WeaponActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeaponActions.swift; sourceTree = "<group>"; };
 		AF0CA2111FDDBFED00BFE94F /* GameReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameReducer.swift; sourceTree = "<group>"; };
 		AF0CA21F1FDEC7E500BFE94F /* SessionActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionActions.swift; sourceTree = "<group>"; };
+		AF2C2622200E0B33005685FA /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = SOURCE_ROOT; };
 		AF2CBD99200CB4790018A10F /* LoggingMiddleware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggingMiddleware.swift; sourceTree = "<group>"; };
 		AF655E7120060FA400A26960 /* MultipeerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipeerViewController.swift; sourceTree = "<group>"; };
 		AF655E73200613D000A26960 /* MultipeerState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipeerState.swift; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 		AF0CA20C1FDDBE7B00BFE94F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				AF2C2622200E0B33005685FA /* .swiftlint.yml */,
 				AF0CA1F11FDDAB9500BFE94F /* Info.plist */,
 				AF0CA1EE1FDDAB9500BFE94F /* LaunchScreen.storyboard */,
 				AF0CA1EC1FDDAB9400BFE94F /* Assets.xcassets */,
@@ -329,6 +332,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF2C2623200E0B33005685FA /* .swiftlint.yml in Resources */,
 				AF0CA1F01FDDAB9500BFE94F /* LaunchScreen.storyboard in Resources */,
 				AF0CA1ED1FDDAB9400BFE94F /* Assets.xcassets in Resources */,
 				AF0CA1EB1FDDAB9400BFE94F /* Main.storyboard in Resources */,

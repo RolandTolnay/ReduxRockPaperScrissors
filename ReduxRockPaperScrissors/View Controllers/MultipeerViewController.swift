@@ -79,7 +79,8 @@ class MultipeerViewController: UIViewController, StoreSubscriber {
 
   private func navigateToGameScreen() {
     let storyboard = UIStoryboard(name: "Main", bundle: nil)
-    let gameViewController = storyboard.instantiateViewController(withIdentifier: String(describing: GameViewController.self))
+    let gameViewController =
+      storyboard.instantiateViewController(withIdentifier: String(describing: GameViewController.self))
     self.present(gameViewController, animated: true, completion: nil)
   }
 

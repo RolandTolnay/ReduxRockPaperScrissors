@@ -17,7 +17,13 @@ func convertToGrayScale(image: UIImage) -> UIImage {
   let height = image.size.height
 
   let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.none.rawValue)
-  let context = CGContext(data: nil, width: Int(width), height: Int(height), bitsPerComponent: 8, bytesPerRow: 0, space: colorSpace, bitmapInfo: bitmapInfo.rawValue)
+  let context = CGContext(data: nil,
+                          width: Int(width),
+                          height: Int(height),
+                          bitsPerComponent: 8,
+                          bytesPerRow: 0,
+                          space: colorSpace,
+                          bitmapInfo: bitmapInfo.rawValue)
 
   if let context = context {
     context.draw(image.cgImage!, in: imageRect)

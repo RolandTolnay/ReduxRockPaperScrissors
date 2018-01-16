@@ -10,10 +10,12 @@ import Foundation
 import ReSwift
 import MultipeerConnectivity
 
+// swiftlint:disable cyclomatic_complexity
 func multipeerReducer(action: Action, state: MultipeerState?) -> MultipeerState {
   var state = state ?? MultipeerState()
 
   switch action {
+  // Multipeer
     case _ as BrowsePeersAction:
       state.session = MCSession(peer: state.peerId, securityIdentity: nil, encryptionPreference: .required)
       state.session?.delegate = state.sessionService
@@ -29,7 +31,7 @@ func multipeerReducer(action: Action, state: MultipeerState?) -> MultipeerState 
 
         state.connectedPlayer = peerId.displayName
       }
-
+  // Start game requests
     case _ as RequestStartGameAction:
       state.sessionService.sendMultipeerAction(.gameStartRequest)
     case let respondStartAction as RespondStartGameAction:
@@ -40,9 +42,9 @@ func multipeerReducer(action: Action, state: MultipeerState?) -> MultipeerState 
           respondStartAction.canStart ? .gameStartApproved : .gameStartDeclined
         state.sessionService.sendMultipeerAction(multipeerAction)
       }
-
+  // Weapon chosen
     case let chooseWeaponAction as ChooseWeaponAction:
-      if chooseWeaponAction.player == .me {
+      if chooseWeaponAction.player == .local {
         switch chooseWeaponAction.weapon {
           case .paper:
             state.sessionService.sendMultipeerAction(.chosenPaper)

@@ -20,7 +20,7 @@ func appReducer(action: Action, state: AppState?) -> AppState {
       if let result = state.gameState.result {
         switch result {
           case .myWin:
-            state.score[.me]! += 1
+            state.score[.local]! += 1
           case .otherWin:
             state.score[.other]! += 1
           default:
@@ -28,8 +28,8 @@ func appReducer(action: Action, state: AppState?) -> AppState {
         }
       }
     case _ as StopBrowsingPeers:
-      state.score = [.me:0,
-                    .other:0]
+      state.score = [.local: 0,
+                    .other: 0]
       state.gameState = GameState()
     default:
       break

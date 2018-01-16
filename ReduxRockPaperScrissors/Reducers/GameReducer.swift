@@ -19,7 +19,7 @@ func gameReducer(action: Action, state: GameState?) -> GameState {
   switch action {
     case let chooseWeaponAction as ChooseWeaponAction:
       switch chooseWeaponAction.player {
-        case .me:
+        case .local:
           state.myPlay = Play(chosen: true, weapon: chooseWeaponAction.weapon)
         case .other:
           state.otherPlay = Play(chosen: true, weapon: chooseWeaponAction.weapon)
@@ -81,6 +81,7 @@ private func countdownReducer(state: GameState, playerNames: (myName: String, ot
   return state
 }
 
+// swiftlint:disable cyclomatic_complexity
 private func resultFrom(player1: Play, player2: Play) -> Result {
 
   // defaults to rock as everyone else

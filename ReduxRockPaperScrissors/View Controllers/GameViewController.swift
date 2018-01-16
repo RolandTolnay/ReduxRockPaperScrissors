@@ -72,17 +72,17 @@ class GameViewController: UIViewController, StoreSubscriber {
 
   @IBAction func onRockTap(_ sender: UITapGestureRecognizer) {
     mainStore.dispatch(
-      ChooseWeaponAction(player: .me, weapon: .rock)
+      ChooseWeaponAction(player: .local, weapon: .rock)
     )
   }
   @IBAction func onPaperTap(_ sender: UITapGestureRecognizer) {
     mainStore.dispatch(
-      ChooseWeaponAction(player: .me, weapon: .paper)
+      ChooseWeaponAction(player: .local, weapon: .paper)
     )
   }
   @IBAction func onScrissorsTap(_ sender: Any) {
     mainStore.dispatch(
-      ChooseWeaponAction(player: .me, weapon: .scrissors)
+      ChooseWeaponAction(player: .local, weapon: .scrissors)
     )
   }
 
@@ -133,10 +133,10 @@ class GameViewController: UIViewController, StoreSubscriber {
     if gameState.result != nil {
       // TODO: Set rock default in single place, rather than both here and GameReducer
       otherPlayerWeapon.image = imageFrom(weapon: gameState.otherPlay.weapon ?? .rock, player: .other)
-      myPlayerWeapon.image = imageFrom(weapon: gameState.myPlay.weapon ?? .rock, player: .me)
+      myPlayerWeapon.image = imageFrom(weapon: gameState.myPlay.weapon ?? .rock, player: .local)
     } else {
       otherPlayerWeapon.image = imageFrom(weapon: nil, player: .other)
-      myPlayerWeapon.image = imageFrom(weapon: gameState.myPlay.weapon, player: .me)
+      myPlayerWeapon.image = imageFrom(weapon: gameState.myPlay.weapon, player: .local)
     }
 
     renderGameStatus(gameState.gameStatus, for: gameState.result)
@@ -158,7 +158,7 @@ class GameViewController: UIViewController, StoreSubscriber {
 
     switch gameStatus {
       case .pendingStartReceived:
-        showRequestGameStartAlert() { didAccept in
+        showRequestGameStartAlert { didAccept in
           mainStore.dispatch(
             RespondStartGameAction(canStart: didAccept, gameStatus: gameStatus)
           )
@@ -189,10 +189,10 @@ class GameViewController: UIViewController, StoreSubscriber {
     let alert = UIAlertController(title: "Start game",
                                   message: "\(opponent) would like to start the game. Are you ready?",
                                   preferredStyle: .alert)
-    let acceptAction = UIAlertAction(title: "Accept", style: .cancel) { action in
+    let acceptAction = UIAlertAction(title: "Accept", style: .cancel) { _ in
       completion(true)
     }
-    let declineAction = UIAlertAction(title: "Decline", style: .default) { action in
+    let declineAction = UIAlertAction(title: "Decline", style: .default) { _ in
       completion(false)
     }
 
@@ -209,7 +209,7 @@ class GameViewController: UIViewController, StoreSubscriber {
     let okAction = UIAlertAction(title: "Done", style: .default)
     alert.addAction(okAction)
 
-    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate // swiftlint:disable:this force_cast
     let rootVC = appDelegate.window!.rootViewController!
     rootVC.present(alert, animated: true, completion: nil)
   }
@@ -240,7 +240,7 @@ class GameViewController: UIViewController, StoreSubscriber {
     }
 
     if !isCountdownRunning {
-      countdownTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
+      countdownTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
         mainStore.dispatch(
           CountdownTickAction()
         )
@@ -255,7 +255,7 @@ class GameViewController: UIViewController, StoreSubscriber {
       return UIImage(named: "none")
     }
 
-    let playerPrefix = player == .me ? "p1-" : "p2-"
+    let playerPrefix = player == .local ? "p1-" : "p2-"
     switch weapon {
       case .rock:
         return UIImage(named: playerPrefix+"rock")
@@ -280,7 +280,7 @@ class GameViewController: UIViewController, StoreSubscriber {
   }
 
   private func updateScore(from state: AppState) {
-    guard let p1Score = state.score[Player.me],
+    guard let p1Score = state.score[Player.local],
       let p2Score = state.score[Player.other] else { return }
 
     myPlayerScoreLabel.text = String(p1Score)

@@ -13,7 +13,7 @@ import Foundation
 
 enum Player {
 
-  case me
+  case local
   case other
 }
 

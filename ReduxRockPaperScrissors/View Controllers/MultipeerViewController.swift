@@ -98,8 +98,10 @@ extension MultipeerViewController: MCBrowserViewControllerDelegate {
 
   func browserViewControllerDidFinish(_ browserViewController: MCBrowserViewController) {
 
+    let localName = browserViewController.session.myPeerID.displayName
+    let otherName = browserViewController.session.connectedPeers.first?.displayName ?? "Opponent"
     mainStore.dispatch(
-      FoundPeerAction()
+      FoundPeerAction(playerNames: (localPlayerName: localName, otherPlayerName: otherName))
     )
     DispatchQueue.main.async {
       browserViewController.dismiss(animated: true) {

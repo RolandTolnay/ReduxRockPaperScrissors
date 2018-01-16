@@ -11,6 +11,9 @@ import ReSwift
 
 struct BrowsePeersAction: Action { }
 
-struct FoundPeerAction: Action { }
+struct FoundPeerAction: Action {
+
+  var playerNames: PlayerNames
+}
 
 struct StopBrowsingPeers: Action { }

@@ -18,5 +18,5 @@ struct MultipeerState: StateType {
   let sessionService = MultipeerSessionService()
 
   var session: MCSession?
-  var connectedPlayer: String?
+  var connectedPlayer: MCPeerID?
 }

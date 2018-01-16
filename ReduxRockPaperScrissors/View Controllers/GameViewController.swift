@@ -124,7 +124,7 @@ class GameViewController: UIViewController, StoreSubscriber {
       statusLabel.text = gameState.statusMessage
     }
 
-    renderPlayerNames(from: state.multipeerState)
+    renderPlayerNames(from: gameState.playerNames)
     updateScore(from: state)
 
     toggleWeaponInteraction(enabled: gameState.result == nil)
@@ -145,9 +145,9 @@ class GameViewController: UIViewController, StoreSubscriber {
   // MARK: Utility
   // --------------------
 
-  private func renderPlayerNames(from multipeerState: MultipeerState) {
-    localPlayerNameLabel.text = UIDevice.current.name
-    otherPlayerNameLabel.text = multipeerState.connectedPlayer
+  private func renderPlayerNames(from playerNames: PlayerNames) {
+    localPlayerNameLabel.text = playerNames.localPlayerName
+    otherPlayerNameLabel.text = playerNames.otherPlayerName
   }
 
   private func renderGameStatus(_ gameStatus: GameStatus, for result: Result? = nil) {
@@ -184,7 +184,7 @@ class GameViewController: UIViewController, StoreSubscriber {
   typealias AlertResult = (_ didAccept: Bool) -> Void
 
   private func showRequestGameStartAlert(completion: @escaping AlertResult) {
-    let opponent = mainStore.state.multipeerState.connectedPlayer!
+    let opponent = mainStore.state.gameState.playerNames.otherPlayerName
     let alert = UIAlertController(title: "Start game",
                                   message: "\(opponent) would like to start the game. Are you ready?",
                                   preferredStyle: .alert)

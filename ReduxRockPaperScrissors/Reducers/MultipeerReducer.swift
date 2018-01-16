@@ -29,7 +29,7 @@ func multipeerReducer(action: Action, state: MultipeerState?) -> MultipeerState 
       if let session = state.session,
         let peerId = session.connectedPeers.first {
 
-        state.connectedPlayer = peerId.displayName
+        state.connectedPlayer = peerId
       }
   // Start game requests
     case _ as RequestStartGameAction:

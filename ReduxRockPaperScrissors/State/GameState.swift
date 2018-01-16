@@ -11,6 +11,8 @@ import ReSwift
 
 struct GameState: StateType {
 
+  var playerNames: PlayerNames
+
   // Messages on main screen
   var statusMessage: String
   var playerMessage: String
@@ -27,6 +29,8 @@ struct GameState: StateType {
   var result: Result?
 
   init() {
+    self.playerNames = (localPlayerName: "Local", otherPlayerName: "Opponent")
+
     self.statusMessage = Message.prepare.rawValue
     self.playerMessage = Message.playerChoose.rawValue
 

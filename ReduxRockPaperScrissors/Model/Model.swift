@@ -40,6 +40,7 @@ enum GameStatus {
 }
 
 typealias Score = [Player: Int]
+typealias PlayerNames = (localPlayerName: String, otherPlayerName: String)
 
 // MARK: - Utility
 

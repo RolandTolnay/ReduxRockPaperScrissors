@@ -15,6 +15,9 @@ func gameReducer(action: Action, state: GameState?) -> GameState {
   var state = state ?? GameState()
 
   switch action {
+    case let foundPeerAction as FoundPeerAction:
+      state.playerNames = foundPeerAction.playerNames
+
     case let chooseWeaponAction as ChooseWeaponAction:
       switch chooseWeaponAction.player {
         case .local:
@@ -23,11 +26,7 @@ func gameReducer(action: Action, state: GameState?) -> GameState {
           state.otherPlay = Play(chosen: true, weapon: chooseWeaponAction.weapon)
       }
     case _ as CountdownTickAction:
-      // TODO: Refactor player name handling
-      let multipeerState = mainStore.state.multipeerState
-      let localName = multipeerState.peerId.displayName
-      let otherName = multipeerState.connectedPlayer!
-      state = countdownReducer(state: state, playerNames: (localName, otherName))
+      state = countdownReducer(state: state)
 
     case _ as RequestStartGameAction:
       state.gameStatus = .pendingStartSent
@@ -53,7 +52,7 @@ func gameReducer(action: Action, state: GameState?) -> GameState {
 
 // MARK: - Helpers
 
-private func countdownReducer(state: GameState, playerNames: (localName: String, otherName: String)) -> GameState {
+private func countdownReducer(state: GameState) -> GameState {
   var state = state
 
   if state.currentCountdown == nil {
@@ -62,25 +61,33 @@ private func countdownReducer(state: GameState, playerNames: (localName: String,
     state.currentCountdown! -= 1
 
     if state.currentCountdown == 0 {
-      // Set default weapon to rock if none chosen
-      if !state.localPlay.chosen {
-        state.localPlay = Play(chosen: true, weapon: .rock)
-      }
-      if !state.otherPlay.chosen {
-        state.otherPlay = Play(chosen: true, weapon: .rock)
-      }
-      state.result = resultFrom(localPlay: state.localPlay, otherPlay: state.otherPlay)
-      switch state.result! {
-        case .draw:
-          state.statusMessage = Message.draw.rawValue
-        case .localWin:
-          state.statusMessage = playerNames.localName + Message.playerWin.rawValue
-        case .otherWin:
-          state.statusMessage = playerNames.otherName + Message.playerWin.rawValue
-      }
+      state = resultReducer(state: state)
       state.currentCountdown = nil
       state.gameStatus = .finished
     }
+  }
+
+  return state
+}
+
+private func resultReducer(state: GameState) -> GameState {
+  var state = state
+
+  // Set default weapon to rock if none chosen
+  if !state.localPlay.chosen {
+    state.localPlay = Play(chosen: true, weapon: .rock)
+  }
+  if !state.otherPlay.chosen {
+    state.otherPlay = Play(chosen: true, weapon: .rock)
+  }
+  state.result = resultFrom(localPlay: state.localPlay, otherPlay: state.otherPlay)
+  switch state.result! {
+    case .draw:
+      state.statusMessage = Message.draw.rawValue
+    case .localWin:
+      state.statusMessage = state.playerNames.localPlayerName + Message.playerWin.rawValue
+    case .otherWin:
+      state.statusMessage = state.playerNames.otherPlayerName + Message.playerWin.rawValue
   }
 
   return state

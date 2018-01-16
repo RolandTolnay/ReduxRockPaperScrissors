@@ -10,7 +10,6 @@ import Foundation
 import ReSwift
 import MultipeerConnectivity
 
-// swiftlint:disable cyclomatic_complexity
 func multipeerReducer(action: Action, state: MultipeerState?) -> MultipeerState {
   var state = state ?? MultipeerState()
 
@@ -19,7 +18,7 @@ func multipeerReducer(action: Action, state: MultipeerState?) -> MultipeerState 
     case _ as BrowsePeersAction:
       state.session = MCSession(peer: state.peerId, securityIdentity: nil, encryptionPreference: .required)
       state.session?.delegate = state.sessionService
-    case _ as StopBrowsingPeers:
+    case _ as StopBrowsingPeersAction:
       state.session = nil
       if state.connectedPlayer != nil {
         state.connectedPlayer = nil

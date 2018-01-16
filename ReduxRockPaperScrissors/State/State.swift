@@ -11,17 +11,11 @@ import ReSwift
 
 struct AppState: StateType {
 
-  // In real-life apps this might contain other substates
-  // ex. authenticationState, navigationState, error object
-
   var gameState: GameState
   var multipeerState: MultipeerState
-  var score: Score
 
   init() {
     self.gameState = GameState()
     self.multipeerState = MultipeerState()
-    self.score = [.local: 0,
-                  .other: 0]
   }
 }

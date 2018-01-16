@@ -15,19 +15,13 @@ func gameReducer(action: Action, state: GameState?) -> GameState {
   var state = state ?? GameState()
 
   switch action {
+  // Multipeer actions
+    case _ as StopBrowsingPeersAction:
+      state.gameStatus = .opponentLeft
     case let foundPeerAction as FoundPeerAction:
+      state.gameStatus = .finished
       state.playerNames = foundPeerAction.playerNames
-
-    case let chooseWeaponAction as ChooseWeaponAction:
-      switch chooseWeaponAction.player {
-        case .local:
-          state.localPlay = Play(chosen: true, weapon: chooseWeaponAction.weapon)
-        case .other:
-          state.otherPlay = Play(chosen: true, weapon: chooseWeaponAction.weapon)
-      }
-    case _ as CountdownTickAction:
-      state = countdownReducer(state: state)
-
+  // Start game actions
     case _ as RequestStartGameAction:
       state.gameStatus = .pendingStartSent
     case _ as ReceivedStartGameAction:
@@ -41,6 +35,28 @@ func gameReducer(action: Action, state: GameState?) -> GameState {
         state.statusMessage = Message.gameStart.rawValue
       } else {
         state.gameStatus = .finished
+      }
+  // Weapon Actions
+    case let chooseWeaponAction as ChooseWeaponAction:
+      switch chooseWeaponAction.player {
+      case .local:
+        state.localPlay = Play(chosen: true, weapon: chooseWeaponAction.weapon)
+      case .other:
+        state.otherPlay = Play(chosen: true, weapon: chooseWeaponAction.weapon)
+      }
+    case _ as CountdownTickAction:
+      state = countdownReducer(state: state)
+  // Score
+    case _ as UpdateScoreAction:
+      if let result = state.result {
+        switch result {
+          case .localWin:
+            state.score[.local]! += 1
+          case .otherWin:
+            state.score[.other]! += 1
+          default:
+            break
+          }
       }
 
     default:
@@ -93,7 +109,6 @@ private func resultReducer(state: GameState) -> GameState {
   return state
 }
 
-// swiftlint:disable cyclomatic_complexity
 private func resultFrom(localPlay: Play, otherPlay: Play) -> Result {
 
   let localWeapon = localPlay.weapon!

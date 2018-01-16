@@ -12,28 +12,14 @@ import ReSwift
 func appReducer(action: Action, state: AppState?) -> AppState {
   var state = state ?? AppState()
 
-  state.gameState = gameReducer(action: action, state: state.gameState)
-  state.multipeerState = multipeerReducer(action: action, state: state.multipeerState)
-
   switch action {
-    case _ as UpdateScoreAction:
-      if let result = state.gameState.result {
-        switch result {
-          case .localWin:
-            state.score[.local]! += 1
-          case .otherWin:
-            state.score[.other]! += 1
-          default:
-            break
-        }
-      }
-    case _ as StopBrowsingPeers:
-      state.score = [.local: 0,
-                    .other: 0]
+    case _ as StopBrowsingPeersAction:
       state.gameState = GameState()
+
     default:
-      break
+      state.gameState = gameReducer(action: action, state: state.gameState)
   }
+  state.multipeerState = multipeerReducer(action: action, state: state.multipeerState)
 
   return state
 }

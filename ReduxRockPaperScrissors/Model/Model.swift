@@ -33,6 +33,7 @@ enum Result {
 
 enum GameStatus {
 
+  case opponentLeft
   case finished
   case pendingStartSent
   case pendingStartReceived

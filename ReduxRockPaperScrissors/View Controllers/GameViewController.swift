@@ -52,7 +52,9 @@ class GameViewController: UIViewController, StoreSubscriber {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
 
-    mainStore.subscribe(self)
+    mainStore.subscribe(self) { state in
+      state.select { $0.gameState }
+    }
   }
 
   override func viewDidAppear(_ animated: Bool) {
@@ -95,50 +97,44 @@ class GameViewController: UIViewController, StoreSubscriber {
   @IBAction func onLeaveTapped(_ sender: UIButton) {
     self.dismiss(animated: true)
     mainStore.dispatch(
-      StopBrowsingPeers()
+      StopBrowsingPeersAction()
     )
   }
+
   // MARK: -
   // MARK: Render state
   // --------------------
 
-  func newState(state: AppState) {
-    guard state.multipeerState.session != nil else {
-      self.dismiss(animated: true) {
-        self.showOpponentLeftAlert()
-      }
-      return
-    }
-    let gameState = state.gameState
+  func newState(state: GameState) {
 
-    playerLabel.text = gameState.playerMessage
-    if let countdown = gameState.currentCountdown, statusLabel.text != String(countdown) {
+    playerLabel.text = state.playerMessage
+    if let countdown = state.currentCountdown, statusLabel.text != String(countdown) {
       statusLabel.text = String(countdown)
       statusLabel.transform = CGAffineTransform(scaleX: 1, y: 1)
       UIView.animate(withDuration: 1, animations: {
         self.statusLabel.transform = CGAffineTransform(scaleX: 2, y: 2)
       })
     }
-    if gameState.gameStatus != .countdown {
+    if state.gameStatus != .countdown {
       statusLabel.transform = CGAffineTransform(scaleX: 1, y: 1)
-      statusLabel.text = gameState.statusMessage
+      statusLabel.text = state.statusMessage
     }
 
-    renderPlayerNames(from: gameState.playerNames)
+    renderPlayerNames(from: state.playerNames)
     updateScore(from: state)
 
-    toggleWeaponInteraction(enabled: gameState.result == nil)
-    toggleWeaponVisibility(isHidden: gameState.gameStatus != .countdown)
+    toggleWeaponInteraction(enabled: state.result == nil)
+    toggleWeaponVisibility(isHidden: state.gameStatus != .countdown)
 
-    if gameState.result != nil {
-      otherPlayerWeapon.image = imageFrom(weapon: gameState.otherPlay.weapon!, player: .other)
-      localPlayerWeapon.image = imageFrom(weapon: gameState.localPlay.weapon!, player: .local)
+    if state.result != nil {
+      otherPlayerWeapon.image = imageFrom(weapon: state.otherPlay.weapon!, player: .other)
+      localPlayerWeapon.image = imageFrom(weapon: state.localPlay.weapon!, player: .local)
     } else {
       otherPlayerWeapon.image = imageFrom(weapon: nil, player: .other)
-      localPlayerWeapon.image = imageFrom(weapon: gameState.localPlay.weapon, player: .local)
+      localPlayerWeapon.image = imageFrom(weapon: state.localPlay.weapon, player: .local)
     }
 
-    renderGameStatus(gameState.gameStatus, for: gameState.result)
+    renderGameStatus(state.gameStatus, for: state.result)
   }
 
   // MARK: -
@@ -156,6 +152,10 @@ class GameViewController: UIViewController, StoreSubscriber {
     }
 
     switch gameStatus {
+      case .opponentLeft:
+        self.dismiss(animated: true) {
+          self.showOpponentLeftAlert()
+        }
       case .pendingStartReceived:
         showRequestGameStartAlert { didAccept in
           mainStore.dispatch(
@@ -228,13 +228,14 @@ class GameViewController: UIViewController, StoreSubscriber {
 
   private func toggleTimer(enabled: Bool) {
     guard enabled else {
+      // Countdown expired
       countdownTimer.invalidate()
       isCountdownRunning = false
-      // TODO: Refactor score handling
+      vibratePhone()
+
       mainStore.dispatch(
         UpdateScoreAction()
       )
-      vibratePhone()
       return
     }
 
@@ -278,7 +279,7 @@ class GameViewController: UIViewController, StoreSubscriber {
     }
   }
 
-  private func updateScore(from state: AppState) {
+  private func updateScore(from state: GameState) {
     guard let p1Score = state.score[Player.local],
       let p2Score = state.score[Player.other] else { return }
 

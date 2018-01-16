@@ -16,4 +16,4 @@ struct FoundPeerAction: Action {
   var playerNames: PlayerNames
 }
 
-struct StopBrowsingPeers: Action { }
+struct StopBrowsingPeersAction: Action { }

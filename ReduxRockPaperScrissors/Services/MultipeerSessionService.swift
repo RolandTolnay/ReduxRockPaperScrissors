@@ -57,7 +57,7 @@ extension MultipeerSessionService: MCSessionDelegate {
             )
           case .leftGame:
             mainStore.dispatch(
-              StopBrowsingPeers()
+              StopBrowsingPeersAction()
             )
 
           case .chosenPaper:

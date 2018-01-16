@@ -18,7 +18,6 @@
 		AF0CA2101FDDBF0900BFE94F /* WeaponActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0CA20F1FDDBF0900BFE94F /* WeaponActions.swift */; };
 		AF0CA2121FDDBFED00BFE94F /* GameReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0CA2111FDDBFED00BFE94F /* GameReducer.swift */; };
 		AF0CA2201FDEC7E500BFE94F /* SessionActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0CA21F1FDEC7E500BFE94F /* SessionActions.swift */; };
-		AF0CA2221FDF33EA00BFE94F /* WeaponActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0CA20F1FDDBF0900BFE94F /* WeaponActions.swift */; };
 		AF2C2623200E0B33005685FA /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = AF2C2622200E0B33005685FA /* .swiftlint.yml */; };
 		AF2CBD9A200CB4790018A10F /* LoggingMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF2CBD99200CB4790018A10F /* LoggingMiddleware.swift */; };
 		AF655E7220060FA400A26960 /* MultipeerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF655E7120060FA400A26960 /* MultipeerViewController.swift */; };
@@ -492,7 +491,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AF0CA2221FDF33EA00BFE94F /* WeaponActions.swift in Sources */,
 				AF0CA1FB1FDDAB9500BFE94F /* ReduxRockPaperScrissorsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

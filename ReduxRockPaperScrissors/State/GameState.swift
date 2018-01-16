@@ -12,29 +12,28 @@ import ReSwift
 struct GameState: StateType {
 
   var playerNames: PlayerNames
-
-  // Messages on main screen
-  var statusMessage: String
-  var playerMessage: String
+  var score: Score
 
   var gameStatus: GameStatus
 
-  // Weapon choice of players
+  var statusMessage: String
+  var playerMessage: String
+
   var localPlay: Play
   var otherPlay: Play
 
   var currentCountdown: Int?
-
-  // Result of the match
   var result: Result?
 
   init() {
     self.playerNames = (localPlayerName: "Local", otherPlayerName: "Opponent")
+    self.score = [.local: 0,
+                  .other: 0]
 
     self.statusMessage = Message.prepare.rawValue
     self.playerMessage = Message.playerChoose.rawValue
 
-    self.gameStatus = .finished
+    self.gameStatus = .opponentLeft
     self.localPlay = Play(chosen: false, weapon: nil)
     self.otherPlay = Play(chosen: false, weapon: nil)
   }

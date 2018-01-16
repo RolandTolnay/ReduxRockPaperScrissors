@@ -113,7 +113,7 @@ extension MultipeerViewController: MCBrowserViewControllerDelegate {
   func browserViewControllerWasCancelled(_ browserViewController: MCBrowserViewController) {
 
     mainStore.dispatch(
-      StopBrowsingPeers()
+      StopBrowsingPeersAction()
     )
     DispatchQueue.main.async {
       browserViewController.dismiss(animated: true) {

@@ -3,3 +3,4 @@ excluded:
 disabled_rules:
   - todo
   - switch_case_alignment
+  - cyclomatic_complexity

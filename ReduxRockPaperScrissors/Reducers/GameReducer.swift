@@ -62,7 +62,14 @@ private func countdownReducer(state: GameState, playerNames: (localName: String,
     state.currentCountdown! -= 1
 
     if state.currentCountdown == 0 {
-      state.result = resultFrom(player1: state.localPlay, player2: state.otherPlay)
+      // Set default weapon to rock if none chosen
+      if !state.localPlay.chosen {
+        state.localPlay = Play(chosen: true, weapon: .rock)
+      }
+      if !state.otherPlay.chosen {
+        state.otherPlay = Play(chosen: true, weapon: .rock)
+      }
+      state.result = resultFrom(localPlay: state.localPlay, otherPlay: state.otherPlay)
       switch state.result! {
         case .draw:
           state.statusMessage = Message.draw.rawValue
@@ -70,7 +77,7 @@ private func countdownReducer(state: GameState, playerNames: (localName: String,
           state.statusMessage = playerNames.localName + Message.playerWin.rawValue
         case .otherWin:
           state.statusMessage = playerNames.otherName + Message.playerWin.rawValue
-        }
+      }
       state.currentCountdown = nil
       state.gameStatus = .finished
     }
@@ -80,27 +87,26 @@ private func countdownReducer(state: GameState, playerNames: (localName: String,
 }
 
 // swiftlint:disable cyclomatic_complexity
-private func resultFrom(player1: Play, player2: Play) -> Result {
+private func resultFrom(localPlay: Play, otherPlay: Play) -> Result {
 
-  // defaults to rock as everyone else
-  let p1Weapon = player1.weapon ?? .rock
-  let p2Weapon = player2.weapon ?? .rock
+  let localWeapon = localPlay.weapon!
+  let otherWeapon = otherPlay.weapon!
 
-  switch p1Weapon {
+  switch localWeapon {
     case .rock:
-      switch p2Weapon {
+      switch otherWeapon {
         case .paper: return .otherWin
         case .scrissors: return .localWin
         default: return .draw
       }
     case .paper:
-      switch p2Weapon {
+      switch otherWeapon {
         case .rock: return .localWin
         case .scrissors: return .otherWin
         default: return .draw
       }
     case .scrissors:
-      switch p2Weapon {
+      switch otherWeapon {
         case .paper: return .localWin
         case .rock: return .otherWin
         default: return .draw

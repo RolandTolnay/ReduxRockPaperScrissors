@@ -131,9 +131,8 @@ class GameViewController: UIViewController, StoreSubscriber {
     toggleWeaponVisibility(isHidden: gameState.gameStatus != .countdown)
 
     if gameState.result != nil {
-      // TODO: Set rock default in single place, rather than both here and GameReducer
-      otherPlayerWeapon.image = imageFrom(weapon: gameState.otherPlay.weapon ?? .rock, player: .other)
-      localPlayerWeapon.image = imageFrom(weapon: gameState.localPlay.weapon ?? .rock, player: .local)
+      otherPlayerWeapon.image = imageFrom(weapon: gameState.otherPlay.weapon!, player: .other)
+      localPlayerWeapon.image = imageFrom(weapon: gameState.localPlay.weapon!, player: .local)
     } else {
       otherPlayerWeapon.image = imageFrom(weapon: nil, player: .other)
       localPlayerWeapon.image = imageFrom(weapon: gameState.localPlay.weapon, player: .local)

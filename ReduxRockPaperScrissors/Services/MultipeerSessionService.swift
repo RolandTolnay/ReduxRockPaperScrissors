@@ -10,13 +10,13 @@ import Foundation
 import MultipeerConnectivity
 
 class MultipeerSessionService: NSObject {
-  
+
   func sendMultipeerAction(_ multipeerAction: MultipeerAction) {
     print("sendMultipeerAction - \(multipeerAction.rawValue)")
-    
+
     if let session = mainStore.state.multipeerState.session,
       session.connectedPeers.count > 0 {
-      
+
       do {
         let actionString = multipeerAction.rawValue
         if let actionData = actionString.data(using: .utf8) {
@@ -30,17 +30,17 @@ class MultipeerSessionService: NSObject {
 }
 
 extension MultipeerSessionService: MCSessionDelegate {
-  
+
   func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
     print("didChangeState \(state)")
   }
-  
+
   func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
-    
+
     print("session:didReceiveData")
     if let receivedString = String(data: data, encoding: .utf8),
       let receivedAction = MultipeerAction(rawValue: receivedString) {
-      
+
       DispatchQueue.main.async {
         switch receivedAction {
           case .gameStartRequest:
@@ -59,7 +59,7 @@ extension MultipeerSessionService: MCSessionDelegate {
             mainStore.dispatch(
               StopBrowsingPeers()
             )
-          
+
           case .chosenPaper:
             mainStore.dispatch(
               ChooseWeaponAction(player: .other, weapon: .paper)
@@ -78,15 +78,15 @@ extension MultipeerSessionService: MCSessionDelegate {
       print("[ERROR] Received unrecognized data from \(peerID.displayName)")
     }
   }
-  
+
   func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID) {
     print("didReceiveInputStream")
   }
-  
+
   func session(_ session: MCSession, didStartReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, with progress: Progress) {
     print("didStartReceivingResourceWithName")
   }
-  
+
   func session(_ session: MCSession, didFinishReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, at localURL: URL?, withError error: Error?) {
     print("didFinishReceivingResourceWithName")
   }
@@ -94,7 +94,7 @@ extension MultipeerSessionService: MCSessionDelegate {
 
 private enum MultipeerError: Error, LocalizedError {
   case encoding
-  
+
   var errorDescription: String? {
     switch self {
     case .encoding:

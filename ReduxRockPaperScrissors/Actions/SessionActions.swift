@@ -14,10 +14,10 @@ struct RequestStartGameAction: Action { }
 struct ReceivedStartGameAction: Action { }
 
 struct RespondStartGameAction: Action {
-  
+
   var canStart: Bool
   var gameStatus: GameStatus?
-  
+
   init(canStart: Bool, gameStatus: GameStatus? = nil) {
     self.canStart = canStart
     self.gameStatus = gameStatus

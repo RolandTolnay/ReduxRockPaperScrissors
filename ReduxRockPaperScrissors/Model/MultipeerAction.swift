@@ -9,13 +9,13 @@
 import Foundation
 
 enum MultipeerAction: String {
-  
+
   case gameStartRequest
   case gameStartApproved
   case gameStartDeclined
   case chosenRock
   case chosenPaper
   case chosenScrissors
-  
+
   case leftGame
 }

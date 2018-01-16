@@ -14,7 +14,7 @@ let loggingMiddleware: Middleware<Any> = { dispatch, getState in
     return { action in
       // perform middleware logic
       print(action)
-      
+
       // call next middleware
       return next(action)
     }

@@ -12,7 +12,7 @@ import MultipeerConnectivity
 
 func multipeerReducer(action: Action, state: MultipeerState?) -> MultipeerState {
   var state = state ?? MultipeerState()
-  
+
   switch action {
     case _ as BrowsePeersAction:
       state.session = MCSession(peer: state.peerId, securityIdentity: nil, encryptionPreference: .required)
@@ -26,21 +26,21 @@ func multipeerReducer(action: Action, state: MultipeerState?) -> MultipeerState 
     case _ as FoundPeerAction:
       if let session = state.session,
         let peerId = session.connectedPeers.first {
-        
+
         state.connectedPlayer = peerId.displayName
       }
-    
+
     case _ as RequestStartGameAction:
       state.sessionService.sendMultipeerAction(.gameStartRequest)
     case let respondStartAction as RespondStartGameAction:
       if let gameStatus = respondStartAction.gameStatus,
         gameStatus == .pendingStartReceived {
-        
+
         let multipeerAction: MultipeerAction =
           respondStartAction.canStart ? .gameStartApproved : .gameStartDeclined
         state.sessionService.sendMultipeerAction(multipeerAction)
       }
-    
+
     case let chooseWeaponAction as ChooseWeaponAction:
       if chooseWeaponAction.player == .me {
         switch chooseWeaponAction.weapon {
@@ -52,10 +52,10 @@ func multipeerReducer(action: Action, state: MultipeerState?) -> MultipeerState 
             state.sessionService.sendMultipeerAction(.chosenScrissors)
         }
       }
-    
+
       default:
         break
   }
-  
+
   return state
 }

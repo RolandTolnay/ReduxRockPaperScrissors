@@ -11,11 +11,11 @@ import UIKit
 import AudioToolbox
 
 func convertToGrayScale(image: UIImage) -> UIImage {
-  let imageRect:CGRect = CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height)
+  let imageRect: CGRect = CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height)
   let colorSpace = CGColorSpaceCreateDeviceGray()
   let width = image.size.width
   let height = image.size.height
-  
+
   let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.none.rawValue)
   let context = CGContext(data: nil, width: Int(width), height: Int(height), bitsPerComponent: 8, bytesPerRow: 0, space: colorSpace, bitmapInfo: bitmapInfo.rawValue)
 
@@ -23,10 +23,10 @@ func convertToGrayScale(image: UIImage) -> UIImage {
     context.draw(image.cgImage!, in: imageRect)
     let imageRef = context.makeImage()
     let newImage: UIImage = imageRef != nil ? UIImage(cgImage: imageRef!) : image
-    
+
     return newImage
   } else {
-    print("[ERROR] Context was nil at convertToGrayScale(image:) in Utility.swift");
+    print("[ERROR] Context was nil at convertToGrayScale(image:) in Utility.swift")
     return image
   }
 }

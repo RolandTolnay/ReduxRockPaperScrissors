@@ -11,10 +11,10 @@ import ReSwift
 
 func appReducer(action: Action, state: AppState?) -> AppState {
   var state = state ?? AppState()
-  
+
   state.gameState = gameReducer(action: action, state: state.gameState)
   state.multipeerState = multipeerReducer(action: action, state: state.multipeerState)
-  
+
   switch action {
     case _ as UpdateScoreAction:
       if let result = state.gameState.result {
@@ -32,8 +32,8 @@ func appReducer(action: Action, state: AppState?) -> AppState {
                     .other:0]
       state.gameState = GameState()
     default:
-      break;
+      break
   }
-  
+
   return state
 }

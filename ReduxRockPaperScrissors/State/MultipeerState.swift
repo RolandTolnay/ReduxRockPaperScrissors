@@ -11,12 +11,12 @@ import ReSwift
 import MultipeerConnectivity
 
 struct MultipeerState: StateType {
-  
+
   let serviceType = "rt-rps-game"
   let peerId = MCPeerID(displayName: UIDevice.current.name)
-  
+
   let sessionService = MultipeerSessionService()
-  
+
   var session: MCSession?
   var connectedPlayer: String?
 }

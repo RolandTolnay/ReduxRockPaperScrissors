@@ -27,7 +27,7 @@ enum Weapon {
 enum Result {
 
   case draw
-  case myWin
+  case localWin
   case otherWin
 }
 

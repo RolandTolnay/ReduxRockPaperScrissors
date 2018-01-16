@@ -14,16 +14,16 @@ class GameViewController: UIViewController, StoreSubscriber {
   // MARK: - IBOutlets
 
   @IBOutlet weak var otherPlayerNameLabel: UILabel!
-  @IBOutlet weak var myPlayerNameLabel: UILabel!
+  @IBOutlet weak var localPlayerNameLabel: UILabel!
 
   @IBOutlet weak var statusLabel: UILabel!
   @IBOutlet weak var playerLabel: UILabel!
   @IBOutlet weak var pendingStartLabel: UILabel!
 
-  @IBOutlet weak var myPlayerWeapon: UIImageView!
+  @IBOutlet weak var localPlayerWeapon: UIImageView!
   @IBOutlet weak var otherPlayerWeapon: UIImageView!
 
-  @IBOutlet weak var myPlayerScoreLabel: UILabel!
+  @IBOutlet weak var localPlayerScoreLabel: UILabel!
   @IBOutlet weak var otherPlayerScoreLabel: UILabel!
 
   @IBOutlet weak var rockImageView: UIImageView!
@@ -111,7 +111,7 @@ class GameViewController: UIViewController, StoreSubscriber {
     }
     let gameState = state.gameState
 
-    playerLabel.text = gameState.playerMessage.rawValue
+    playerLabel.text = gameState.playerMessage
     if let countdown = gameState.currentCountdown, statusLabel.text != String(countdown) {
       statusLabel.text = String(countdown)
       statusLabel.transform = CGAffineTransform(scaleX: 1, y: 1)
@@ -133,10 +133,10 @@ class GameViewController: UIViewController, StoreSubscriber {
     if gameState.result != nil {
       // TODO: Set rock default in single place, rather than both here and GameReducer
       otherPlayerWeapon.image = imageFrom(weapon: gameState.otherPlay.weapon ?? .rock, player: .other)
-      myPlayerWeapon.image = imageFrom(weapon: gameState.myPlay.weapon ?? .rock, player: .local)
+      localPlayerWeapon.image = imageFrom(weapon: gameState.localPlay.weapon ?? .rock, player: .local)
     } else {
       otherPlayerWeapon.image = imageFrom(weapon: nil, player: .other)
-      myPlayerWeapon.image = imageFrom(weapon: gameState.myPlay.weapon, player: .local)
+      localPlayerWeapon.image = imageFrom(weapon: gameState.localPlay.weapon, player: .local)
     }
 
     renderGameStatus(gameState.gameStatus, for: gameState.result)
@@ -147,7 +147,7 @@ class GameViewController: UIViewController, StoreSubscriber {
   // --------------------
 
   private func renderPlayerNames(from multipeerState: MultipeerState) {
-    myPlayerNameLabel.text = UIDevice.current.name
+    localPlayerNameLabel.text = UIDevice.current.name
     otherPlayerNameLabel.text = multipeerState.connectedPlayer
   }
 
@@ -172,7 +172,7 @@ class GameViewController: UIViewController, StoreSubscriber {
         leaveButton.isHidden = false
         pendingStartLabel.isHidden = true
         if let result = result {
-          grayscaleImagesForResult(result, playerOne: &myPlayerWeapon.image!, playerTwo: &otherPlayerWeapon.image!)
+          grayscaleImagesForResult(result, playerOne: &localPlayerWeapon.image!, playerTwo: &otherPlayerWeapon.image!)
         }
       case .countdown:
         toggleTimer(enabled: true)
@@ -270,7 +270,7 @@ class GameViewController: UIViewController, StoreSubscriber {
     guard let result = result else { return }
 
     switch result {
-      case .myWin:
+      case .localWin:
         playerTwo = convertToGrayScale(image: playerTwo)
       case .otherWin:
         playerOne = convertToGrayScale(image: playerOne)
@@ -283,7 +283,7 @@ class GameViewController: UIViewController, StoreSubscriber {
     guard let p1Score = state.score[Player.local],
       let p2Score = state.score[Player.other] else { return }
 
-    myPlayerScoreLabel.text = String(p1Score)
+    localPlayerScoreLabel.text = String(p1Score)
     otherPlayerScoreLabel.text = String(p2Score)
   }
 }

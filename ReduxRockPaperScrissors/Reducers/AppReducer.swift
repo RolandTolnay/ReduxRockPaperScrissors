@@ -19,7 +19,7 @@ func appReducer(action: Action, state: AppState?) -> AppState {
     case _ as UpdateScoreAction:
       if let result = state.gameState.result {
         switch result {
-          case .myWin:
+          case .localWin:
             state.score[.local]! += 1
           case .otherWin:
             state.score[.other]! += 1

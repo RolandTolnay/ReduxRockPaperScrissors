@@ -194,10 +194,10 @@
                     </view>
                     <connections>
                         <outlet property="leaveButton" destination="1Lm-lO-xli" id="onZ-tz-p2e"/>
+                        <outlet property="localPlayerNameLabel" destination="kGe-1J-mcy" id="7av-dA-hh3"/>
+                        <outlet property="localPlayerScoreLabel" destination="CbQ-WR-rZQ" id="PoJ-Vy-aOD"/>
+                        <outlet property="localPlayerWeapon" destination="lTQ-1x-Pe9" id="Gaq-yk-SDg"/>
                         <outlet property="lowerBackgroundView" destination="fgn-ib-TRs" id="Oj5-2I-4hY"/>
-                        <outlet property="myPlayerNameLabel" destination="kGe-1J-mcy" id="7av-dA-hh3"/>
-                        <outlet property="myPlayerScoreLabel" destination="CbQ-WR-rZQ" id="PoJ-Vy-aOD"/>
-                        <outlet property="myPlayerWeapon" destination="lTQ-1x-Pe9" id="Gaq-yk-SDg"/>
                         <outlet property="otherPlayerNameLabel" destination="Z3F-jV-Djf" id="7aB-ra-Oap"/>
                         <outlet property="otherPlayerScoreLabel" destination="GUN-3f-SW0" id="AOc-0L-jkO"/>
                         <outlet property="otherPlayerWeapon" destination="Ma2-We-3jF" id="fpN-lA-mVB"/>

@@ -12,24 +12,22 @@ import ReSwift
 // MARK: - Application reducer
 
 func gameReducer(action: Action, state: GameState?) -> GameState {
-
-  // create initial state if none provided
   var state = state ?? GameState()
 
   switch action {
     case let chooseWeaponAction as ChooseWeaponAction:
       switch chooseWeaponAction.player {
         case .local:
-          state.myPlay = Play(chosen: true, weapon: chooseWeaponAction.weapon)
+          state.localPlay = Play(chosen: true, weapon: chooseWeaponAction.weapon)
         case .other:
           state.otherPlay = Play(chosen: true, weapon: chooseWeaponAction.weapon)
       }
     case _ as CountdownTickAction:
       // TODO: Refactor player name handling
       let multipeerState = mainStore.state.multipeerState
-      let myName = multipeerState.peerId.displayName
+      let localName = multipeerState.peerId.displayName
       let otherName = multipeerState.connectedPlayer!
-      state = countdownReducer(state: state, playerNames: (myName, otherName))
+      state = countdownReducer(state: state, playerNames: (localName, otherName))
 
     case _ as RequestStartGameAction:
       state.gameStatus = .pendingStartSent
@@ -37,7 +35,7 @@ func gameReducer(action: Action, state: GameState?) -> GameState {
       state.gameStatus = .pendingStartReceived
     case let respondStartAction as RespondStartGameAction:
       if respondStartAction.canStart {
-        state.myPlay = Play(chosen: false, weapon: nil)
+        state.localPlay = Play(chosen: false, weapon: nil)
         state.otherPlay = Play(chosen: false, weapon: nil)
         state.result = nil
         state.gameStatus = .countdown
@@ -55,7 +53,7 @@ func gameReducer(action: Action, state: GameState?) -> GameState {
 
 // MARK: - Helpers
 
-private func countdownReducer(state: GameState, playerNames: (myName: String, otherName: String)) -> GameState {
+private func countdownReducer(state: GameState, playerNames: (localName: String, otherName: String)) -> GameState {
   var state = state
 
   if state.currentCountdown == nil {
@@ -64,12 +62,12 @@ private func countdownReducer(state: GameState, playerNames: (myName: String, ot
     state.currentCountdown! -= 1
 
     if state.currentCountdown == 0 {
-      state.result = resultFrom(player1: state.myPlay, player2: state.otherPlay)
+      state.result = resultFrom(player1: state.localPlay, player2: state.otherPlay)
       switch state.result! {
         case .draw:
           state.statusMessage = Message.draw.rawValue
-        case .myWin:
-          state.statusMessage = playerNames.myName + Message.playerWin.rawValue
+        case .localWin:
+          state.statusMessage = playerNames.localName + Message.playerWin.rawValue
         case .otherWin:
           state.statusMessage = playerNames.otherName + Message.playerWin.rawValue
         }
@@ -92,18 +90,18 @@ private func resultFrom(player1: Play, player2: Play) -> Result {
     case .rock:
       switch p2Weapon {
         case .paper: return .otherWin
-        case .scrissors: return .myWin
+        case .scrissors: return .localWin
         default: return .draw
       }
     case .paper:
       switch p2Weapon {
-        case .rock: return .myWin
+        case .rock: return .localWin
         case .scrissors: return .otherWin
         default: return .draw
       }
     case .scrissors:
       switch p2Weapon {
-        case .paper: return .myWin
+        case .paper: return .localWin
         case .rock: return .otherWin
         default: return .draw
       }

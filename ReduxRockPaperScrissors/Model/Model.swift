@@ -8,9 +8,9 @@
 
 import Foundation
 
-// MARK: - Enums
-// MARK: - Model
-
+// MARK: -
+// MARK: Enums
+// --------------------
 enum Player {
 
   case local
@@ -40,25 +40,26 @@ enum GameStatus {
   case countdown
 }
 
-typealias Score = [Player: Int]
-typealias PlayerNames = (localPlayerName: String, otherPlayerName: String)
-
-// MARK: - Utility
-
 enum Message: String {
-
+  
   case prepare = "Prepare to battle!"
   case playerChoose = "Choose weapon"
   case gameStart = "Rock Paper Scrissors GO!"
   case empty = ""
-
+  
   case draw = "Wow it's a draw!"
   case playerWin = " WINS"
 }
 
-// MARK: - Structs
+// MARK: -
+// MARK: Typealias
+// --------------------
+typealias Score = [Player: Int]
+typealias PlayerNames = (localPlayerName: String, otherPlayerName: String)
 
-// The move a player has made
+// MARK: -
+// MARK: Structs
+// --------------------
 struct Play {
 
   var chosen: Bool

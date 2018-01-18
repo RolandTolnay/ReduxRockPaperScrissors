@@ -29,6 +29,9 @@ class MultipeerSessionService: NSObject {
   }
 }
 
+// MARK: -
+// MARK: MCSessionDelegate
+// --------------------
 extension MultipeerSessionService: MCSessionDelegate {
 
   func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
@@ -95,6 +98,9 @@ extension MultipeerSessionService: MCSessionDelegate {
   }
 }
 
+// MARK: -
+// MARK: MultipeerError
+// --------------------
 private enum MultipeerError: Error, LocalizedError {
   case encoding
 

@@ -102,43 +102,25 @@ class GameViewController: UIViewController, StoreSubscriber {
   }
 
   // MARK: -
-  // MARK: Render state
+  // MARK: Redux Render
   // --------------------
 
   func newState(state: GameState) {
 
     playerLabel.text = state.playerMessage
-    if let countdown = state.currentCountdown, statusLabel.text != String(countdown) {
-      statusLabel.text = String(countdown)
-      statusLabel.transform = CGAffineTransform(scaleX: 1, y: 1)
-      UIView.animate(withDuration: 1, animations: {
-        self.statusLabel.transform = CGAffineTransform(scaleX: 2, y: 2)
-      })
-    }
-    if state.gameStatus != .countdown {
-      statusLabel.transform = CGAffineTransform(scaleX: 1, y: 1)
-      statusLabel.text = state.statusMessage
-    }
-
     renderPlayerNames(from: state.playerNames)
     updateScore(from: state)
-
+    renderCountdown(from: state)
+    
     toggleWeaponInteraction(enabled: state.result == nil)
     toggleWeaponVisibility(isHidden: state.gameStatus != .countdown)
-
-    if state.result != nil {
-      otherPlayerWeapon.image = imageFrom(weapon: state.otherPlay.weapon!, player: .other)
-      localPlayerWeapon.image = imageFrom(weapon: state.localPlay.weapon!, player: .local)
-    } else {
-      otherPlayerWeapon.image = imageFrom(weapon: nil, player: .other)
-      localPlayerWeapon.image = imageFrom(weapon: state.localPlay.weapon, player: .local)
-    }
+    renderResult(from: state)
 
     renderGameStatus(state.gameStatus, for: state.result)
   }
 
   // MARK: -
-  // MARK: Utility
+  // MARK: Render methods
   // --------------------
 
   private func renderPlayerNames(from playerNames: PlayerNames) {
@@ -180,6 +162,42 @@ class GameViewController: UIViewController, StoreSubscriber {
         pendingStartLabel.isHidden = true
     }
   }
+  
+  private func renderCountdown(from state: GameState) {
+    if let countdown = state.currentCountdown, statusLabel.text != String(countdown) {
+      statusLabel.text = String(countdown)
+      statusLabel.transform = CGAffineTransform(scaleX: 1, y: 1)
+      UIView.animate(withDuration: 1, animations: {
+        self.statusLabel.transform = CGAffineTransform(scaleX: 2, y: 2)
+      })
+    }
+    if state.gameStatus != .countdown {
+      statusLabel.transform = CGAffineTransform(scaleX: 1, y: 1)
+      statusLabel.text = state.statusMessage
+    }
+  }
+  
+  private func renderResult(from state: GameState) {
+    if state.result != nil {
+      otherPlayerWeapon.image = imageFor(weapon: state.otherPlay.weapon!, player: .other)
+      localPlayerWeapon.image = imageFor(weapon: state.localPlay.weapon!, player: .local)
+    } else {
+      otherPlayerWeapon.image = imageFor(weapon: nil, player: .other)
+      localPlayerWeapon.image = imageFor(weapon: state.localPlay.weapon, player: .local)
+    }
+  }
+  
+  private func updateScore(from state: GameState) {
+    guard let p1Score = state.score[Player.local],
+      let p2Score = state.score[Player.other] else { return }
+    
+    localPlayerScoreLabel.text = String(p1Score)
+    otherPlayerScoreLabel.text = String(p2Score)
+  }
+  
+  // MARK: -
+  // MARK: Alerts
+  // --------------------
 
   typealias AlertResult = (_ didAccept: Bool) -> Void
 
@@ -213,6 +231,10 @@ class GameViewController: UIViewController, StoreSubscriber {
     rootVC.present(alert, animated: true, completion: nil)
   }
 
+  // MARK: -
+  // MARK: Togglers
+  // --------------------
+  
   private func toggleWeaponInteraction(enabled: Bool) {
     rockImageView.isUserInteractionEnabled = enabled
     paperImageView.isUserInteractionEnabled = enabled
@@ -249,8 +271,12 @@ class GameViewController: UIViewController, StoreSubscriber {
       vibratePhone()
     }
   }
+  
+  // MARK: -
+  // MARK: Helpers
+  // --------------------
 
-  private func imageFrom(weapon: Weapon?, player: Player) -> UIImage? {
+  private func imageFor(weapon: Weapon?, player: Player) -> UIImage? {
     guard let weapon = weapon else {
       return UIImage(named: "none")
     }
@@ -277,13 +303,5 @@ class GameViewController: UIViewController, StoreSubscriber {
       default: // draw
         break
     }
-  }
-
-  private func updateScore(from state: GameState) {
-    guard let p1Score = state.score[Player.local],
-      let p2Score = state.score[Player.other] else { return }
-
-    localPlayerScoreLabel.text = String(p1Score)
-    otherPlayerScoreLabel.text = String(p2Score)
   }
 }

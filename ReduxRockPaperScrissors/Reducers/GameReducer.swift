@@ -9,8 +9,10 @@
 import Foundation
 import ReSwift
 
-// MARK: - Application reducer
 
+// MARK: -
+// MARK: Game Reducer
+// --------------------
 func gameReducer(action: Action, state: GameState?) -> GameState {
   var state = state ?? GameState()
 
@@ -66,8 +68,9 @@ func gameReducer(action: Action, state: GameState?) -> GameState {
   return state
 }
 
-// MARK: - Helpers
-
+// MARK: -
+// MARK: Sub-Reducers
+// --------------------
 private func countdownReducer(state: GameState) -> GameState {
   var state = state
 
@@ -109,6 +112,9 @@ private func resultReducer(state: GameState) -> GameState {
   return state
 }
 
+// MARK: -
+// MARK: Helpers
+// --------------------
 private func resultFrom(localPlay: Play, otherPlay: Play) -> Result {
 
   let localWeapon = localPlay.weapon!

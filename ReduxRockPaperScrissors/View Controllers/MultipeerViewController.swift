@@ -49,7 +49,7 @@ class MultipeerViewController: UIViewController, StoreSubscriber {
   }
 
   // MARK: -
-  // MARK: Render state
+  // MARK: Redux Render
   // --------------------
 
   func newState(state: MultipeerState) {
@@ -94,6 +94,9 @@ class MultipeerViewController: UIViewController, StoreSubscriber {
   }
 }
 
+// MARK: -
+// MARK: MCBrowserViewControllerDelegate
+// --------------------
 extension MultipeerViewController: MCBrowserViewControllerDelegate {
 
   func browserViewControllerDidFinish(_ browserViewController: MCBrowserViewController) {

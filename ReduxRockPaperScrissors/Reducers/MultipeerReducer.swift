@@ -16,7 +16,7 @@ func multipeerReducer(action: Action, state: MultipeerState?) -> MultipeerState 
   switch action {
   // Multipeer
     case _ as BrowsePeersAction:
-      state.session = MCSession(peer: state.peerId, securityIdentity: nil, encryptionPreference: .required)
+      state.session = MCSession(peer: state.localPeerId, securityIdentity: nil, encryptionPreference: .required)
       state.session?.delegate = state.sessionService
     case _ as StopBrowsingPeersAction:
       state.session = nil

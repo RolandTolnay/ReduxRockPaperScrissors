@@ -12,11 +12,16 @@ import MultipeerConnectivity
 
 struct MultipeerState: StateType {
 
-  let serviceType = "rt-rps-game"
-  let peerId = MCPeerID(displayName: UIDevice.current.name)
-
-  let sessionService = MultipeerSessionService()
+  let serviceType: String = "rt-rps-game"
+  
+  let localPeerId: MCPeerID
+  let sessionService: MultipeerSessionService
 
   var session: MCSession?
   var connectedPlayer: MCPeerID?
+  
+  init() {
+    self.localPeerId = MCPeerID(displayName: UIDevice.current.name)
+    self.sessionService = MultipeerSessionService()
+  }
 }
